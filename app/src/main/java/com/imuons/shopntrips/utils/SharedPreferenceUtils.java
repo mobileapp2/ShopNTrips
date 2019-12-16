@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
+import com.imuons.shopntrips.model.LoginResponseModel;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -24,7 +25,7 @@ public class SharedPreferenceUtils {
     static String REQ_ID = "requestid";
 
 
-   /* public static void storeLoginObject(LoginResponseModel model, Context context) {
+    public static void storeLoginObject(LoginResponseModel model, Context context) {
         SharedPreferences.Editor editor = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE).edit();
         Gson gson = new Gson();
         String json = gson.toJson(model);
@@ -37,7 +38,7 @@ public class SharedPreferenceUtils {
         Gson gson = new Gson();
         String json = prefs.getString(LOGIN_OBJECT, "");
         return gson.fromJson(json, LoginResponseModel.class);
-    }*/
+    }
 
 //    public static void storeDashboardObject(DashboardResponseModel model, Context context) {
 //        SharedPreferences.Editor editor = context.getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE).edit();

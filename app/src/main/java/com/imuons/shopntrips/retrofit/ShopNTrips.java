@@ -1,24 +1,24 @@
 package com.imuons.shopntrips.retrofit;
 
+import com.imuons.shopntrips.model.LoginResponseModel;
+
 import java.util.Map;
 
-import okhttp3.MultipartBody;
 import retrofit2.Call;
-import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 
 public interface ShopNTrips {
 
-  /*  @FormUrlEncoded
+
+    @FormUrlEncoded
     @POST("login")
     Call<LoginResponseModel> wsLogin(@FieldMap Map<String, String> map);
+
+
+
+  /*
 
     @FormUrlEncoded
     @POST("register")

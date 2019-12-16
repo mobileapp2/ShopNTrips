@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ShopNTrips</string>
+    <string name="enter_user_name">ENTER USER NAME</string>
+    <string name="enter_user_pass">ENTER PASSWORD</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password ?</string>
+
+    <string name="invalid_username_message">Empty or Invalid user name</string>
+    <string name="invalid_password_message">Empty or Invalid Password</string>
+    <string name="something_went_wrong">Something went wrong or no internet connection...Please try again!</string>
+
 </resources>
