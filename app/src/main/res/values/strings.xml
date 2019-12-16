@@ -8,5 +8,8 @@
     <string name="invalid_username_message">Empty or Invalid user name</string>
     <string name="invalid_password_message">Empty or Invalid Password</string>
     <string name="something_went_wrong">Something went wrong or no internet connection...Please try again!</string>
+    <string name="register_now">Register Now</string>
+    <string name="need_to_signup">Need to signup ?</string>
+    <string name="login">LOGIN</string>
 
 </resources>
