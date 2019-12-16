@@ -36,7 +36,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/open_sans_bold"
             android:gravity="center_horizontal"
-            android:text="LOGIN"
+            android:text="@string/login"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
