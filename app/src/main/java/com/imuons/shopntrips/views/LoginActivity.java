@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     View loaderView;
 
     @BindView(R.id.checkbox)
-     CheckBox saveLoginCheckBox;
+    CheckBox saveLoginCheckBox;
 
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
@@ -105,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         final String userName, password;
         userName = mEditUserName.getText().toString().trim();
         password = mEditPassword.getText().toString().trim();
+
         if (saveLoginCheckBox.isChecked()) {
             loginPrefsEditor.putBoolean("saveLogin", true);
             loginPrefsEditor.putString("username", userName);
@@ -114,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             loginPrefsEditor.clear();
             loginPrefsEditor.commit();
         }
+
         loginMap.put("user_id", userName);
         loginMap.put("password", password);
 
@@ -132,16 +134,12 @@ public class LoginActivity extends AppCompatActivity {
                     LoginResponseModel loginModel = response.body();
                     if (loginModel.getCode() == Constants.RESPONSE_CODE_OK &&
                             loginModel.getStatus().equals("OK")) {
-
-
                         SharedPreferenceUtils.storeLoginObject(loginModel, LoginActivity.this);
                         SharedPreferenceUtils.storeUserName(LoginActivity.this, userName);
                         SharedPreferenceUtils.storePassword(LoginActivity.this, password);
                         SharedPreferenceUtils.storeAccessToken(LoginActivity.this, loginModel.getData().getAccess_token());
                         startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                         finish();
-
-
                     } else {
                         Toast.makeText(LoginActivity.this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
                     }
