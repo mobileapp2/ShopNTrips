@@ -2,6 +2,7 @@ package com.imuons.shopntrips.views;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -46,7 +47,11 @@ public class LoginActivity extends AppCompatActivity {
     View loaderView;
 
     @BindView(R.id.checkbox)
-    CheckBox checkbox;
+     CheckBox saveLoginCheckBox;
+
+    private SharedPreferences loginPreferences;
+    private SharedPreferences.Editor loginPrefsEditor;
+    private Boolean saveLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,14 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
+       /* loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
+        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        if (saveLogin == true) {
+            mEditUserName.setText(loginPreferences.getString("username", ""));
+            mEditPassword.setText(loginPreferences.getString("password", ""));
+            saveLoginCheckBox.setChecked(true);
+        }*/
         registerhere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +105,16 @@ public class LoginActivity extends AppCompatActivity {
         final String userName, password;
         userName = mEditUserName.getText().toString().trim();
         password = mEditPassword.getText().toString().trim();
-
+       /* if (saveLoginCheckBox.isChecked()) {
+            loginPrefsEditor.putBoolean("saveLogin", true);
+            loginPrefsEditor.putString("username", userName);
+            loginPrefsEditor.putString("password", password);
+            loginPrefsEditor.commit();
+        } else {
+            loginPrefsEditor.clear();
+            loginPrefsEditor.commit();
+        }
+*/
         loginMap.put("user_id", userName);
         loginMap.put("password", password);
 
@@ -111,12 +133,16 @@ public class LoginActivity extends AppCompatActivity {
                     LoginResponseModel loginModel = response.body();
                     if (loginModel.getCode() == Constants.RESPONSE_CODE_OK &&
                             loginModel.getStatus().equals("OK")) {
+
+
                         SharedPreferenceUtils.storeLoginObject(loginModel, LoginActivity.this);
                         SharedPreferenceUtils.storeUserName(LoginActivity.this, userName);
                         SharedPreferenceUtils.storePassword(LoginActivity.this, password);
                         SharedPreferenceUtils.storeAccessToken(LoginActivity.this, loginModel.getData().getAccess_token());
                         startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                         finish();
+
+
                     } else {
                         Toast.makeText(LoginActivity.this, loginModel.getMessage(), Toast.LENGTH_SHORT).show();
                     }
