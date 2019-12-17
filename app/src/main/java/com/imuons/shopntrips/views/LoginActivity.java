@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         mTextForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent forgotpass = new Intent(LoginActivity.this, ForgotPassword.class);
+                Intent forgotpass = new Intent(LoginActivity.this, ResetPassword.class);
                 startActivity(forgotpass);
             }
         });

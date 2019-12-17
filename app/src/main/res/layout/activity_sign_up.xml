@@ -64,10 +64,11 @@
                         android:id="@+id/layout_user_id"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                 >
 
 
                         <EditText
+                            android:background="@drawable/rounded_edittext"
                             android:paddingRight="15dp"
                             android:maxLength="8"
                             android:fontFamily="@font/open_sans_light"
@@ -76,7 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+
                             android:hint="Name"
                             android:textSize="@dimen/register_textsize"
                             android:imeOptions="actionNext"
@@ -90,7 +91,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                        >
 
 
                         <EditText
@@ -102,7 +103,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+                            android:background="@drawable/rounded_edittext"
                             android:hint="Mobile Number"
                             android:paddingRight="15dp"
                             android:imeOptions="actionNext"
@@ -118,7 +119,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                 >
 
 
                         <EditText
@@ -130,7 +131,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+
+                            android:background="@drawable/rounded_edittext"
                             android:hint="Email"
                             android:imeOptions="actionNext"
                             android:paddingLeft="15dp"
@@ -143,7 +145,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                       >
 
 
                         <EditText
@@ -156,7 +158,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+                            android:background="@drawable/rounded_edittext"
                             android:hint="Country"
                             android:paddingRight="15dp"
 
@@ -170,7 +172,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                        >
 
 
                         <EditText
@@ -183,7 +185,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+                            android:background="@drawable/rounded_edittext"
                             android:hint="State"
                             android:paddingRight="15dp"
 
@@ -196,7 +198,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                        >
 
 
                         <EditText
@@ -208,7 +210,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+                            android:background="@drawable/rounded_edittext"
                             android:hint="City"
                             android:paddingRight="15dp"
                             android:drawableEnd="@drawable/downarrow"
@@ -221,7 +223,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                       >
 
 
                         <EditText
@@ -233,7 +235,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+                            android:background="@drawable/rounded_edittext"
                             android:hint="Address"
                             android:paddingRight="15dp"
                             android:drawableEnd="@drawable/address"
@@ -246,10 +248,11 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
+                        >
 
 
                         <EditText
+                            android:background="@drawable/rounded_edittext"
                             android:fontFamily="@font/open_sans_light"
                             android:textSize="@dimen/register_textsize"
                             android:textStyle="bold"
@@ -258,7 +261,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="#90FFFFFF"
+
                             android:hint="PinCode"
                             android:paddingRight="15dp"
                             android:drawableEnd="@drawable/pincode"

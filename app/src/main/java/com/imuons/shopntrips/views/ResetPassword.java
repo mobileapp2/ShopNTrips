@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.imuons.shopntrips.R;
 
-public class ForgotPassword extends AppCompatActivity {
+public class ResetPassword extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_password);
+        setContentView(R.layout.activity_reset_password);
     }
 }
