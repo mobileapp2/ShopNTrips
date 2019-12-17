@@ -11,6 +11,7 @@
     <string name="register_now">Register Now</string>
     <string name="need_to_signup">Need to signup ?</string>
     <string name="login">LOGIN</string>
+    <string name="title_activity_dashboard">Dashboard</string>
 
 
 </resources>
