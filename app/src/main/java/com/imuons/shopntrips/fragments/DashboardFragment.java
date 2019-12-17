@@ -52,14 +52,14 @@ public class DashboardFragment extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logout1();
+                showAlertDialog();
             }
         });
         return view;
     }
 
-    private void logout1() {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
+    void showAlertDialog() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext(),AlertDialog.THEME_HOLO_LIGHT);
         builder1.setTitle("Exit");
         builder1.setMessage("Are you sure you want to Logout ?");
         builder1.setCancelable(true);
@@ -69,12 +69,14 @@ public class DashboardFragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
-
+                        getContext();
                         SharedPreferenceUtils.clearPreferences(getContext());
                         SharedPreferenceUtils.clearID(getContext());
+                        SharedPreferenceUtils.clearAccess_Token(getContext());
 
                         startActivity(new Intent(getContext(), LoginActivity.class));
-                     //   Toast.makeText(DashboardActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(getContext(), "Logout Successfully", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -89,5 +91,6 @@ public class DashboardFragment extends Fragment {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
 
 }

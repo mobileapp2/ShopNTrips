@@ -62,14 +62,14 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-       /* loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
         saveLogin = loginPreferences.getBoolean("saveLogin", false);
         if (saveLogin == true) {
             mEditUserName.setText(loginPreferences.getString("username", ""));
             mEditPassword.setText(loginPreferences.getString("password", ""));
             saveLoginCheckBox.setChecked(true);
-        }*/
+        }
         registerhere.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         final String userName, password;
         userName = mEditUserName.getText().toString().trim();
         password = mEditPassword.getText().toString().trim();
-       /* if (saveLoginCheckBox.isChecked()) {
+        if (saveLoginCheckBox.isChecked()) {
             loginPrefsEditor.putBoolean("saveLogin", true);
             loginPrefsEditor.putString("username", userName);
             loginPrefsEditor.putString("password", password);
@@ -114,7 +114,6 @@ public class LoginActivity extends AppCompatActivity {
             loginPrefsEditor.clear();
             loginPrefsEditor.commit();
         }
-*/
         loginMap.put("user_id", userName);
         loginMap.put("password", password);
 
