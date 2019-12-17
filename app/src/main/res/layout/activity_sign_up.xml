@@ -7,7 +7,7 @@
 
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".views.Registration">
+    tools:context=".views.SignUp">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -72,39 +72,13 @@
                             android:maxLength="8"
                             android:fontFamily="@font/open_sans_light"
                             android:textStyle="bold"
-                            android:id="@+id/edit_sponsorid"
+                            android:id="@+id/edit_name"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:background="#90FFFFFF"
-                            android:hint="Sponsor Id"
+                            android:hint="Name"
                             android:textSize="@dimen/register_textsize"
-                            android:imeOptions="actionNext"
-                            android:drawableEnd="@drawable/sponsorid"
-                            android:paddingLeft="15dp"
-                            android:singleLine="true"
-                            android:textColor="@color/colorDarkGray" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
-
-
-                        <EditText
-                            android:fontFamily="@font/open_sans_light"
-                            android:focusable="false"
-                            android:textSize="@dimen/register_textsize"
-                            android:textStyle="bold"
-                            android:id="@+id/edit_sponsorname"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:background="#90FFFFFF"
-                            android:hint="Sponsor Name"
-                            android:paddingRight="15dp"
                             android:imeOptions="actionNext"
                             android:drawableEnd="@drawable/name"
                             android:paddingLeft="15dp"
@@ -112,157 +86,205 @@
                             android:textColor="@color/colorDarkGray" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/register_editbox_height"
+                        android:background="@drawable/rounded_edittext">
+
+
+                        <EditText
+                            android:fontFamily="@font/open_sans_light"
+                            android:focusable="false"
+                            android:textSize="@dimen/register_textsize"
+                            android:textStyle="bold"
+                            android:id="@+id/edit_mobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#90FFFFFF"
+                            android:hint="Mobile Number"
+                            android:paddingRight="15dp"
+                            android:imeOptions="actionNext"
+                            android:drawableEnd="@drawable/mobile"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/colorDarkGray" />
+                    </LinearLayout>
+
+
 
                     <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/register_editbox_height"
+                        android:background="@drawable/rounded_edittext">
 
+
+                        <EditText
+                            android:fontFamily="@font/open_sans_light"
+                            android:textSize="@dimen/register_textsize"
+                            android:textStyle="bold"
+                            android:focusable="false"
+                            android:id="@+id/edit_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#90FFFFFF"
+                            android:hint="Email"
+                            android:imeOptions="actionNext"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:paddingRight="15dp"
+                            android:drawableEnd="@drawable/mail"
+                            android:textColor="@color/colorDarkGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/register_editbox_height"
+                        android:background="@drawable/rounded_edittext">
+
+
+                        <EditText
+                            android:drawableEnd="@drawable/downarrow"
+                            android:fontFamily="@font/open_sans_light"
+                            android:textSize="@dimen/register_textsize"
+                            android:textStyle="bold"
+                            android:focusable="false"
+                            android:id="@+id/edit_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#90FFFFFF"
+                            android:hint="Country"
+                            android:paddingRight="15dp"
+
+
+                            android:imeOptions="actionNext"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/colorDarkGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/register_editbox_height"
+                        android:background="@drawable/rounded_edittext">
+
+
+                        <EditText
+                            android:drawableEnd="@drawable/downarrow"
+                            android:fontFamily="@font/open_sans_light"
+                            android:textSize="@dimen/register_textsize"
+                            android:textStyle="bold"
+                            android:focusable="false"
+                            android:id="@+id/edit_state"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#90FFFFFF"
+                            android:hint="State"
+                            android:paddingRight="15dp"
+
+                            android:imeOptions="actionNext"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/colorDarkGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/register_editbox_height"
+                        android:background="@drawable/rounded_edittext">
+
+
+                        <EditText
+                            android:fontFamily="@font/open_sans_light"
+                            android:textSize="@dimen/register_textsize"
+                            android:textStyle="bold"
+                            android:focusable="false"
+                            android:id="@+id/edit_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#90FFFFFF"
+                            android:hint="City"
+                            android:paddingRight="15dp"
+                            android:drawableEnd="@drawable/downarrow"
+                            android:imeOptions="actionNext"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/colorDarkGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/register_editbox_height"
+                        android:background="@drawable/rounded_edittext">
+
+
+                        <EditText
+                            android:fontFamily="@font/open_sans_light"
+                            android:textSize="@dimen/register_textsize"
+                            android:textStyle="bold"
+                            android:focusable="false"
+                            android:id="@+id/edit_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#90FFFFFF"
+                            android:hint="Address"
+                            android:paddingRight="15dp"
+                            android:drawableEnd="@drawable/address"
+                            android:imeOptions="actionNext"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/colorDarkGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/register_editbox_height"
+                        android:background="@drawable/rounded_edittext">
+
+
+                        <EditText
+                            android:fontFamily="@font/open_sans_light"
+                            android:textSize="@dimen/register_textsize"
+                            android:textStyle="bold"
+                            android:focusable="false"
+                            android:id="@+id/edit_pincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#90FFFFFF"
+                            android:hint="PinCode"
+                            android:paddingRight="15dp"
+                            android:drawableEnd="@drawable/pincode"
+                            android:imeOptions="actionNext"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/colorDarkGray" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal"
-                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/register_editbox_height"
-                        >
+                        android:layout_height="@dimen/register_editbox_height">
+                        <CheckBox
+                            android:id="@+id/checkpan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/border" />
 
-                        <LinearLayout
-                            android:layout_gravity="center"
-
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/register_editbox_height">
-                            <RadioGroup
-                                android:layout_gravity="center"
-                                android:layout_weight="1"
-                                android:orientation="horizontal"
-                                android:id="@+id/radiogroup"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/register_editbox_height">
-                                <RadioButton
-                                    android:fontFamily="@font/open_sans_light"
-                                    android:id="@+id/leftradio"
-                                    android:shadowColor="@color/white"
-                                    android:textSize="@dimen/register_textsize"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center"
-                                    android:text="Left"
-                                    android:layout_weight="0.5"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content" />
-
-
-                                <RadioButton
-                                    android:fontFamily="@font/open_sans_light"
-                                    android:id="@+id/rightradio"
-                                    android:shadowColor="@color/white"
-                                    android:textSize="@dimen/register_textsize"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/white"
-                                    android:layout_gravity="center"
-                                    android:text="Right"
-                                    android:layout_weight="0.5"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content" />
-                            </RadioGroup>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:background="@drawable/rounded_edittext"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp">
-
-                            <EditText
-                                android:enabled="false"
-                                android:id="@+id/edit_position"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/open_sans_light"
-                                android:layout_weight="0.5"
-                                android:background="#90FFFFFF"
-                                android:hint="Position"
-                                android:textSize="@dimen/register_textsize"
-                                android:imeOptions="actionNext"
-                                android:paddingLeft="15dp"
-                                android:singleLine="true"
-                                android:paddingRight="15dp"
-                                android:drawableEnd="@drawable/position"
-                                android:textColor="@color/colorDarkGray"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
-
-
-                        <EditText
+                        <TextView
                             android:fontFamily="@font/open_sans_light"
-                            android:textSize="@dimen/register_textsize"
-                            android:textStyle="bold"
-                            android:focusable="false"
-                            android:id="@+id/edit_userid"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:background="#90FFFFFF"
-                            android:hint="User Id"
-                            android:imeOptions="actionNext"
-                            android:paddingLeft="15dp"
-                            android:singleLine="true"
-                            android:paddingRight="15dp"
-                            android:drawableEnd="@drawable/userid"
-                            android:textColor="@color/colorDarkGray" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
-
-
-                        <EditText
-                            android:fontFamily="@font/open_sans_light"
-                            android:textSize="@dimen/register_textsize"
-                            android:textStyle="bold"
-                            android:focusable="false"
-                            android:id="@+id/edit_password"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:background="#90FFFFFF"
-                            android:hint="Password"
-                            android:paddingRight="15dp"
-                            android:drawableEnd="@drawable/compassword"
-                            android:imeOptions="actionNext"
-                            android:paddingLeft="15dp"
-                            android:singleLine="true"
-                            android:textColor="@color/colorDarkGray" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/register_editbox_height"
-                        android:background="@drawable/rounded_edittext">
-
-
-                        <EditText
-                            android:fontFamily="@font/open_sans_light"
-                            android:textSize="@dimen/register_textsize"
-                            android:textStyle="bold"
-                            android:focusable="false"
-                            android:id="@+id/edit_cpassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:background="#90FFFFFF"
-                            android:hint="Confirm Password"
-                            android:paddingRight="15dp"
-                            android:drawableEnd="@drawable/compassword"
-                            android:imeOptions="actionNext"
-                            android:paddingLeft="15dp"
-                            android:singleLine="true"
-                            android:textColor="@color/colorDarkGray" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:layout_marginLeft="10dp"
+                            android:text="I Accept Terms and Conditions"/>
                     </LinearLayout>
                     <Button
                         android:fontFamily="@font/open_sans_light"
@@ -271,7 +293,7 @@
                         android:textStyle="bold"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/white"
-                        android:text="Next"
+                        android:text="Submit"
                         android:layout_gravity="center"
                         android:background="@drawable/nextbtn"
                         android:layout_width="180dp"
