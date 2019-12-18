@@ -1,12 +1,18 @@
 package com.imuons.shopntrips.retrofit;
 
+import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
+import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
 import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
+import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
 import com.imuons.shopntrips.model.GetCityResponseModel;
 import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
+import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
+import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
+import com.imuons.shopntrips.model.WithdrawRequestReportResponseModel;
 
 import java.util.Map;
 
@@ -48,6 +54,33 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("getCityByState")
     Call<GetCityResponseModel> wsGetCityByState(@FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("withdraw-amount-report")
+    Call<WithdrawRequestReportResponseModel> wsWithdrawalRequestReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("withdraw-report")
+    Call<WithdrawHistoryReportResponseModel> wsWithdrawalHistoryReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("PayoutNoWiseHistoryReport")
+    Call<BinaryIncomeReportResponseModel> wsBinaryIncomeReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("dailyroi")
+    Call<RoiIncomeReportResponseModel> wsROIIncomeReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("binaryroi")
+    Call<BinaryRoiReportResponseModel> wsBinaryROIReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("direct_roi_income")
+    Call<DirectRoiReportResponseModel> wsBDirectROIReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+
+
   /*
 
 
