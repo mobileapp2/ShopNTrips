@@ -2,6 +2,7 @@ package com.imuons.shopntrips.retrofit;
 
 import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
+import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 
 import java.util.Map;
@@ -10,6 +11,8 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ShopNTrips {
@@ -27,11 +30,15 @@ public interface ShopNTrips {
     @POST("checkuserexist")
     Call<CheckUserExistResponseModel> wsCheckUser(@FieldMap Map<String, String> loginMap);
 
-  /*
-
     @FormUrlEncoded
     @POST("register")
     Call<RegisterResponseModel> wsRegister(@FieldMap Map<String, String> map);
+
+//    @GET("userDashboard")
+//    Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
+  /*
+
+
 
 
 
