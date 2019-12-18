@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.imuons.shopntrips.R;
 import com.imuons.shopntrips.model.DashboardDataModel;
@@ -29,7 +31,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements View.OnClickListener {
 
 
     @BindView(R.id.txt_DirectUser)
@@ -58,6 +60,7 @@ public class DashboardFragment extends Fragment {
     ImageView btn_GenerateTicket;
     @BindView(R.id.loader_view)
     View loaderView;
+    private FragmentManager fragmentManager;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -75,6 +78,9 @@ public class DashboardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         ButterKnife.bind(this, view);
+
+        btn_DirectNewJoining.setOnClickListener(this);
+        btn_GenerateTicket.setOnClickListener(this);
         return view;
     }
 
@@ -142,6 +148,30 @@ public class DashboardFragment extends Fragment {
         txt_TotalIncome.setText(String.valueOf(data.getTotalIncome()));
 
         txt_RipBinaryIncome.setText(String.valueOf(data.getRepurchaseIncome()));
+    }
+
+    @Override
+    public void onClick(View view) {
+        Fragment fragment = null;
+
+        switch (view.getId()) {
+            case R.id.btn_DirectNewJoining:
+                fragment = new DirectUserListFragment();
+                replaceFragment(fragment);
+                break;
+
+            case R.id.btn_GenerateTicket:
+                fragment = new GenerateTicketFragment();
+                replaceFragment(fragment);
+                break;
+        }
+    }
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }
