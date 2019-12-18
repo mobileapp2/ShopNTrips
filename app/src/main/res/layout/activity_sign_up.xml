@@ -33,7 +33,7 @@
 
                 <TextView
                     android:fontFamily="@font/open_sans_bold"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="60dp"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -99,6 +99,8 @@
                             android:focusable="false"
                             android:textSize="@dimen/register_textsize"
                             android:textStyle="bold"
+                            android:maxLength="10"
+                            android:inputType="number"
                             android:id="@+id/edit_mobile"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -126,12 +128,12 @@
                             android:fontFamily="@font/open_sans_light"
                             android:textSize="@dimen/register_textsize"
                             android:textStyle="bold"
-                            android:focusable="false"
+
                             android:id="@+id/edit_email"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-
+android:inputType="textEmailAddress"
                             android:background="@drawable/rounded_edittext"
                             android:hint="Email"
                             android:imeOptions="actionNext"
@@ -159,7 +161,7 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:background="@drawable/rounded_edittext"
-                            android:hint="Country"
+                            android:text="India"
                             android:paddingRight="15dp"
 
 
@@ -180,7 +182,7 @@
                             android:fontFamily="@font/open_sans_light"
                             android:textSize="@dimen/register_textsize"
                             android:textStyle="bold"
-                            android:focusable="false"
+
                             android:id="@+id/edit_state"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -205,7 +207,7 @@
                             android:fontFamily="@font/open_sans_light"
                             android:textSize="@dimen/register_textsize"
                             android:textStyle="bold"
-                            android:focusable="false"
+
                             android:id="@+id/edit_city"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -230,7 +232,7 @@
                             android:fontFamily="@font/open_sans_light"
                             android:textSize="@dimen/register_textsize"
                             android:textStyle="bold"
-                            android:focusable="false"
+
                             android:id="@+id/edit_address"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -256,12 +258,12 @@
                             android:fontFamily="@font/open_sans_light"
                             android:textSize="@dimen/register_textsize"
                             android:textStyle="bold"
-                            android:focusable="false"
+
                             android:id="@+id/edit_pincode"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-
+android:inputType="number"
                             android:hint="PinCode"
                             android:paddingRight="15dp"
                             android:drawableEnd="@drawable/pincode"
@@ -294,7 +296,7 @@
                         android:id="@+id/next"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:textColor="@color/white"
                         android:text="Submit"
                         android:layout_gravity="center"

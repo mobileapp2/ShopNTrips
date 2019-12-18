@@ -25,8 +25,6 @@ public interface ShopNTrips {
     @POST("forgot-password")
     Call<ResetPasswordResponseModel> wsResetPassword(@Field("user_id") String user_id);
 
-    @GET("userDashboard")
-    Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
 
   /*
 
