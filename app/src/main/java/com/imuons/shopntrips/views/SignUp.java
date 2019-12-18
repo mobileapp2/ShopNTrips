@@ -51,7 +51,7 @@ public class SignUp extends AppCompatActivity {
     @BindView(R.id.edit_city)
     EditText edit_city;
     @BindView(R.id.edit_address)
-        EditText edit_address;
+    EditText edit_address;
     @BindView(R.id.edit_pincode)
     EditText edit_pincode;
     @BindView(R.id.submit)
