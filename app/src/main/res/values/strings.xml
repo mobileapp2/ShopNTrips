@@ -12,6 +12,16 @@
     <string name="need_to_signup">Need to signup ?</string>
     <string name="login">LOGIN</string>
     <string name="title_activity_dashboard">Dashboard</string>
+    <string name="direct_user">Direct User</string>
+    <string name="left_mp">Left MP</string>
+    <string name="total_withdrawal">Total Withdrawal</string>
+    <string name="binary_income">Binary Income</string>
+    <string name="rep_binary_income">Rep.Binary Income</string>
+    <string name="binary_roi_income">Binary ROI Income</string>
+    <string name="direct_roi_income">Direct ROI Income</string>
+    <string name="roi_income">ROI Income</string>
+    <string name="total_income">Total Income</string>
+    <string name="_00_00">00.00</string>
 
 
 </resources>

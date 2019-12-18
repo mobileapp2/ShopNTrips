@@ -1,5 +1,6 @@
 package com.imuons.shopntrips.retrofit;
 
+import com.imuons.shopntrips.model.DashboardResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 
@@ -9,6 +10,8 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ShopNTrips {
@@ -21,6 +24,9 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("forgot-password")
     Call<ResetPasswordResponseModel> wsResetPassword(@Field("user_id") String user_id);
+
+    @GET("user/dashboard")
+    Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
 
   /*
 
@@ -125,8 +131,6 @@ public interface ShopNTrips {
     @GET("user/get_user_cart_items")
     Call<UserCartResponseModel> wsGetUserCart(@Header("Authorization") String authHeader);
 
-    @GET("user/dashboard")
-    Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
 
     @GET("user/checkRegistrationPackage")
     Call<CheckRegistrationResponseModel> wsGetregistrationData(@Header("Authorization") String authHeader);

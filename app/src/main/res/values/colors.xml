@@ -29,6 +29,10 @@
     <color name="black">#000000</color>
     <color name="btncolor">#b245c7</color>
     <color name="btncolortwo">#0accec</color>
+    <color name="yellow">#FFA800</color>
+    <color name="chocolate">#B05303</color>
+    <color name="skyblue">#6CBEB8</color>
+    <color name="pink">#EC6D78</color>
 
 
 </resources>
