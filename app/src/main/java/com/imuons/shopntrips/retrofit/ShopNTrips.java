@@ -1,10 +1,12 @@
 package com.imuons.shopntrips.retrofit;
 
 import com.imuons.shopntrips.model.LoginResponseModel;
+import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -16,7 +18,9 @@ public interface ShopNTrips {
     @POST("login")
     Call<LoginResponseModel> wsLogin(@FieldMap Map<String, String> map);
 
-
+    @FormUrlEncoded
+    @POST("forgot-password")
+    Call<ResetPasswordResponseModel> wsResetPassword(@Field("user_id") String user_id);
 
   /*
 
@@ -44,9 +48,7 @@ public interface ShopNTrips {
     @POST("checkPanValid")
     Call<CheckPanValidResponseModel> wsCheckPanValid(@FieldMap Map<String, String> loginMap);
 
-    @FormUrlEncoded
-    @POST("forgot-password")
-    Call<ResetPasswordResponseModel> wsResetPassword(@Field("user_id") String user_id);
+
 
     @FormUrlEncoded
     @POST("user/change-password")
