@@ -105,7 +105,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         ImageView listImageView = (ImageView) convertView
                 .findViewById(R.id.listIcon);
 
-    //   listImageView.setImageResource(headerTitle.image);
+    listImageView.setImageResource(headerTitle.image);
         return convertView;
     }
 

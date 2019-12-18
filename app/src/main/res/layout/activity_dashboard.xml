@@ -42,7 +42,8 @@
                 </FrameLayout>-->
 
     </LinearLayout>
-    <com.rom4ek.arcnavigationview.ArcNavigationView
+
+ <!--   <com.rom4ek.arcnavigationview.ArcNavigationView
         android:id="@+id/nav_view"
         android:layout_width="230dp"
         android:layout_height="match_parent"
@@ -51,20 +52,22 @@
         android:fitsSystemWindows="true"
         app:arc_cropDirection="cropOutside"
         app:arc_width="150dp">
-
+-->
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/nav_view"
+            android:layout_width="230dp"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
-            android:elevation="25dp"
+            android:layout_gravity="start"
+            android:background="@drawable/drawer_gradient_background"
+            android:fitsSystemWindows="true"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/rel"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                >
+                android:layout_height="80dp">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -78,12 +81,15 @@
                 android:layout_height="match_parent"
                 android:choiceMode="singleChoice"
                 android:dividerHeight="1px"
-                android:groupIndicator="@null"/>
+                android:groupIndicator="@null" />
 
 
         </LinearLayout>
 
-    </com.rom4ek.arcnavigationview.ArcNavigationView>
+<!--
+</com.rom4ek.arcnavigationview.ArcNavigationView>
+-->
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

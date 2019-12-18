@@ -16,22 +16,22 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FundRequestFragment extends Fragment {
+public class TopupReportFragment extends Fragment {
 
 
-    public FundRequestFragment() {
+    public TopupReportFragment() {
         // Required empty public constructor
     }
 
-    public static FundRequestFragment newInstance() {
-        FundRequestFragment fragment = new FundRequestFragment();
+    public static TopupReportFragment newInstance() {
+        TopupReportFragment fragment = new TopupReportFragment();
         return fragment;
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_fund_request, container, false);
+        View view= inflater.inflate(R.layout.fragment_topup_report, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
