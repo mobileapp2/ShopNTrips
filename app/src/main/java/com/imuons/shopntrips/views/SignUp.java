@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.imuons.shopntrips.R;
+import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.retrofit.ApiHandler;
 import com.imuons.shopntrips.retrofit.ShopNTrips;
 import com.imuons.shopntrips.utils.Constants;
@@ -72,68 +73,64 @@ public class SignUp extends AppCompatActivity {
                 if (validateEmail() && validateMobileNo() && validateFullName()) {
 
 
-                   //register();
+                  register();
                 }
 
             }
         });
     }
 
-//    private void register() {
-//        Map<String, String> registerMap = new HashMap<>();
-//        //loginMap.put("confirm_password", cpassword);
-//        registerMap.put("email", email);
-//        registerMap.put("fullname", fullName);
-//        registerMap.put("mobile", mobile);
-//        // loginMap.put("password", password);
-//        registerMap.put("ref_user_id", sponsorid);
-//        registerMap.put("sponsor_name", sponsorname);
-//        registerMap.put("user_id", userid);
-//        registerMap.put("position", selectedradio);
-//        registerMap.put("branch_name",branchName);
-//        registerMap.put("bank_name",nameofbank);
-//        registerMap.put("account_no",accountNo);
-//        registerMap.put("ifsc_code",ifsc);
-//        registerMap.put("pan_no",pancardNo);
-//
-//
-//        ShopNTrips apiService = ApiHandler.getApiService();
-//        final Call<RegisterResponseModel> registerCall = apiService.wsRegister(registerMap);
-//        registerCall.enqueue(new Callback<RegisterResponseModel>() {
-//            @SuppressLint("WrongConstant")
-//            @Override
-//            public void onResponse(Call<RegisterResponseModel> call,
-//                                   Response<RegisterResponseModel> response) {
-//
-//                if (response.isSuccessful()) {
-//                    RegisterResponseModel registerResponseModel = response.body();
-//                    if (registerResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
-//                            registerResponseModel.getStatus().equals("OK")) {
-//                        String useridtosend = registerResponseModel.getRegisterDataModel().getUserId();
-//                        String userpassword = registerResponseModel.getRegisterDataModel().getPassword();
-//                        Intent showpassword = new  Intent (SignUp.this,ShowPassword.class);
-//                        showpassword.putExtra("userid", useridtosend);
-//                        showpassword.putExtra("password", userpassword);
-//                        startActivity(showpassword);
-//
-//
-//                    } else {
-//                        Toast.makeText(SignUp.this, registerResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }else{
-//                    Toast.makeText(SignUp.this, "Check username or password", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RegisterResponseModel> call,
-//                                  Throwable t) {
-//
-//                Toast.makeText(SignUp.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//    }
+    private void register() {
+        Map<String, String> registerMap = new HashMap<>();
+        registerMap.put("confirm_password", cpassword);
+        registerMap.put("email", email);
+        registerMap.put("fullname", fullName);
+        registerMap.put("mobile", mobile);
+        registerMap.put("password", password);
+        registerMap.put("ref_user_id", sponsorid);
+        registerMap.put("sponsor_name", sponsorname);
+        registerMap.put("user_id", userid);
+        registerMap.put("position", selectedradio);
+
+
+
+        ShopNTrips apiService = ApiHandler.getApiService();
+        final Call<RegisterResponseModel> registerCall = apiService.wsRegister(registerMap);
+        registerCall.enqueue(new Callback<RegisterResponseModel>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<RegisterResponseModel> call,
+                                   Response<RegisterResponseModel> response) {
+
+                if (response.isSuccessful()) {
+                    RegisterResponseModel registerResponseModel = response.body();
+                    if (registerResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
+                            registerResponseModel.getStatus().equals("OK")) {
+                        String useridtosend = String.valueOf(registerResponseModel.getData().getUserid());
+                        String userpassword = registerResponseModel.getData().getPassword();
+                        Intent showpassword = new  Intent (SignUp.this,ShowPassword.class);
+                        showpassword.putExtra("userid", useridtosend);
+                        showpassword.putExtra("password", userpassword);
+                        startActivity(showpassword);
+
+
+                    } else {
+                        Toast.makeText(SignUp.this, registerResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(SignUp.this, "Check username or password", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterResponseModel> call,
+                                  Throwable t) {
+
+                Toast.makeText(SignUp.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
     private boolean validateEmail() {
         email = edit_email.getText().toString().trim();
