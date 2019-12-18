@@ -22,6 +22,7 @@
     <string name="roi_income">ROI Income</string>
     <string name="total_income">Total Income</string>
     <string name="_00_00">00.00</string>
+    <string name="no_internet_connection_message">Please check internet connection</string>
 
 
 </resources>
