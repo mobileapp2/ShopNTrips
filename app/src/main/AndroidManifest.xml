@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.ShowPassword"></activity>
+        <activity android:name=".adapters.BinaryIncomeReportAdapter"></activity>
+        <activity android:name=".views.ShowPassword" />
         <activity android:name=".views.ResetPassword" />
         <activity android:name=".views.SignUp" />
         <activity android:name=".views.Registration" />
