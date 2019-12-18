@@ -2,6 +2,8 @@ package com.imuons.shopntrips.retrofit;
 
 import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
+import com.imuons.shopntrips.model.GetCityResponseModel;
+import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
@@ -37,21 +39,26 @@ public interface ShopNTrips {
 
    @GET("userDashboard")
    Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
-  /*
-
-
-
 
 
     @FormUrlEncoded
     @POST("getStateByCountry")
     Call<GetStateResponseModel> wsGetStateByCountry(@FieldMap Map<String, String> loginMap);
 
-    @GET("country")
-    Call<GetCountryResponseModel> wsGetCountry();
     @FormUrlEncoded
     @POST("getCityByState")
     Call<GetCityResponseModel> wsGetCityByState(@FieldMap Map<String, String> loginMap);
+  /*
+
+
+
+
+
+
+    @GET("country")
+    Call<GetCountryResponseModel> wsGetCountry();
+    @FormUrlEncoded
+
     @FormUrlEncoded
     @POST("checkPinValid")
     Call<CheckPinValidResponseModel> wsCheckPinValid(@FieldMap Map<String, String> loginMap);
