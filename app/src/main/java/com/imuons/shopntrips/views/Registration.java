@@ -43,7 +43,7 @@ public class Registration extends AppCompatActivity {
     EditText edit_sponsorname;
     @BindView(R.id.edit_userid)
     EditText edit_userid;
-        @BindView(R.id. edit_password)
+    @BindView(R.id. edit_password)
     EditText  edit_password;
     @BindView(R.id. edit_cpassword)
     EditText edit_cpassword;
