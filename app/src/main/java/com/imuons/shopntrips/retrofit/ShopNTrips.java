@@ -7,6 +7,8 @@ import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
+import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
+import com.imuons.shopntrips.model.WithdrawRequestReportResponseModel;
 
 import java.util.Map;
 
@@ -48,6 +50,15 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("getCityByState")
     Call<GetCityResponseModel> wsGetCityByState(@FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("withdraw-amount-report")
+    Call<WithdrawRequestReportResponseModel> wsWithdrawalRequestReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("withdraw-report")
+    Call<WithdrawHistoryReportResponseModel> wsWithdrawalHistoryReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
   /*
 
 
