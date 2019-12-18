@@ -278,7 +278,7 @@ android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/register_editbox_height">
                         <CheckBox
-                            android:id="@+id/checkpan"
+                            android:id="@+id/checkterm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/border" />
@@ -293,7 +293,7 @@ android:inputType="number"
                     </LinearLayout>
                     <Button
                         android:fontFamily="@font/open_sans_light"
-                        android:id="@+id/next"
+                        android:id="@+id/submit"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"

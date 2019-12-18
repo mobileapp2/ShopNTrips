@@ -1,7 +1,9 @@
 package com.imuons.shopntrips.retrofit;
 
+import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
+import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 
 import java.util.Map;
@@ -25,16 +27,21 @@ public interface ShopNTrips {
     @POST("forgot-password")
     Call<ResetPasswordResponseModel> wsResetPassword(@Field("user_id") String user_id);
 
-
-  /*
+    @FormUrlEncoded
+    @POST("checkuserexist")
+    Call<CheckUserExistResponseModel> wsCheckUser(@FieldMap Map<String, String> loginMap);
 
     @FormUrlEncoded
     @POST("register")
     Call<RegisterResponseModel> wsRegister(@FieldMap Map<String, String> map);
 
-    @FormUrlEncoded
-    @POST("checkuserexist")
-    Call<CheckUserExistResponseModel> wsCheckUser(@FieldMap Map<String, String> loginMap);
+   @GET("userDashboard")
+   Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
+  /*
+
+
+
+
 
     @FormUrlEncoded
     @POST("getStateByCountry")
@@ -129,6 +136,8 @@ public interface ShopNTrips {
     @GET("user/get_user_cart_items")
     Call<UserCartResponseModel> wsGetUserCart(@Header("Authorization") String authHeader);
 
+    @GET("user/dashboard")
+    Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
 
     @GET("user/checkRegistrationPackage")
     Call<CheckRegistrationResponseModel> wsGetregistrationData(@Header("Authorization") String authHeader);

@@ -85,7 +85,7 @@ public class DashboardFragment extends Fragment {
             getDashBoardData();
         } else {
             Toast.makeText(DashboardFragment.this.getContext(),
-                    getString(R.string.no_internet_connection_message1), Toast.LENGTH_SHORT).show();
+                    getString(R.string.no_internet_connection_message), Toast.LENGTH_SHORT).show();
         }
     }
 

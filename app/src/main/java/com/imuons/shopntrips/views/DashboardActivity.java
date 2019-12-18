@@ -25,7 +25,7 @@ public class DashboardActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.title_activity_dashboard1);
+            getSupportActionBar().setTitle(R.string.title_activity_dashboard);
         }
 
         fragmentManager = getSupportFragmentManager();
