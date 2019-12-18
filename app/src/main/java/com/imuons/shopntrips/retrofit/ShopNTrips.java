@@ -1,5 +1,6 @@
 package com.imuons.shopntrips.retrofit;
 
+import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 
@@ -22,15 +23,17 @@ public interface ShopNTrips {
     @POST("forgot-password")
     Call<ResetPasswordResponseModel> wsResetPassword(@Field("user_id") String user_id);
 
+    @FormUrlEncoded
+    @POST("checkuserexist")
+    Call<CheckUserExistResponseModel> wsCheckUser(@FieldMap Map<String, String> loginMap);
+
   /*
 
     @FormUrlEncoded
     @POST("register")
     Call<RegisterResponseModel> wsRegister(@FieldMap Map<String, String> map);
 
-    @FormUrlEncoded
-    @POST("checkuserexist")
-    Call<CheckUserExistResponseModel> wsCheckUser(@FieldMap Map<String, String> loginMap);
+
 
     @FormUrlEncoded
     @POST("getStateByCountry")
