@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
@@ -162,7 +163,7 @@
                         android:layout_weight="2.5"
                         android:fontFamily="@font/open_sans_bold"
                         android:gravity="center"
-                        android:text="E-Pin"
+                        android:text="To User Id"
                         android:background="@drawable/yellowgrad"
                         android:textColor="@color/sr"
                         android:textSize="12sp"
@@ -178,7 +179,7 @@
                         android:fontFamily="@font/open_sans_bold"
                         android:gravity="center"
                         android:background="@color/white"
-                        android:text="Product Name"
+                        android:text="From User Id"
                         android:textColor="@color/sr"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -187,7 +188,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_topup_report"
+                android:id="@+id/recycler_downline_topup_report"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

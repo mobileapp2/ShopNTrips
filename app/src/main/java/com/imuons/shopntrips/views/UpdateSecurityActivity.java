@@ -95,7 +95,7 @@ public class UpdateSecurityActivity extends AppCompatActivity implements View.On
                     Toast.makeText(UpdateSecurityActivity.this, "Check username or password", Toast.LENGTH_SHORT).show();
                 }
             }
-            
+
 
             @Override
             public void onFailure(Call<ChangePasswordResponseModel> call,

@@ -28,6 +28,7 @@ import com.imuons.shopntrips.utils.SharedPreferenceUtils;
 import com.imuons.shopntrips.utils.Utils;
 import com.imuons.shopntrips.utils.ViewUtils;
 import com.imuons.shopntrips.views.ProfileInfoActivity;
+import com.imuons.shopntrips.views.UpdateSecurityActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -93,6 +94,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, view);
         registerListeners();
+        getUserPhotos();
+        getUserProfileInfo();
         return view;
     }
 
@@ -121,7 +124,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_Security:
                 object = gS.toJson(profileModel);
                 intent = new Intent(ProfileFragment.this.getContext(),
-                        ProfileInfoActivity.class);
+                        UpdateSecurityActivity.class);
                 intent.putExtra("object", object);
                 startActivity(intent);
                 break;

@@ -2,17 +2,21 @@ package com.imuons.shopntrips.retrofit;
 
 import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
 import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
+import com.imuons.shopntrips.model.ChangePasswordResponseModel;
 import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
 import com.imuons.shopntrips.model.DepartmentResponseModel;
 import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
+import com.imuons.shopntrips.model.DownlineTopUpReportResponseModel;
 import com.imuons.shopntrips.model.GetCityResponseModel;
 import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
+import com.imuons.shopntrips.model.ResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
+import com.imuons.shopntrips.model.TopUpReportResponseModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
 import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
@@ -96,6 +100,14 @@ public interface ShopNTrips {
     @POST("withdraw-report")
     Call<WithdrawHistoryReportResponseModel> wsWithdrawHistory(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
+    @FormUrlEncoded
+    @POST("repurchaseProductReport")
+    Call<TopUpReportResponseModel> wsTopupReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("downlinerepurchaseProductReport")
+    Call<DownlineTopUpReportResponseModel> wsDownlineTopupReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
     @GET("get_departements")
     Call<DepartmentResponseModel> wsGetDepartments(@Header("Authorization") String authHeader);
 
@@ -109,6 +121,9 @@ public interface ShopNTrips {
     @GET("user-photos")
     Call<UserPhotosResponseModel> wsUserPhotos(@Header("Authorization") String authHeader);
 
+    @FormUrlEncoded
+    @POST("change_password")
+    Call<ChangePasswordResponseModel> wsChangePassword(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
   /*
 
