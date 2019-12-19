@@ -13,6 +13,7 @@ import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
+import com.imuons.shopntrips.model.TopUpReportResponseModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
 import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
@@ -95,6 +96,10 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("withdraw-report")
     Call<WithdrawHistoryReportResponseModel> wsWithdrawHistory(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("repurchaseProductReport")
+    Call<TopUpReportResponseModel> wsTopupReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
     @GET("get_departements")
     Call<DepartmentResponseModel> wsGetDepartments(@Header("Authorization") String authHeader);
