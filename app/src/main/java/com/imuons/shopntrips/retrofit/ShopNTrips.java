@@ -90,6 +90,10 @@ public interface ShopNTrips {
     @POST("withdraw-amount-report")
     Call<WithdrawRequestReportResponseModel> wsWithdrawRequest(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
+    @FormUrlEncoded
+    @POST("withdraw-report")
+    Call<WithdrawHistoryReportResponseModel> wsWithdrawHistory(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
     @GET("get_departements")
     Call<DepartmentResponseModel> wsGetDepartments(@Header("Authorization") String authHeader);
 

@@ -80,7 +80,7 @@ public class WithdrawRequestReportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View view =inflater.inflate(R.layout.fragment_withdraw_report, container, false);
+         View view =inflater.inflate(R.layout.fragment_withdraw_request_report, container, false);
         ButterKnife.bind(this, view);
 
         fragmentManager = getFragmentManager();
