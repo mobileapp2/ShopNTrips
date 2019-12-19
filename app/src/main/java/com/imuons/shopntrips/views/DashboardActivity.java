@@ -27,7 +27,7 @@ import com.imuons.shopntrips.fragments.DirectRoiIncomeReportFragment;
 import com.imuons.shopntrips.fragments.DirectUserListFragment;
 import com.imuons.shopntrips.fragments.DownlineSummaryFragment;
 import com.imuons.shopntrips.fragments.DownloadPDFFragment;
-import com.imuons.shopntrips.fragments.DownloadTopupReportFragment;
+import com.imuons.shopntrips.fragments.DownlineTopupReportFragment;
 import com.imuons.shopntrips.fragments.FundRequestFragment;
 import com.imuons.shopntrips.fragments.FundRequestReportFragment;
 import com.imuons.shopntrips.fragments.FundTransferFragment;
@@ -263,7 +263,7 @@ public class DashboardActivity extends AppCompatActivity {
                                 mExpandableListView.setSelection(childPosition);
                                 break;
                             case 2:
-                                fragmentManager.beginTransaction().replace(R.id.content_frame, DownloadTopupReportFragment.newInstance()).commit();
+                                fragmentManager.beginTransaction().replace(R.id.content_frame, DownlineTopupReportFragment.newInstance()).commit();
                                 getSupportActionBar().setTitle("Download Topup Report");
                                 mExpandableListView.setItemChecked(childPosition, true);
                                 mExpandableListView.setSelection(childPosition);
