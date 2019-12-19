@@ -11,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.imuons.shopntrips.R;
-import com.imuons.shopntrips.fragments.ProfileFragment;
 import com.imuons.shopntrips.model.UserPhotosDataModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
-import com.imuons.shopntrips.model.UserProfileDataModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
 import com.imuons.shopntrips.retrofit.ApiHandler;
 import com.imuons.shopntrips.retrofit.ShopNTrips;
@@ -51,17 +49,24 @@ public class ProfileInfoActivity extends AppCompatActivity {
 
     @BindView(R.id.text_user_name)
     TextView mTextUserName;
+    @BindView(R.id.txt_DateOfJoining)
+    TextView mTextDateOfJoining;
     @BindView(R.id.text_email_id)
     TextView mTextEmailIds;
     @BindView(R.id.text_mobile_number)
     TextView mTextMobileNumber;
     @BindView(R.id.image_profile)
     ImageView mImageUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_info);
         ButterKnife.bind(this);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.profile);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         Gson gS = new Gson();
         String target = getIntent().getStringExtra("object");
         model = gS.fromJson(target, UserProfileResponseModel.class);
@@ -111,15 +116,17 @@ public class ProfileInfoActivity extends AppCompatActivity {
             Picasso.get().load(String.valueOf(data.getPhoto())).into(mImageUser);
         }
     }
+
     private void displayData(UserProfileResponseModel data) {
         mTextName.setText(data.getData().getFullname());
         mTextEmail.setText(data.getData().getEmail());
         mTextMobileNumbers.setText(data.getData().getMobile());
-        mTextSponsorID.setText(data.getData().getEmail());
-        mTextUserID.setText(data.getData().getEmail());
+        mTextSponsorID.setText(data.getData().getSponserId());
+        mTextUserID.setText(data.getData().getUserId());
         mTextUserName.setText(data.getData().getFullname());
         mTextEmailIds.setText(data.getData().getEmail());
         mTextMobileNumber.setText(data.getData().getMobile());
+        mTextDateOfJoining.setText(data.getData().getEntryTime());
     }
 
 }
