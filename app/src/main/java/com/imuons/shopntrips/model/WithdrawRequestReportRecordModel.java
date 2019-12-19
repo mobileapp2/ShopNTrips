@@ -16,7 +16,7 @@ public class WithdrawRequestReportRecordModel {
     private Integer toUserId;
     @SerializedName("amount")
     @Expose
-    private Double amount;
+    private Integer amount;
     @SerializedName("net_amount")
     @Expose
     private Double netAmount;
@@ -49,22 +49,22 @@ public class WithdrawRequestReportRecordModel {
     private Double amtPin;
     @SerializedName("account_no")
     @Expose
-    private Object accountNo;
+    private Integer accountNo;
     @SerializedName("holder_name")
     @Expose
-    private Object holderName;
+    private String holderName;
     @SerializedName("bank_name")
     @Expose
-    private Object bankName;
+    private String bankName;
     @SerializedName("branch_name")
     @Expose
-    private Object branchName;
+    private String branchName;
     @SerializedName("pan_no")
     @Expose
-    private Object panNo;
+    private String panNo;
     @SerializedName("ifsc_code")
     @Expose
-    private Object ifscCode;
+    private String ifscCode;
     @SerializedName("btc_address")
     @Expose
     private Object btcAddress;
@@ -102,11 +102,11 @@ public class WithdrawRequestReportRecordModel {
         this.toUserId = toUserId;
     }
 
-    public Double getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
@@ -190,51 +190,51 @@ public class WithdrawRequestReportRecordModel {
         this.amtPin = amtPin;
     }
 
-    public Object getAccountNo() {
+    public Integer getAccountNo() {
         return accountNo;
     }
 
-    public void setAccountNo(Object accountNo) {
+    public void setAccountNo(Integer accountNo) {
         this.accountNo = accountNo;
     }
 
-    public Object getHolderName() {
+    public String getHolderName() {
         return holderName;
     }
 
-    public void setHolderName(Object holderName) {
+    public void setHolderName(String holderName) {
         this.holderName = holderName;
     }
 
-    public Object getBankName() {
+    public String getBankName() {
         return bankName;
     }
 
-    public void setBankName(Object bankName) {
+    public void setBankName(String bankName) {
         this.bankName = bankName;
     }
 
-    public Object getBranchName() {
+    public String getBranchName() {
         return branchName;
     }
 
-    public void setBranchName(Object branchName) {
+    public void setBranchName(String branchName) {
         this.branchName = branchName;
     }
 
-    public Object getPanNo() {
+    public String getPanNo() {
         return panNo;
     }
 
-    public void setPanNo(Object panNo) {
+    public void setPanNo(String panNo) {
         this.panNo = panNo;
     }
 
-    public Object getIfscCode() {
+    public String getIfscCode() {
         return ifscCode;
     }
 
-    public void setIfscCode(Object ifscCode) {
+    public void setIfscCode(String ifscCode) {
         this.ifscCode = ifscCode;
     }
 
@@ -269,5 +269,6 @@ public class WithdrawRequestReportRecordModel {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 
 }

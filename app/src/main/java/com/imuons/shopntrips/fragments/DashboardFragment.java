@@ -156,7 +156,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         switch (view.getId()) {
             case R.id.btn_DirectNewJoining:
-                fragment = new DirectUserListFragment();
+                fragment = new DirectRoiIncomeReportFragment();
                 replaceFragment(fragment);
                 break;
 

@@ -16,15 +16,15 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WithdrawRequestFragment extends Fragment {
+public class WithdrawHistoryReportFragment extends Fragment {
 
 
-    public WithdrawRequestFragment() {
+    public WithdrawHistoryReportFragment() {
         // Required empty public constructor
     }
 
-    public static WithdrawRequestFragment newInstance() {
-        WithdrawRequestFragment fragment = new WithdrawRequestFragment();
+    public static WithdrawHistoryReportFragment newInstance() {
+        WithdrawHistoryReportFragment fragment = new WithdrawHistoryReportFragment();
         return fragment;
     }
 
