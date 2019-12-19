@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adapters.RoiIncomeReportAdapter"></activity>
+        <activity android:name=".adapters.DirectRoiIncomeReportAdapter"></activity>
+        <activity android:name=".adapters.BinaryRoiIncomeReportAdapter" />
+        <activity android:name=".adapters.RoiIncomeReportAdapter" />
         <activity android:name=".adapters.BinaryIncomeReportAdapter" />
         <activity android:name=".views.ShowPassword" />
         <activity android:name=".views.ResetPassword" />
