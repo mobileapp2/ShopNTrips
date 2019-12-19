@@ -33,6 +33,8 @@
     <color name="chocolate">#B05303</color>
     <color name="skyblue">#6CBEB8</color>
     <color name="pink">#EC6D78</color>
-
-
+<color name="yellowcolor">#FFCE85</color>
+<color name="blu">#FFB744</color>
+    <color name="edtbles">#0059DD </color>
+    <color name="edtblef">#00BCEC </color>
 </resources>
