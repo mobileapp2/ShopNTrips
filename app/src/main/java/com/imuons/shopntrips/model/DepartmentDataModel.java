@@ -26,4 +26,5 @@ public class DepartmentDataModel {
     public void setDeptId(Integer deptId) {
         this.deptId = deptId;
     }
+
 }
