@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adapters.DirectRoiIncomeReportAdapter"></activity>
+        <activity android:name=".adapters.WithdrawHistoryReportAdapter"></activity>
+        <activity android:name=".adapters.WithdrawRequestReportAdapter" />
+        <activity android:name=".adapters.DirectRoiIncomeReportAdapter" />
         <activity android:name=".adapters.BinaryRoiIncomeReportAdapter" />
         <activity android:name=".adapters.RoiIncomeReportAdapter" />
         <activity android:name=".adapters.BinaryIncomeReportAdapter" />

@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class WithdrawRequestReportResponseModel {
 
+
     @SerializedName("code")
     @Expose
     private Integer code;

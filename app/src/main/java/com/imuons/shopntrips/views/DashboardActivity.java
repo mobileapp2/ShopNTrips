@@ -39,8 +39,8 @@ import com.imuons.shopntrips.fragments.TeamViewFragment;
 import com.imuons.shopntrips.fragments.TopupFragment;
 import com.imuons.shopntrips.fragments.TopupReportFragment;
 import com.imuons.shopntrips.fragments.TreeViewFragment;
-import com.imuons.shopntrips.fragments.WithdrawReportFragment;
-import com.imuons.shopntrips.fragments.WithdrawRequestFragment;
+import com.imuons.shopntrips.fragments.WithdrawRequestReportFragment;
+import com.imuons.shopntrips.fragments.WithdrawHistoryReportFragment;
 import com.imuons.shopntrips.model.ExpandableListModel;
 import com.imuons.shopntrips.utils.SharedPreferenceUtils;
 
@@ -275,15 +275,15 @@ public class DashboardActivity extends AppCompatActivity {
                     case 7:
                         switch (childPosition) {
                             case 0:
-                                fragmentManager.beginTransaction().replace(R.id.content_frame, WithdrawRequestFragment.newInstance()).commit();
+                                fragmentManager.beginTransaction().replace(R.id.content_frame, WithdrawRequestReportFragment.newInstance()).commit();
                                 getSupportActionBar().setTitle("Withdraw Request");
                                 mExpandableListView.setItemChecked(childPosition, true);
                                 mExpandableListView.setSelection(childPosition);
                                 break;
 
                             case 1:
-                                fragmentManager.beginTransaction().replace(R.id.content_frame, WithdrawReportFragment.newInstance()).commit();
-                                getSupportActionBar().setTitle("Withdraw Report");
+                                fragmentManager.beginTransaction().replace(R.id.content_frame, WithdrawHistoryReportFragment.newInstance()).commit();
+                                getSupportActionBar().setTitle("Withdraw History");
                                 mExpandableListView.setItemChecked(childPosition, true);
                                 mExpandableListView.setSelection(childPosition);
                                 break;
@@ -395,7 +395,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         ArrayList<String> withdraw = new ArrayList<String>();
         withdraw.add("Withdraw Request");
-        withdraw.add("Withdraw Report");
+        withdraw.add("Withdraw History");
 
         ArrayList<String> allTransactions = new ArrayList<String>();
         mExpandableListData.put(mExpandableListTitle.get(0).title, allTransactions);
