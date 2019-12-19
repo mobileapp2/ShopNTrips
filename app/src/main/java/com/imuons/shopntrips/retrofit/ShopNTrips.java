@@ -8,6 +8,7 @@ import com.imuons.shopntrips.model.DashboardResponseModel;
 import com.imuons.shopntrips.model.DepartmentResponseModel;
 import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
 import com.imuons.shopntrips.model.DownlineTopUpReportResponseModel;
+import com.imuons.shopntrips.model.FundRequestReportResponseModel;
 import com.imuons.shopntrips.model.GetCityResponseModel;
 import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
@@ -107,6 +108,10 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("downlinerepurchaseProductReport")
     Call<DownlineTopUpReportResponseModel> wsDownlineTopupReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("fund-request-report")
+    Call<FundRequestReportResponseModel> wsFundRequestReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
     @GET("get_departements")
     Call<DepartmentResponseModel> wsGetDepartments(@Header("Authorization") String authHeader);

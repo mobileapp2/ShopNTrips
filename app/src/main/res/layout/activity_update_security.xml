@@ -44,7 +44,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <EditText
-                    android:id="@+id/edit_old_password"
+                    android:id="@+id/old_pass"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -69,7 +69,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <EditText
-                    android:id="@+id/edit_new_password"
+                    android:id="@+id/new_trs_pass"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -94,7 +94,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <EditText
-                    android:id="@+id/edit_re_type_passsword"
+                    android:id="@+id/retype_pass"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -109,7 +109,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button_update"
+                android:id="@+id/updatetrans"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:layout_margin="30dp"

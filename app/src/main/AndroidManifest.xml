@@ -15,10 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".adapters.FundRequestReportAdapter"></activity>
+        <activity android:name=".adapters.TopUpReportAdapter" />
         <activity android:name=".views.UpdateSecurityActivity"></activity>
         <activity android:name=".views.ProfileInfoActivity" />
         <activity android:name=".adapters.WithdrawHistoryReportAdapter" />
-        <activity android:name=".adapters.TopUpReportAdapter" />
         <activity android:name=".adapters.WithdrawRequestReportAdapter" />
         <activity android:name=".adapters.DirectRoiIncomeReportAdapter" />
         <activity android:name=".adapters.BinaryRoiIncomeReportAdapter" />

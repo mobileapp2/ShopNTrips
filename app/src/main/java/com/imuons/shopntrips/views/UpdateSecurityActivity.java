@@ -20,55 +20,56 @@ import com.imuons.shopntrips.utils.SharedPreferenceUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UpdateSecurityActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText mEditOldPassword, mEditNewPassword, mEditConfirmPassword;
-    private Button mButtonUpdate;
+public class UpdateSecurityActivity extends AppCompatActivity  {
 
+
+    @BindView(R.id.old_pass)
+    EditText old_pass;
+    @BindView(R.id.new_trs_pass)
+    EditText new_trs_pass;
+    @BindView(R.id.retype_pass)
+    EditText retype_pass;
+    @BindView(R.id.updatetrans)
+    Button updatetrans;
+    String oldpass,newtranspass,retypepass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_security);
         ButterKnife.bind(this);
-        registerListeners();
-        initializeViews();
+
+        updatetrans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changePassword();
+                if(validatePassword() && validateConfirmPassword() && comfirmPassword() && newpassword()){
+
+                }
+            }
+        });
     }
 
-    private void initializeViews() {
-        mEditOldPassword = findViewById(R.id.edit_old_password);
-        mEditNewPassword = findViewById(R.id.edit_new_password);
-        mEditConfirmPassword = findViewById(R.id.edit_re_type_passsword);
-        mButtonUpdate = findViewById(R.id.button_update);
-    }
 
-    private void registerListeners() {
-        mButtonUpdate.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (validateOldPassword() && validateNewPassword() && validateConfirmPassword()) {
-            changePassword();
-        }
-    }
 
     private void changePassword() {
         Map<String, String> passwordmap = new HashMap<>();
         final String oldpass, newpass, compass;
 
 
-        oldpass = mEditOldPassword.getText().toString().trim();
-        newpass = mEditNewPassword.getText().toString().trim();
-        compass = mEditConfirmPassword.getText().toString().trim();
+        oldpass= old_pass.getText().toString().trim();
+        newpass =new_trs_pass.getText().toString().trim();
+        compass = retype_pass.getText().toString().trim();
 
 
-        passwordmap.put("password_confirmation", compass);
+        passwordmap.put("old_password", compass);
         passwordmap.put("new_password", newpass);
-        passwordmap.put("current_pwd", oldpass);
+        passwordmap.put("retype_password", oldpass);
 
 
         ShopNTrips apiService = ApiHandler.getApiService();
@@ -85,9 +86,9 @@ public class UpdateSecurityActivity extends AppCompatActivity implements View.On
 
                         Toast.makeText(UpdateSecurityActivity.this, changePasswordResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        mEditOldPassword.setText("");
-                        mEditNewPassword.setText("");
-                        mEditConfirmPassword.setText("");
+                        old_pass.setText("");
+                        new_trs_pass.setText("");
+                        retype_pass.setText("");
                     } else {
                         Toast.makeText(UpdateSecurityActivity.this, changePasswordResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -107,43 +108,39 @@ public class UpdateSecurityActivity extends AppCompatActivity implements View.On
         });
     }
 
+    private boolean newpassword() {
+        newtranspass  = new_trs_pass.getText().toString().trim();
+        if (newtranspass.isEmpty() && new_trs_pass.length() < 8) {
+            Toast.makeText(UpdateSecurityActivity.this, "Empty or invalid new password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validatePassword() {
+        oldpass  = old_pass.getText().toString().trim();
+        if (oldpass.isEmpty() && old_pass.length() < 8) {
+            Toast.makeText(UpdateSecurityActivity.this, "Empty or invalid old password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
     private boolean validateConfirmPassword() {
-        String password = mEditNewPassword.getText().toString().trim();
-        String confirmPassword = mEditConfirmPassword.getText().toString().trim();
-        if (!confirmPassword.equals(password)) {
-            Toast.makeText(UpdateSecurityActivity.this, getString(R.string.invalid_confirm_password_message), Toast.LENGTH_SHORT).show();
+        newtranspass = new_trs_pass.getText().toString().trim();
+        retypepass = retype_pass.getText().toString().trim();
+        if (!newtranspass.equals(retypepass)) {
+            Toast.makeText(UpdateSecurityActivity.this, "Empty or not matching  new or retype password", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
-    private boolean validateNewPassword() {
-        String password = mEditNewPassword.getText().toString().trim();
-        if (password.isEmpty()) {
-            Toast.makeText(UpdateSecurityActivity.this, getString(R.string.invalid_new_password_message), Toast.LENGTH_SHORT).show();
+    private boolean comfirmPassword() {
+        retypepass = retype_pass.getText().toString().trim();
+        if (retypepass.isEmpty() || retype_pass.length() < 8) {
+            Toast.makeText(UpdateSecurityActivity.this, "Empty or invalid retype new password", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
-
-    private boolean validateOldPassword() {
-        String oldPassword = mEditOldPassword.getText().toString().trim();
-        if (oldPassword.isEmpty()) {
-            Toast.makeText(UpdateSecurityActivity.this, getString(R.string.empty_password), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
-    }
-
-
 }
