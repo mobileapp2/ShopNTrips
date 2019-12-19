@@ -28,14 +28,14 @@
                 android:layout_gravity="center"
                 android:layout_weight="1">
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/eye"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:layout_weight="0.3"-->
-<!--                    android:padding="5dp"-->
-<!--                    android:src="@drawable/oprneye" />-->
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/eye"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:layout_weight="0.3"-->
+                <!--                    android:padding="5dp"-->
+                <!--                    android:src="@drawable/oprneye" />-->
 
                 <TextView
                     android:id="@+id/srno"
@@ -50,14 +50,14 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-<!--            <View-->
+            <!--            <View-->
 
-<!--                android:layout_width="1dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@color/grey" />-->
+            <!--                android:layout_width="1dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:background="@color/grey" />-->
 
             <TextView
-                android:id="@+id/payoutno"
+                android:id="@+id/pin"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -68,14 +68,14 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
-<!--            <View-->
+            <!--            <View-->
 
-<!--                android:layout_width="1dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:background="@color/grey" />-->
+            <!--                android:layout_width="1dp"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:background="@color/grey" />-->
 
             <TextView
-                android:id="@+id/leftbv"
+                android:id="@+id/packagename"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -103,7 +103,7 @@ android:visibility="gone"
 
         <LinearLayout
 
-android:background="@drawable/bluedt"
+            android:background="@drawable/bluedt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal"
@@ -116,12 +116,50 @@ android:background="@drawable/bluedt"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/open_sans_bold"
-                android:text="Right BV"
+                android:text="Date"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/rightbv"
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/open_sans_bold"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:background="@drawable/bluedt"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="ROI Amount"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/roiamount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -134,7 +172,6 @@ android:background="@drawable/bluedt"
         </LinearLayout>
 
         <LinearLayout
-
             android:background="@drawable/bluedt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -148,167 +185,12 @@ android:background="@drawable/bluedt"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/open_sans_bold"
-                android:text="Carry Left BV"
+                android:text="ROI %"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/carryleftbv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text=" "
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-
-            android:background="@drawable/bluedt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Carry Right BV"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/carryrighbv"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text=" "
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:background="@drawable/bluedt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Laps Amount"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/lapsamt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:background="@drawable/bluedt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Amount"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/amount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:background="@drawable/bluedt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Pin"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/pin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text=""
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:background="@drawable/bluedt"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="ROI"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/roi"
+                android:id="@+id/roipercent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

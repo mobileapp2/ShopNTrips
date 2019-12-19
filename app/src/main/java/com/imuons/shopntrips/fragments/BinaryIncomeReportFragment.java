@@ -71,8 +71,8 @@ public class BinaryIncomeReportFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static BinaryRoiReportFragment newInstance() {
-        BinaryRoiReportFragment fragment = new BinaryRoiReportFragment();
+    public static BinaryIncomeReportFragment newInstance() {
+        BinaryIncomeReportFragment fragment = new BinaryIncomeReportFragment();
         return fragment;
     }
 
