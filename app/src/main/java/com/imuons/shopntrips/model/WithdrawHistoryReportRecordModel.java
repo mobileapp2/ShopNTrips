@@ -4,15 +4,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class WithdrawHistoryReportRecordModel {
+
     @SerializedName("user_id")
     @Expose
     private String userId;
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("request_id")
-    @Expose
-    private Integer requestId;
     @SerializedName("toUserId")
     @Expose
     private Integer toUserId;
@@ -28,15 +26,21 @@ public class WithdrawHistoryReportRecordModel {
     @SerializedName("rec_date")
     @Expose
     private String recDate;
+    @SerializedName("from_date")
+    @Expose
+    private Object fromDate;
+    @SerializedName("to_date")
+    @Expose
+    private Object toDate;
     @SerializedName("remark")
     @Expose
-    private String remark;
-    @SerializedName("payout_no")
-    @Expose
-    private Integer payoutNo;
+    private Object remark;
     @SerializedName("status")
     @Expose
     private Integer status;
+    @SerializedName("payout_no")
+    @Expose
+    private Integer payoutNo;
     @SerializedName("tds")
     @Expose
     private Double tds;
@@ -45,34 +49,34 @@ public class WithdrawHistoryReportRecordModel {
     private Double amtPin;
     @SerializedName("account_no")
     @Expose
-    private Object accountNo;
+    private Integer accountNo;
     @SerializedName("holder_name")
     @Expose
-    private Object holderName;
+    private String holderName;
     @SerializedName("bank_name")
     @Expose
-    private Object bankName;
+    private String bankName;
     @SerializedName("branch_name")
     @Expose
-    private Object branchName;
-    @SerializedName("payment_mode")
-    @Expose
-    private Object paymentMode;
+    private String branchName;
     @SerializedName("pan_no")
     @Expose
-    private Object panNo;
+    private String panNo;
     @SerializedName("ifsc_code")
     @Expose
-    private Object ifscCode;
+    private String ifscCode;
+    @SerializedName("btc_address")
+    @Expose
+    private Object btcAddress;
+    @SerializedName("withdraw_type")
+    @Expose
+    private String withdrawType;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
     @SerializedName("updated_at")
     @Expose
-    private Object updatedAt;
-    @SerializedName("withdraw_type")
-    @Expose
-    private String withdrawType;
+    private String updatedAt;
 
     public String getUserId() {
         return userId;
@@ -88,14 +92,6 @@ public class WithdrawHistoryReportRecordModel {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(Integer requestId) {
-        this.requestId = requestId;
     }
 
     public Integer getToUserId() {
@@ -138,20 +134,28 @@ public class WithdrawHistoryReportRecordModel {
         this.recDate = recDate;
     }
 
-    public String getRemark() {
+    public Object getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Object fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Object getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Object toDate) {
+        this.toDate = toDate;
+    }
+
+    public Object getRemark() {
         return remark;
     }
 
-    public void setRemark(String remark) {
+    public void setRemark(Object remark) {
         this.remark = remark;
-    }
-
-    public Integer getPayoutNo() {
-        return payoutNo;
-    }
-
-    public void setPayoutNo(Integer payoutNo) {
-        this.payoutNo = payoutNo;
     }
 
     public Integer getStatus() {
@@ -160,6 +164,14 @@ public class WithdrawHistoryReportRecordModel {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getPayoutNo() {
+        return payoutNo;
+    }
+
+    public void setPayoutNo(Integer payoutNo) {
+        this.payoutNo = payoutNo;
     }
 
     public Double getTds() {
@@ -178,60 +190,68 @@ public class WithdrawHistoryReportRecordModel {
         this.amtPin = amtPin;
     }
 
-    public Object getAccountNo() {
+    public Integer getAccountNo() {
         return accountNo;
     }
 
-    public void setAccountNo(Object accountNo) {
+    public void setAccountNo(Integer accountNo) {
         this.accountNo = accountNo;
     }
 
-    public Object getHolderName() {
+    public String getHolderName() {
         return holderName;
     }
 
-    public void setHolderName(Object holderName) {
+    public void setHolderName(String holderName) {
         this.holderName = holderName;
     }
 
-    public Object getBankName() {
+    public String getBankName() {
         return bankName;
     }
 
-    public void setBankName(Object bankName) {
+    public void setBankName(String bankName) {
         this.bankName = bankName;
     }
 
-    public Object getBranchName() {
+    public String getBranchName() {
         return branchName;
     }
 
-    public void setBranchName(Object branchName) {
+    public void setBranchName(String branchName) {
         this.branchName = branchName;
     }
 
-    public Object getPaymentMode() {
-        return paymentMode;
-    }
-
-    public void setPaymentMode(Object paymentMode) {
-        this.paymentMode = paymentMode;
-    }
-
-    public Object getPanNo() {
+    public String getPanNo() {
         return panNo;
     }
 
-    public void setPanNo(Object panNo) {
+    public void setPanNo(String panNo) {
         this.panNo = panNo;
     }
 
-    public Object getIfscCode() {
+    public String getIfscCode() {
         return ifscCode;
     }
 
-    public void setIfscCode(Object ifscCode) {
+    public void setIfscCode(String ifscCode) {
         this.ifscCode = ifscCode;
+    }
+
+    public Object getBtcAddress() {
+        return btcAddress;
+    }
+
+    public void setBtcAddress(Object btcAddress) {
+        this.btcAddress = btcAddress;
+    }
+
+    public String getWithdrawType() {
+        return withdrawType;
+    }
+
+    public void setWithdrawType(String withdrawType) {
+        this.withdrawType = withdrawType;
     }
 
     public String getCreatedAt() {
@@ -242,20 +262,13 @@ public class WithdrawHistoryReportRecordModel {
         this.createdAt = createdAt;
     }
 
-    public Object getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Object updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public String getWithdrawType() {
-        return withdrawType;
-    }
-
-    public void setWithdrawType(String withdrawType) {
-        this.withdrawType = withdrawType;
-    }
 
 }

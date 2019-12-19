@@ -172,17 +172,17 @@ public class WithdrawHistoryReportAdapter extends RecyclerView.Adapter<WithdrawH
 
         ImageView imageClose = dialog.findViewById(R.id.image_close);
 
-//        try {
-//            int amtin = withdrawHistoryReportRecordModel.getAccountNo();
-//            accountnumber.setText(String.valueOf(amtin));
-//            holdername.setText(withdrawHistoryReportRecordModel.getHolderName());
-//            bankname.setText(withdrawHistoryReportRecordModel.getBankName());
-//            branchname.setText(withdrawHistoryReportRecordModel.getBranchName());
-//            ifsccode.setText(withdrawHistoryReportRecordModel.getIfscCode());
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            int amtin = withdrawHistoryReportRecordModel.getAccountNo();
+            accountnumber.setText(String.valueOf(amtin));
+            holdername.setText(withdrawHistoryReportRecordModel.getHolderName());
+            bankname.setText(withdrawHistoryReportRecordModel.getBankName());
+            branchname.setText(withdrawHistoryReportRecordModel.getBranchName());
+            ifsccode.setText(withdrawHistoryReportRecordModel.getIfscCode());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         dialog.show();
         Window window = dialog.getWindow();
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
