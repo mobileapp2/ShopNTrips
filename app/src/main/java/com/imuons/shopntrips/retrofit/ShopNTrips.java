@@ -13,6 +13,8 @@ import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
+import com.imuons.shopntrips.model.UserPhotosResponseModel;
+import com.imuons.shopntrips.model.UserProfileResponseModel;
 import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
 import com.imuons.shopntrips.model.WithdrawRequestReportResponseModel;
 
@@ -94,6 +96,12 @@ public interface ShopNTrips {
     @POST("insert_ticket")
     Call<TicketResponseModel> wsSendQuery(@Header("Authorization") String authHeader, @PartMap() Map<String, RequestBody> partMap,
                                           @Part MultipartBody.Part file);
+    @GET("user-profile")
+    Call<UserProfileResponseModel> wsUserProfileInfo(@Header("Authorization") String authHeader);
+
+    @GET("user-photos")
+    Call<UserPhotosResponseModel> wsUserPhotos(@Header("Authorization") String authHeader);
+
 
   /*
 

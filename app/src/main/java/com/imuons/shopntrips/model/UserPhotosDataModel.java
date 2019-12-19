@@ -57,7 +57,7 @@ public class UserPhotosDataModel {
     }
 
     public String getUserId() {
-        
+
         return userId;
     }
 
