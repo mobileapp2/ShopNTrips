@@ -4,6 +4,7 @@ import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
 import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
 import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
+import com.imuons.shopntrips.model.DepartmentResponseModel;
 import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
 import com.imuons.shopntrips.model.GetCityResponseModel;
 import com.imuons.shopntrips.model.GetStateResponseModel;
@@ -11,18 +12,24 @@ import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
+import com.imuons.shopntrips.model.TicketResponseModel;
 import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
 import com.imuons.shopntrips.model.WithdrawRequestReportResponseModel;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 
 public interface ShopNTrips {
 
@@ -43,8 +50,8 @@ public interface ShopNTrips {
     @POST("register")
     Call<RegisterResponseModel> wsRegister(@FieldMap Map<String, String> map);
 
-   @GET("userDashboard")
-   Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
+    @GET("userDashboard")
+    Call<DashboardResponseModel> wsGetDashboardData(@Header("Authorization") String authHeader);
 
 
     @FormUrlEncoded
@@ -80,6 +87,13 @@ public interface ShopNTrips {
     Call<DirectRoiReportResponseModel> wsBDirectROIReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
 
+    @GET("get_departements")
+    Call<DepartmentResponseModel> wsGetDepartments(@Header("Authorization") String authHeader);
+
+    @Multipart
+    @POST("insert_ticket")
+    Call<TicketResponseModel> wsSendQuery(@Header("Authorization") String authHeader, @PartMap() Map<String, RequestBody> partMap,
+                                          @Part MultipartBody.Part file);
 
   /*
 

@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".fragments.GenerateTicketFragment">
+    android:layout_gravity="center"
+    android:background="@drawable/bgdash"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragments.GenerateTicketFragment"
+   >
 
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_centerInParent="true">
-
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/gif"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:elevation="25dp"
-            android:src="@drawable/loader"
-            android:visibility="gone" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical"
-            android:gravity="center">
+            android:paddingBottom="20dp"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans_bold"
                 android:gravity="center"
                 android:text="Generate New Ticket"
@@ -42,171 +37,168 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_gravity="center">
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/layout_user_id"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/register_editbox_height">
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/ticket_no"
+                    android:textColor="@color/white" />
 
-
-                    <EditText
-                        android:id="@+id/edit_ticketNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:drawableEnd="@drawable/ticket"
-                        android:fontFamily="@font/open_sans_light"
-                        android:hint="Ticket No"
-                        android:imeOptions="actionNext"
-
-                        android:maxLength="8"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:singleLine="true"
-                        android:textColor="@color/colorDarkGray"
-                        android:textSize="@dimen/register_textsize"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
+                <EditText
+                    android:id="@+id/edit_ticketNo"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/register_editbox_height"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="45dp"
 
-
-                    <EditText
-                        android:id="@+id/edit_tittle"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:drawableEnd="@drawable/title"
-                        android:fontFamily="@font/open_sans_light"
-                        android:hint="Tittle"
-                        android:imeOptions="actionNext"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:singleLine="true"
-                        android:textColor="@color/colorDarkGray"
-                        android:textSize="@dimen/register_textsize"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/register_editbox_height"
-                    android:layout_marginTop="10dp">
-
-
-                    <EditText
-                        android:id="@+id/edit_department"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:drawableEnd="@drawable/arrow_down"
-                        android:focusable="false"
-                        android:fontFamily="@font/open_sans_light"
-                        android:imeOptions="actionNext"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:singleLine="true"
-                        android:text="Select Department "
-                        android:textColor="@color/colorDarkGray"
-                        android:textSize="@dimen/register_textsize"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/register_editbox_height"
-                    android:layout_marginTop="10dp">
-
-
-                    <EditText
-                        android:id="@+id/edit_message"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:drawableEnd="@drawable/message"
-                        android:fontFamily="@font/open_sans_light"
-                        android:hint="Message"
-                        android:imeOptions="actionNext"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:singleLine="true"
-                        android:textColor="@color/colorDarkGray"
-                        android:textSize="@dimen/register_textsize"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/uploadImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/register_editbox_height"
-                    android:layout_marginTop="10dp"
                     android:background="@drawable/rounded_edittext"
+                    android:editable="false"
+                    android:enabled="false"
+                    android:hint="@string/ticket_no"
+                    android:imeOptions="actionNext"
+                    android:padding="10dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/title"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/edit_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="@string/title"
+                    android:imeOptions="actionNext"
+                    android:padding="10dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/message"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/edit_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/rounded_edittext"
+                    android:hint="@string/message"
+                    android:imeOptions="actionDone"
+                    android:padding="10dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="@string/department"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edittext"
+                    android:padding="1dp">
+
+                    <Spinner
+                        android:id="@+id/spinner_department"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="@string/epin"
+                        android:padding="10dp"
+                        android:singleLine="true" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Upload File"
+                    android:textColor="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:weightSum="3">
+                    android:weightSum="2">
 
                     <TextView
-                        android:id="@+id/checkterm"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:text="Upload File" />
-
-                    <TextView
-                        android:id="@+id/txt_fileName"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1.6"
-                        android:fontFamily="@font/open_sans_light"
-                        android:text="No File Chosen" />
-
-                    <ImageView
-                        android:id="@+id/image_attachment"
-                        android:layout_width="0dp"
+                        android:id="@+id/text_image_name"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="0.5"
-                        android:padding="8dp"
-                        android:src="@drawable/attachment" />
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:singleLine="true"
+                        android:text="No file Chosen"
+                        android:textColor="@color/white" />
 
-
+                    <Button
+                        android:id="@+id/button_select_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/nextbtn"
+                        android:paddingBottom="5dp"
+                        android:text="@string/select_image"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/submit"
-                    android:layout_width="180dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:id="@+id/button_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="60dp"
                     android:background="@drawable/nextbtn"
-                    android:fontFamily="@font/open_sans_light"
-                    android:text="Submit"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:text="@string/submit"
+                    android:textColor="@color/white" />
             </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
 
-</RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

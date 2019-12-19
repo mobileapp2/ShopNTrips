@@ -58,7 +58,9 @@ public class ResetPassword extends AppCompatActivity {
         userName = edit_userid.getText().toString().trim();
 
         ShopNTrips apiService = ApiHandler.getApiService();
+
         final Call<ResetPasswordResponseModel> loginCall = apiService.wsResetPassword(userName);
+
         loginCall.enqueue(new Callback<ResetPasswordResponseModel>() {
             @SuppressLint("WrongConstant")
             @Override
