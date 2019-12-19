@@ -3,16 +3,19 @@ package com.imuons.shopntrips.fragments;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
 import com.imuons.shopntrips.R;
 import com.imuons.shopntrips.model.UserPhotosDataModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
@@ -24,6 +27,7 @@ import com.imuons.shopntrips.utils.Constants;
 import com.imuons.shopntrips.utils.SharedPreferenceUtils;
 import com.imuons.shopntrips.utils.Utils;
 import com.imuons.shopntrips.utils.ViewUtils;
+import com.imuons.shopntrips.views.ProfileInfoActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -32,10 +36,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ProfileFragment extends Fragment {
+
+public class ProfileFragment extends Fragment implements View.OnClickListener {
     private UserProfileResponseModel profileModel;
     @BindView(R.id.text_user_name)
     TextView mTextUserName;
@@ -61,6 +63,19 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.txt_name)
     TextView mTextName;
 
+
+    @BindView(R.id.btn_Information)
+    Button mBtnInformation;
+    @BindView(R.id.btn_Security)
+    Button mBtnSecurity;
+
+    @BindView(R.id.btn_ContactInfo)
+    Button mBtnContactInfo;
+    @BindView(R.id.btn_BankDetails)
+    Button mBtnBankDetails;
+    @BindView(R.id.btn_About)
+    Button mBtnAbout;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -77,7 +92,54 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, view);
+        registerListeners();
         return view;
+    }
+
+    private void registerListeners() {
+
+        mBtnInformation.setOnClickListener(this);
+        mBtnSecurity.setOnClickListener(this);
+        mBtnBankDetails.setOnClickListener(this);
+        mBtnContactInfo.setOnClickListener(this);
+        mBtnAbout.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = null;
+        Gson gS = new Gson();
+
+        switch (v.getId()) {
+            case R.id.btn_Information:
+                String object = gS.toJson(profileModel);
+                intent = new Intent(ProfileFragment.this.getContext(),
+                        ProfileInfoActivity.class);
+                intent.putExtra("object", object);
+                startActivity(intent);
+                break;
+            case R.id.btn_Security:
+                object = gS.toJson(profileModel);
+                intent = new Intent(ProfileFragment.this.getContext(),
+                        ProfileInfoActivity.class);
+                intent.putExtra("object", object);
+                startActivity(intent);
+                break;
+            case R.id.btn_BankDetails:
+                startActivity(new Intent(ProfileFragment.this.getContext(),
+                        ProfileInfoActivity.class));
+                break;
+            case R.id.btn_ContactInfo:
+                startActivity(new Intent(ProfileFragment.this.getContext(),
+                        ProfileInfoActivity.class));
+                break;
+            case R.id.btn_About:
+                startActivity(new Intent(ProfileFragment.this.getContext(),
+                        ProfileInfoActivity.class));
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -179,4 +241,6 @@ public class ProfileFragment extends Fragment {
 
 
     }
+
+
 }
