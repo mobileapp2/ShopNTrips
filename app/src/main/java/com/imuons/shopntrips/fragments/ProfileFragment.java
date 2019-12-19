@@ -171,7 +171,6 @@ public class ProfileFragment extends Fragment {
         mTextEmailId.setText(data.getEmail());
         mTextMobileNumber.setText(data.getMobile());
 
-
         mTextName.setText(data.getFullname());
         mTextEmail.setText(data.getEmail());
         mTextMobileNumbers.setText(data.getMobile());
