@@ -59,13 +59,16 @@ android {
         implementation 'com.squareup.picasso:picasso:2.71828'
         implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
         implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
-
+        implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+        implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
+        implementation "com.airbnb.android:lottie:2.7.0"
+        implementation "com.airbnb.android:lottie:2.7.0"
         implementation 'com.bignerdranch.android:expandablerecyclerview:1.0.3'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 //    implementation project(':treeview')
         implementation "com.airbnb.android:lottie:2.7.0"
         implementation "com.airbnb.android:lottie:2.7.0"
-
+        compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
         implementation 'com.github.bumptech.glide:glide:4.10.0'
         annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
         implementation 'com.facebook.shimmer:shimmer:0.4.0'

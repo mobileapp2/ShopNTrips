@@ -10,6 +10,7 @@ import com.imuons.shopntrips.model.DepartmentResponseModel;
 import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
 import com.imuons.shopntrips.model.DownlineTopUpReportResponseModel;
 import com.imuons.shopntrips.model.FundRequestReportResponseModel;
+import com.imuons.shopntrips.model.FundRequestResponseModel;
 import com.imuons.shopntrips.model.FundTransferReportResponseModel;
 import com.imuons.shopntrips.model.GetBalanceReponseModel;
 import com.imuons.shopntrips.model.GetCityResponseModel;
@@ -21,11 +22,13 @@ import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 import com.imuons.shopntrips.model.ResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
+import com.imuons.shopntrips.model.SubmitTopUpReponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
 import com.imuons.shopntrips.model.TopUpReportResponseModel;
 import com.imuons.shopntrips.model.UpdateProfileResponseModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
+
 import com.imuons.shopntrips.model.UserTopUpDataModel;
 import com.imuons.shopntrips.model.UserTopUpResponse;
 import com.imuons.shopntrips.model.VerifyOTPDataModel;
@@ -146,18 +149,23 @@ public interface ShopNTrips {
 
     @FormUrlEncoded
     @POST("checkdownlineuser")
-    Call<CheckDownlineUserResponseModel> wsCheckDownlineUser(@Field("user_id") String user_id);
+    Call<CheckDownlineUserResponseModel> wsCheckDownlineUser(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
-    @GET("getproducts")
+        @GET("getproducts")
     Call<GetProductResponseModel> wsGetProducts(@Header("Authorization") String authHeader);
 
     @FormUrlEncoded
     @POST("getbalance")
     Call<GetBalanceReponseModel> wsTopUpBalance(@Header("Authorization") String authHeader,  @FieldMap Map<String, String> loginMap);
 
+    @Multipart
+    @POST("fund-request")
+    Call<FundRequestResponseModel> wsMakeFundRequest(@Header("Authorization") String authHeader, @PartMap() Map<String, Integer> partMap,
+                                                     @Part MultipartBody.Part file);
+
     @FormUrlEncoded
     @POST("sendOtp-update-user-profile")
-    Call<OTPResponseModel> wsSendOTP(@Header("Authorization") String authHeader,@FieldMap Map<String, String> loginMap);
+    Call<OTPResponseModel> wsSendOTP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
     @FormUrlEncoded
     @POST("checkotp1")
@@ -170,7 +178,6 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("get-user-first-topup")
     Call<UserTopUpResponse> wsTopUP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
-
   /*
 
 
