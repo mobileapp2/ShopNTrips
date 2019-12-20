@@ -2,6 +2,7 @@ package com.imuons.shopntrips.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.imuons.shopntrips.fragments.DownloadPDFFragment;
 
 public class WithdrawRequestReportRecordModel {
 
@@ -13,10 +14,10 @@ public class WithdrawRequestReportRecordModel {
     private Integer id;
     @SerializedName("toUserId")
     @Expose
-    private Integer toUserId;
+    private Double toUserId;
     @SerializedName("amount")
     @Expose
-    private Integer amount;
+    private Double amount;
     @SerializedName("net_amount")
     @Expose
     private Double netAmount;
@@ -94,19 +95,19 @@ public class WithdrawRequestReportRecordModel {
         this.id = id;
     }
 
-    public Integer getToUserId() {
+    public Double getToUserId() {
         return toUserId;
     }
 
-    public void setToUserId(Integer toUserId) {
+    public void setToUserId(Double toUserId) {
         this.toUserId = toUserId;
     }
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

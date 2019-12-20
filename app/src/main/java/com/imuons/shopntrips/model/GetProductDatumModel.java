@@ -33,7 +33,7 @@ public class GetProductDatumModel {
     private Integer perPairAmount;
     @SerializedName("binary_per")
     @Expose
-    private Integer binaryPer;
+    private Double binaryPer;
     @SerializedName("percentage")
     @Expose
     private String percentage;
@@ -170,11 +170,11 @@ public class GetProductDatumModel {
         this.perPairAmount = perPairAmount;
     }
 
-    public Integer getBinaryPer() {
+    public Double getBinaryPer() {
         return binaryPer;
     }
 
-    public void setBinaryPer(Integer binaryPer) {
+    public void setBinaryPer(Double binaryPer) {
         this.binaryPer = binaryPer;
     }
 

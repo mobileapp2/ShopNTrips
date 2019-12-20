@@ -1,9 +1,12 @@
 package com.imuons.shopntrips.views;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
@@ -79,6 +82,10 @@ public class DashboardActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
         prepareListData();
+
+
+
+
 
         fragmentManager = getSupportFragmentManager();
         mDrawerLayout.addDrawerListener(mDrawerToggle);
