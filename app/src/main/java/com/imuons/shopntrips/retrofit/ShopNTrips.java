@@ -28,10 +28,7 @@ import com.imuons.shopntrips.model.TopUpReportResponseModel;
 import com.imuons.shopntrips.model.UpdateProfileResponseModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
-
-import com.imuons.shopntrips.model.UserTopUpDataModel;
 import com.imuons.shopntrips.model.UserTopUpResponse;
-import com.imuons.shopntrips.model.VerifyOTPDataModel;
 import com.imuons.shopntrips.model.VerifyOTPResponseModel;
 import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
 import com.imuons.shopntrips.model.WithdrawRequestReportResponseModel;
@@ -164,6 +161,10 @@ public interface ShopNTrips {
                                                      @Part MultipartBody.Part file);
 
     @FormUrlEncoded
+    @POST("repurchaseProduct")
+    Call<SubmitTopUpReponseModel> wsTopup(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
     @POST("sendOtp-update-user-profile")
     Call<OTPResponseModel> wsSendOTP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
@@ -175,8 +176,8 @@ public interface ShopNTrips {
     @POST("update-user-profile")
     Call<UpdateProfileResponseModel> wsUpdateProfile(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
-    @FormUrlEncoded
-    @POST("get-user-first-topup")
+  @FormUrlEncoded
+   @POST("get-user-first-topup")
     Call<UserTopUpResponse> wsTopUP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
   /*
 
