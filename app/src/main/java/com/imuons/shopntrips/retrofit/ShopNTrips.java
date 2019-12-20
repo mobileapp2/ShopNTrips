@@ -17,6 +17,7 @@ import com.imuons.shopntrips.model.GetCityResponseModel;
 import com.imuons.shopntrips.model.GetProductResponseModel;
 import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
+import com.imuons.shopntrips.model.OTPResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 import com.imuons.shopntrips.model.ResponseModel;
@@ -24,8 +25,10 @@ import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
 import com.imuons.shopntrips.model.SubmitTopUpReponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
 import com.imuons.shopntrips.model.TopUpReportResponseModel;
+import com.imuons.shopntrips.model.UpdateProfileResponseModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
+import com.imuons.shopntrips.model.VerifyOTPResponseModel;
 import com.imuons.shopntrips.model.WithdrawHistoryReportResponseModel;
 import com.imuons.shopntrips.model.WithdrawRequestReportResponseModel;
 
@@ -159,6 +162,22 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("repurchaseProduct")
     Call<SubmitTopUpReponseModel> wsTopup(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("sendOtp-update-user-profile")
+    Call<OTPResponseModel> wsSendOTP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("checkotp1")
+    Call<VerifyOTPResponseModel> wsVeryfiedOTP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("update-user-profile")
+    Call<UpdateProfileResponseModel> wsUpdateProfile(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+//    @FormUrlEncoded
+//    @POST("get-user-first-topup")
+//    Call<UserTopUpResponse> wsTopUP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
   /*
 
 
