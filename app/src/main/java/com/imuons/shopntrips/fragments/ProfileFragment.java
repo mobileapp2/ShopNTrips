@@ -100,6 +100,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+
+
     private void registerListeners() {
 
         mBtnInformation.setOnClickListener(this);

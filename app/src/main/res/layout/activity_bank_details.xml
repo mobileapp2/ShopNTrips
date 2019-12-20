@@ -208,7 +208,7 @@
                     android:background="@drawable/btnregister"
                     android:gravity="center"
                     android:paddingBottom="5dp"
-                    android:text="Submit"
+                    android:text="Update"
                     android:textColor="@color/white"
                     android:visibility="gone" />
 

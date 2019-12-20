@@ -48,9 +48,7 @@ public class UpdateSecurityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 changePassword();
-                if (validatePassword() && validateConfirmPassword() && comfirmPassword() && newpassword()) {
-                   
-                }
+
             }
         });
     }
@@ -82,14 +80,11 @@ public class UpdateSecurityActivity extends AppCompatActivity {
                     ChangePasswordResponseModel changePasswordResponseModel = response.body();
                     if (changePasswordResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
                             changePasswordResponseModel.getStatus().equals("OK")) {
-
-                        Toast.makeText(UpdateSecurityActivity.this, changePasswordResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
-
                         old_pass.setText("");
                         new_trs_pass.setText("");
                         retype_pass.setText("");
                     } else {
-                        Toast.makeText(UpdateSecurityActivity.this, changePasswordResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(UpdateSecurityActivity.this, changePasswordResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(UpdateSecurityActivity.this, "Check username or password", Toast.LENGTH_SHORT).show();

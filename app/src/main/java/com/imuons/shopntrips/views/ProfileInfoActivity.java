@@ -2,7 +2,11 @@ package com.imuons.shopntrips.views;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,15 +15,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.imuons.shopntrips.R;
+import com.imuons.shopntrips.model.UpdateProfileResponseModel;
 import com.imuons.shopntrips.model.UserPhotosDataModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
+import com.imuons.shopntrips.model.UserTopUpResponse;
 import com.imuons.shopntrips.retrofit.ApiHandler;
 import com.imuons.shopntrips.retrofit.ShopNTrips;
 import com.imuons.shopntrips.utils.Constants;
 import com.imuons.shopntrips.utils.SharedPreferenceUtils;
 import com.imuons.shopntrips.utils.ViewUtils;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,19 +41,19 @@ public class ProfileInfoActivity extends AppCompatActivity {
     private UserProfileResponseModel model;
 
     @BindView(R.id.txt_userId)
-    TextView mTextUserID;
+    EditText mTextUserID;
 
     @BindView(R.id.txt_mobileNo)
-    TextView mTextMobileNumbers;
+    EditText mTextMobileNumbers;
 
     @BindView(R.id.txt_sponsorId)
-    TextView mTextSponsorID;
+    EditText mTextSponsorID;
 
     @BindView(R.id.txt_Email)
-    TextView mTextEmail;
+    EditText mTextEmail;
 
     @BindView(R.id.txt_name)
-    TextView mTextName;
+    EditText mTextName;
 
 
     @BindView(R.id.text_user_name)
@@ -57,6 +66,9 @@ public class ProfileInfoActivity extends AppCompatActivity {
     TextView mTextMobileNumber;
     @BindView(R.id.image_profile)
     ImageView mImageUser;
+
+    @BindView(R.id.btn_Edit)
+    Button mbtnSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +87,103 @@ public class ProfileInfoActivity extends AppCompatActivity {
         } else {
             Toast.makeText(ProfileInfoActivity.this, "No Data found!", Toast.LENGTH_SHORT).show();
         }
+        getTopUp();
         getUserPhotos();
+
+        mbtnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UpdateProfile();
+            }
+        });
     }
+
+    private void UpdateProfile() {
+        final ProgressDialog pd = ViewUtils.getProgressBar(ProfileInfoActivity.this, "Loading...", "Please wait..!");
+        String name = mTextName.getText().toString();
+        String email = mTextEmail.getText().toString();
+        String mobile = mTextMobileNumbers.getText().toString();
+
+        Map<String, String> roiMap = new HashMap<>();
+        roiMap.put("fullname", name);
+        roiMap.put("mobile", mobile);
+        roiMap.put("email", email);
+
+
+        ShopNTrips apiService = ApiHandler.getApiService();
+
+        final Call<UpdateProfileResponseModel> loginCall = apiService.wsUpdateProfile("Bearer "
+                + SharedPreferenceUtils.getLoginObject(
+                ProfileInfoActivity.this).getData().getAccess_token(), roiMap);
+
+        loginCall.enqueue(new Callback<UpdateProfileResponseModel>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<UpdateProfileResponseModel> call,
+                                   Response<UpdateProfileResponseModel> response) {
+                pd.hide();
+                if (response.isSuccessful()) {
+                    UpdateProfileResponseModel profileResponseModel = response.body();
+                    if (profileResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
+                            profileResponseModel.getStatus().equals("OK")) {
+                        Toast.makeText(ProfileInfoActivity.this, "Information Updated", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(ProfileInfoActivity.this, DashboardActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ProfileInfoActivity.this, profileResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UpdateProfileResponseModel> call,
+                                  Throwable t) {
+                pd.hide();
+                Toast.makeText(ProfileInfoActivity.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getTopUp() {
+        final ProgressDialog pd = ViewUtils.getProgressBar(ProfileInfoActivity.this, "Loading...", "Please wait..!");
+        Map<String, String> roiMap = new HashMap<>();
+
+        roiMap.put("start", String.valueOf(0));
+
+        ShopNTrips apiService = ApiHandler.getApiService();
+
+        final Call<UserTopUpResponse> loginCall = apiService.wsTopUP("Bearer "
+                + SharedPreferenceUtils.getLoginObject(
+                ProfileInfoActivity.this).getData().getAccess_token(), roiMap);
+
+        loginCall.enqueue(new Callback<UserTopUpResponse>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<UserTopUpResponse> call,
+                                   Response<UserTopUpResponse> response) {
+                pd.hide();
+                if (response.isSuccessful()) {
+                    UserTopUpResponse userTopUpResponse = response.body();
+                    if (userTopUpResponse.getCode() == Constants.RESPONSE_CODE_OK &&
+                            userTopUpResponse.getStatus().equals("OK")) {
+                        mbtnSubmit.setVisibility(View.GONE);
+                    } else if (userTopUpResponse.getCode() == Constants.RESPONSE_ERRORS) {
+                        mbtnSubmit.setVisibility(View.VISIBLE);
+                    } else {
+                        mbtnSubmit.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserTopUpResponse> call,
+                                  Throwable t) {
+                pd.hide();
+                Toast.makeText(ProfileInfoActivity.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void getUserPhotos() {
         final ProgressDialog pd = ViewUtils.getProgressBar(ProfileInfoActivity.this, "Loading...", "Please wait..!");

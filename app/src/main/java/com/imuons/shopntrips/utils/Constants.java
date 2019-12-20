@@ -9,5 +9,6 @@ public class Constants {
     public static int RESPONSE_CODE_OK = 200;
     public static int RESPONSE_CODE = 201;
     public static int RESPONSE_ERROR = 401;
+    public static int RESPONSE_ERRORS = 404;
 
 }
