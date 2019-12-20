@@ -2,6 +2,7 @@ package com.imuons.shopntrips.retrofit;
 
 import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
 import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
+import com.imuons.shopntrips.model.ChangePasswordResponseModel;
 import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
 import com.imuons.shopntrips.model.DepartmentResponseModel;
@@ -14,6 +15,7 @@ import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
+import com.imuons.shopntrips.model.ResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
 import com.imuons.shopntrips.model.TopUpReportResponseModel;
@@ -129,6 +131,9 @@ public interface ShopNTrips {
     @GET("user-photos")
     Call<UserPhotosResponseModel> wsUserPhotos(@Header("Authorization") String authHeader);
 
+    @FormUrlEncoded
+    @POST("change_password")
+    Call<ChangePasswordResponseModel> wsChangePassword(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
   /*
 
