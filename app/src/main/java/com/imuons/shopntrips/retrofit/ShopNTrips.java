@@ -12,6 +12,7 @@ import com.imuons.shopntrips.model.DownlineTopUpReportResponseModel;
 import com.imuons.shopntrips.model.FundRequestReportResponseModel;
 import com.imuons.shopntrips.model.FundRequestResponseModel;
 import com.imuons.shopntrips.model.FundTransferReportResponseModel;
+import com.imuons.shopntrips.model.FundTransferResponseModel;
 import com.imuons.shopntrips.model.GetBalanceReponseModel;
 import com.imuons.shopntrips.model.GetCityResponseModel;
 import com.imuons.shopntrips.model.GetProductResponseModel;
@@ -126,6 +127,10 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("fund-transfer-report")
     Call<FundTransferReportResponseModel> wsFundTransferReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("fund-transfer")
+    Call<FundTransferResponseModel> wsFundTransfer(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
     @GET("get_departements")
     Call<DepartmentResponseModel> wsGetDepartments(@Header("Authorization") String authHeader);

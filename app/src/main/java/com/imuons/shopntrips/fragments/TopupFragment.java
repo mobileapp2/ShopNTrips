@@ -146,7 +146,7 @@ productid = String.valueOf(productlist.get(i).getId());
                 if (validateFullname() && validateProduct() && validateSponserId()  && validateBal()) {
 
 
-                  //  callsubmit();
+                    callsubmit();
                 }
             }
         });
@@ -190,7 +190,7 @@ productid = String.valueOf(productlist.get(i).getId());
         return true;
     }
 
-  /*  private void callsubmit() {
+    private void callsubmit() {
         gif.setVisibility(View.VISIBLE);
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -237,7 +237,7 @@ productid = String.valueOf(productlist.get(i).getId());
         });
 
     }
-*/
+
     private void checkSponsorAvailability() {
 
 
