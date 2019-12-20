@@ -3,6 +3,7 @@ package com.imuons.shopntrips.retrofit;
 import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
 import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
 import com.imuons.shopntrips.model.ChangePasswordResponseModel;
+import com.imuons.shopntrips.model.CheckDownlineUserResponseModel;
 import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
 import com.imuons.shopntrips.model.DepartmentResponseModel;
@@ -10,7 +11,9 @@ import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
 import com.imuons.shopntrips.model.DownlineTopUpReportResponseModel;
 import com.imuons.shopntrips.model.FundRequestReportResponseModel;
 import com.imuons.shopntrips.model.FundTransferReportResponseModel;
+import com.imuons.shopntrips.model.GetBalanceReponseModel;
 import com.imuons.shopntrips.model.GetCityResponseModel;
+import com.imuons.shopntrips.model.GetProductResponseModel;
 import com.imuons.shopntrips.model.GetStateResponseModel;
 import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
@@ -134,6 +137,17 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("change_password")
     Call<ChangePasswordResponseModel> wsChangePassword(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("checkdownlineuser")
+    Call<CheckDownlineUserResponseModel> wsCheckDownlineUser(@Field("user_id") String user_id);
+
+        @GET("getproducts")
+    Call<GetProductResponseModel> wsGetProducts(@Header("Authorization") String authHeader);
+
+    @FormUrlEncoded
+    @POST("getbalance")
+    Call<GetBalanceReponseModel> wsTopUpBalance(@Header("Authorization") String authHeader,  @FieldMap Map<String, String> loginMap);
 
   /*
 
