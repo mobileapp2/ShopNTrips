@@ -2,7 +2,6 @@ package com.imuons.shopntrips.views;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UpdateSecurityActivity extends AppCompatActivity  {
+public class UpdateSecurityActivity extends AppCompatActivity {
 
 
     @BindView(R.id.old_pass)
@@ -37,7 +36,8 @@ public class UpdateSecurityActivity extends AppCompatActivity  {
     EditText retype_pass;
     @BindView(R.id.updatetrans)
     Button updatetrans;
-    String oldpass,newtranspass,retypepass;
+    String oldpass, newtranspass, retypepass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +48,12 @@ public class UpdateSecurityActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 changePassword();
-                if(validatePassword() && validateConfirmPassword() && comfirmPassword() && newpassword()){
-
+                if (validatePassword() && validateConfirmPassword() && comfirmPassword() && newpassword()) {
+                   
                 }
             }
         });
     }
-
 
 
     private void changePassword() {
@@ -62,14 +61,14 @@ public class UpdateSecurityActivity extends AppCompatActivity  {
         final String oldpass, newpass, compass;
 
 
-        oldpass= old_pass.getText().toString().trim();
-        newpass =new_trs_pass.getText().toString().trim();
+        oldpass = old_pass.getText().toString().trim();
+        newpass = new_trs_pass.getText().toString().trim();
         compass = retype_pass.getText().toString().trim();
 
 
-        passwordmap.put("old_password", compass);
+        passwordmap.put("old_password", oldpass);
         passwordmap.put("new_password", newpass);
-        passwordmap.put("retype_password", oldpass);
+        passwordmap.put("retype_password", compass);
 
 
         ShopNTrips apiService = ApiHandler.getApiService();
@@ -109,7 +108,7 @@ public class UpdateSecurityActivity extends AppCompatActivity  {
     }
 
     private boolean newpassword() {
-        newtranspass  = new_trs_pass.getText().toString().trim();
+        newtranspass = new_trs_pass.getText().toString().trim();
         if (newtranspass.isEmpty() && new_trs_pass.length() < 8) {
             Toast.makeText(UpdateSecurityActivity.this, "Empty or invalid new password", Toast.LENGTH_SHORT).show();
             return false;
@@ -118,13 +117,14 @@ public class UpdateSecurityActivity extends AppCompatActivity  {
     }
 
     private boolean validatePassword() {
-        oldpass  = old_pass.getText().toString().trim();
+        oldpass = old_pass.getText().toString().trim();
         if (oldpass.isEmpty() && old_pass.length() < 8) {
             Toast.makeText(UpdateSecurityActivity.this, "Empty or invalid old password", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
+
     private boolean validateConfirmPassword() {
         newtranspass = new_trs_pass.getText().toString().trim();
         retypepass = retype_pass.getText().toString().trim();
