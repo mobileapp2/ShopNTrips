@@ -63,7 +63,7 @@ public class AwardIncomeReportFragment extends Fragment {
     View dropdoenentry;
     String mStringUserId;
     AwardReportAdapter awardReportAdapter;
-    private List<AwardReportRecordModel> drorList = new ArrayList<>();
+    private List<AwardReportRecordModel> airList = new ArrayList<>();
     String countselected = "10";
     private FragmentManager fragmentManager;
     String entry[] ={"10","50","100","500","1000","5000","10000"};
@@ -114,7 +114,7 @@ public class AwardIncomeReportFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 getselectedentry.setText(entry[i]);
                 countselected = getselectedentry.getText().toString();
-                drorList .clear();
+                airList .clear();
                 mStringUserId="";
                 getData(mStringUserId);
                 entrypopupwindow.dismiss();
@@ -124,7 +124,7 @@ public class AwardIncomeReportFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    drorList.clear();
+                    airList.clear();
                     // if (validateUserId()) {
                     mStringUserId = searchbyid.getText().toString().trim();
                     getData(mStringUserId);
@@ -149,7 +149,7 @@ public class AwardIncomeReportFragment extends Fragment {
         if (Utils.checkInternetConnection(AwardIncomeReportFragment.this.getContext())) {
             recycler_award_income_report.setHasFixedSize(true);
             recycler_award_income_report.setLayoutManager(new LinearLayoutManager(AwardIncomeReportFragment.this.getContext(),LinearLayoutManager.VERTICAL,false));
-            drorList.clear();
+            airList.clear();
             mStringUserId="";
             getData(mStringUserId);
 
@@ -185,10 +185,10 @@ public class AwardIncomeReportFragment extends Fragment {
                     AwardReportResponseModel awardReportResponseModel = response.body();
                     if (awardReportResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
                             awardReportResponseModel.getStatus().equals("OK")) {
-                        drorList.addAll(awardReportResponseModel.getData().getRecords());
-                        if(drorList.size() > 0) {
-//                            awardReportAdapter = new AwardReportAdapter(AwardReportDataModel.this.getContext(), drorList);
-//                            recycler_award_income_report.setAdapter(awardReportAdapter);
+                        airList.addAll(awardReportResponseModel.getData().getRecords());
+                        if(airList.size() > 0) {
+                            awardReportAdapter = new AwardReportAdapter(AwardIncomeReportFragment.this.getContext(), airList);
+                            recycler_award_income_report.setAdapter(awardReportAdapter);
                         }else{
                             Toast.makeText(AwardIncomeReportFragment.this.getContext(), "No data available in table", Toast.LENGTH_SHORT).show();
                         }
