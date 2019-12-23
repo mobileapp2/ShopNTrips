@@ -49,6 +49,7 @@ public class BankDetailsActivity extends AppCompatActivity {
     @BindView(R.id.txt_panNo)
     EditText mEditPanNo;
     @BindView(R.id.txt_bankName)
+            
     EditText mEditBankName;
     @BindView(R.id.txt_bankIFSCCode)
     EditText mEditIFSCCode;
