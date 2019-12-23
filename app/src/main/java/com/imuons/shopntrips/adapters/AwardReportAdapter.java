@@ -1,7 +1,9 @@
 package com.imuons.shopntrips.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.imuons.shopntrips.R;
 import com.imuons.shopntrips.fragments.AwardIncomeReportFragment;
+import com.imuons.shopntrips.fragments.FundTransferFragment;
 import com.imuons.shopntrips.fragments.ROIIncomeFragment;
 import com.imuons.shopntrips.model.AwardReportRecordModel;
 import com.imuons.shopntrips.model.RoiIncomeReportRecordModel;
@@ -112,17 +115,19 @@ holder.rightbv.setText(String.valueOf(rightbv));
 int statint = awardReportRecordModel.getStatus();
 
 if(statint == 0){
+    holder.status.setClickable(true);
     holder.status.setBackgroundColor(R.color.green);
     holder.status.setText("GET");
 
     holder.status.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            showDialouge();
         }
     });
 
 }else{
+    holder.status.setClickable(false);
     holder.status.setText("RECEIVED");
 }
 
@@ -155,6 +160,38 @@ if(statint == 0){
                 notifyDataSetChanged();
             }
         });
+    }
+
+    private void showDialouge() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+        builder1.setTitle("Exit");
+        builder1.setMessage("Are you sure You want to receive this award ?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+
+                        callsubmit();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+    private void callsubmit() {
+
     }
 
     @Override
