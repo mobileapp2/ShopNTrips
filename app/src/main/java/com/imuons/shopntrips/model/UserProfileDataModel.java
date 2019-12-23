@@ -78,7 +78,7 @@ public class UserProfileDataModel {
     private Object pincode;
     @SerializedName("address")
     @Expose
-    private Object address;
+    private String address;
     @SerializedName("about_us")
     @Expose
     private Object aboutUs;
@@ -314,11 +314,11 @@ public class UserProfileDataModel {
         this.pincode = pincode;
     }
 
-    public Object getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Object address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

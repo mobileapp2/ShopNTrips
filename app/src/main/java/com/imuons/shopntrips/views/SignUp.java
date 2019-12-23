@@ -185,17 +185,15 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    private void getcitybyname(List<GetCityDatumModel> data) {
+        private void getcitybyname(List<GetCityDatumModel> data) {
 
-        for (int i = 0; i < data.size(); i++) {
-            listCityName.add(data.get(i).getName());
+            for (int i = 0; i < data.size(); i++) {
+                listCityName.add(data.get(i).getName());
+            }
+
         }
 
-    }
-
     private void register() {
-
-
 
         Map<String, String> registerMap = new HashMap<>();
         registerMap.put("confirm_password", cpassword);

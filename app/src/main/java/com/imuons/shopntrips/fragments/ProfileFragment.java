@@ -21,13 +21,16 @@ import com.imuons.shopntrips.model.UserPhotosDataModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileDataModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
+import com.imuons.shopntrips.model.UserTopUpResponse;
 import com.imuons.shopntrips.retrofit.ApiHandler;
 import com.imuons.shopntrips.retrofit.ShopNTrips;
 import com.imuons.shopntrips.utils.Constants;
 import com.imuons.shopntrips.utils.SharedPreferenceUtils;
 import com.imuons.shopntrips.utils.Utils;
 import com.imuons.shopntrips.utils.ViewUtils;
+import com.imuons.shopntrips.views.AboutActivity;
 import com.imuons.shopntrips.views.BankDetailsActivity;
+import com.imuons.shopntrips.views.ContactInfoActivity;
 import com.imuons.shopntrips.views.ProfileInfoActivity;
 import com.imuons.shopntrips.views.UpdateSecurityActivity;
 import com.squareup.picasso.Picasso;
@@ -41,6 +44,7 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private UserProfileResponseModel profileModel;
+    private UserTopUpResponse profileModel2;
     @BindView(R.id.text_user_name)
     TextView mTextUserName;
     @BindView(R.id.text_email_id)
@@ -101,7 +105,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     private void registerListeners() {
 
         mBtnInformation.setOnClickListener(this);
@@ -139,12 +142,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.btn_ContactInfo:
-                startActivity(new Intent(ProfileFragment.this.getContext(),
-                        ProfileInfoActivity.class));
+                object = gS.toJson(profileModel);
+                intent = new Intent(ProfileFragment.this.getContext(),
+                        ContactInfoActivity.class);
+                intent.putExtra("object", object);
+                startActivity(intent);
                 break;
             case R.id.btn_About:
-                startActivity(new Intent(ProfileFragment.this.getContext(),
-                        ProfileInfoActivity.class));
+                object = gS.toJson(profileModel);
+                intent = new Intent(ProfileFragment.this.getContext(),
+                        AboutActivity.class);
+                intent.putExtra("object", object);
+                startActivity(intent);
                 break;
             default:
                 break;

@@ -264,6 +264,5 @@ public class BankDetailsActivity extends AppCompatActivity {
         mEditPanNo.setText(data.getData().getPanNo());
         mEditBankName.setText(data.getData().getBankName());
         mEditIFSCCode.setText(data.getData().getIfscCode());
-
     }
 }

@@ -3,7 +3,9 @@ package com.imuons.shopntrips.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserTopUpResponse {
+import java.util.List;
+
+public class StateResponseModel {
     @SerializedName("code")
     @Expose
     private Integer code;
@@ -15,7 +17,7 @@ public class UserTopUpResponse {
     private String message;
     @SerializedName("data")
     @Expose
-    private UserTopUpBlankDataModel data;
+    private List<StateDataModel> data = null;
 
     public Integer getCode() {
         return code;
@@ -41,11 +43,11 @@ public class UserTopUpResponse {
         this.message = message;
     }
 
-    public UserTopUpBlankDataModel getData() {
+    public List<StateDataModel> getData() {
         return data;
     }
 
-    public void setData(UserTopUpBlankDataModel data) {
+    public void setData(List<StateDataModel> data) {
         this.data = data;
     }
 }

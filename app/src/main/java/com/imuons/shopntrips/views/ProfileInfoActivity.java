@@ -55,7 +55,6 @@ public class ProfileInfoActivity extends AppCompatActivity {
     @BindView(R.id.txt_name)
     EditText mTextName;
 
-
     @BindView(R.id.text_user_name)
     TextView mTextUserName;
     @BindView(R.id.txt_DateOfJoining)
@@ -154,7 +153,7 @@ public class ProfileInfoActivity extends AppCompatActivity {
 
         final Call<UserTopUpResponse> loginCall = apiService.wsTopUP("Bearer "
                 + SharedPreferenceUtils.getLoginObject(
-                ProfileInfoActivity.this).getData().getAccess_token(), roiMap);
+                ProfileInfoActivity.this).getData().getAccess_token());
 
         loginCall.enqueue(new Callback<UserTopUpResponse>() {
             @SuppressLint("WrongConstant")
@@ -164,10 +163,9 @@ public class ProfileInfoActivity extends AppCompatActivity {
                 pd.hide();
                 if (response.isSuccessful()) {
                     UserTopUpResponse userTopUpResponse = response.body();
-                    if (userTopUpResponse.getCode() == Constants.RESPONSE_CODE_OK &&
-                            userTopUpResponse.getStatus().equals("OK")) {
-                        mbtnSubmit.setVisibility(View.GONE);
-                    } else if (userTopUpResponse.getCode() == Constants.RESPONSE_ERRORS) {
+                    if (userTopUpResponse.getCode() == Constants.RESPONSE_ERRORS &&
+                            userTopUpResponse.getStatus().equals("Not Found")) {
+
                         mbtnSubmit.setVisibility(View.VISIBLE);
                     } else {
                         mbtnSubmit.setVisibility(View.GONE);
