@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import com.imuons.shopntrips.R;
 import com.imuons.shopntrips.adapters.CustomExpandableListAdapter;
 import com.imuons.shopntrips.fragments.ActiveTeamViewFragment;
+import com.imuons.shopntrips.fragments.AwardIncomeReportFragment;
 import com.imuons.shopntrips.fragments.BinaryIncomeReportFragment;
 import com.imuons.shopntrips.fragments.BinaryRoiReportFragment;
 import com.imuons.shopntrips.fragments.BusinessplanFragment;
@@ -219,6 +220,13 @@ public class DashboardActivity extends AppCompatActivity {
                                 mExpandableListView.setItemChecked(childPosition, true);
                                 mExpandableListView.setSelection(childPosition);
                                 break;
+                            case 4:
+                                fragmentManager.beginTransaction().replace(R.id.content_frame, AwardIncomeReportFragment.newInstance()).commit();
+                                getSupportActionBar().setTitle("Award Income Report");
+                                mExpandableListView.setItemChecked(childPosition, true);
+                                mExpandableListView.setSelection(childPosition);
+                                break;
+
 
                         }
                         break;
@@ -381,6 +389,7 @@ public class DashboardActivity extends AppCompatActivity {
         incomereport.add("ROI Income");
         incomereport.add("Binary ROI Report");
         incomereport.add("Direct ROI Income Report");
+        incomereport.add("Award Income Report");
 
         ArrayList<String> network = new ArrayList<String>();
         network.add("Tree View");
