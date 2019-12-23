@@ -179,10 +179,10 @@
 
         </LinearLayout>
 
-      <!--  <de.blox.treeview.TreeView
+        <de.blox.treeview.TreeView
             android:id="@+id/treeview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />-->
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
