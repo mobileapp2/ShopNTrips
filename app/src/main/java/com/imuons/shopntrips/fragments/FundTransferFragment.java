@@ -2,6 +2,9 @@ package com.imuons.shopntrips.fragments;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -110,13 +113,42 @@ public class FundTransferFragment extends Fragment {
             public void onClick(View v) {
                 if (validateFullname() && validateAmount() && validateSponserId()  && validateBal()) {
 
+                    showDialouge();
 
-                    callsubmit();
+
                 }
             }
         });
 
         return view;
+    }
+
+    private void showDialouge() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(FundTransferFragment.this.getContext());
+        builder1.setTitle("Exit");
+        builder1.setMessage("Are you sure You want to transfer the wallet ?");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+
+                        callsubmit();
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 
     private void callsubmit() {

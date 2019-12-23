@@ -120,26 +120,26 @@ public class DashboardActivity extends AppCompatActivity {
                         getSupportActionBar().setTitle("Profile");
                         mDrawerLayout.closeDrawers();
                         break;
-                    case 2:
-                        fragmentManager.beginTransaction().replace(R.id.content_frame, InvoiceFragment.newInstance()).commit();
-                        getSupportActionBar().setTitle("Invoice");
-                        mDrawerLayout.closeDrawers();
-                        break;
+//                    case 2:
+//                        fragmentManager.beginTransaction().replace(R.id.content_frame, InvoiceFragment.newInstance()).commit();
+//                        getSupportActionBar().setTitle("Invoice");
+//                        mDrawerLayout.closeDrawers();
+//                        break;
 
 
-                    case 8:
+                    case 7:
                         fragmentManager.beginTransaction().replace(R.id.content_frame, BusinessplanFragment.newInstance()).commit();
                         getSupportActionBar().setTitle("Business Plan");
                         mDrawerLayout.closeDrawers();
                         break;
 
-                    case 9:
+                    case 8:
                         fragmentManager.beginTransaction().replace(R.id.content_frame, DownloadPDFFragment.newInstance()).commit();
                         getSupportActionBar().setTitle(" Download PDF");
                         mDrawerLayout.closeDrawers();
                         break;
 
-                    case 10:
+                    case 9:
                         showAlertDialog();
                         break;
                 }
@@ -155,7 +155,7 @@ public class DashboardActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 switch (groupPosition) {
 
-                    case 3:
+                    case 2:
                         switch (childPosition) {
 
                             case 0:
@@ -192,7 +192,7 @@ public class DashboardActivity extends AppCompatActivity {
                         }
                         break;
 
-                    case 4:
+                    case 3:
                         switch (childPosition) {
                             case 0:
                                 fragmentManager.beginTransaction().replace(R.id.content_frame, BinaryIncomeReportFragment.newInstance()).commit();
@@ -223,7 +223,7 @@ public class DashboardActivity extends AppCompatActivity {
                         }
                         break;
 
-                    case 5:
+                    case 4:
                         switch (childPosition) {
                             case 0:
                                 fragmentManager.beginTransaction().replace(R.id.content_frame, FundRequestFragment.newInstance()).commit();
@@ -254,7 +254,7 @@ public class DashboardActivity extends AppCompatActivity {
                         }
                         break;
 
-                    case 6:
+                    case 5:
                         switch (childPosition) {
                             case 0:
                                 fragmentManager.beginTransaction().replace(R.id.content_frame, TopupFragment.newInstance()).commit();
@@ -279,7 +279,7 @@ public class DashboardActivity extends AppCompatActivity {
                         }
                         break;
 
-                    case 7:
+                    case 6:
                         switch (childPosition) {
                             case 0:
                                 fragmentManager.beginTransaction().replace(R.id.content_frame, WithdrawRequestReportFragment.newInstance()).commit();
@@ -365,7 +365,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         mExpandableListTitle.add(new ExpandableListModel(R.drawable.ic_drawer_home, "Home"));
         mExpandableListTitle.add(new ExpandableListModel(R.drawable.ic_drawer_profile, "Profile"));
-        mExpandableListTitle.add(new ExpandableListModel(R.drawable.ic_drawer_epin, "Invoice"));
+//        mExpandableListTitle.add(new ExpandableListModel(R.drawable.ic_drawer_epin, "Invoice"));
         mExpandableListTitle.add(new ExpandableListModel(R.drawable.ic_drawer_network, "Network"));
         mExpandableListTitle.add(new ExpandableListModel(R.drawable.ic_drawer_income_report, "Income Report"));
         mExpandableListTitle.add(new ExpandableListModel(R.drawable.ic_drawer_repurchase, "Manage Fund"));
@@ -407,15 +407,15 @@ public class DashboardActivity extends AppCompatActivity {
         ArrayList<String> allTransactions = new ArrayList<String>();
         mExpandableListData.put(mExpandableListTitle.get(0).title, allTransactions);
         mExpandableListData.put(mExpandableListTitle.get(1).title, allTransactions);
-        mExpandableListData.put(mExpandableListTitle.get(2).title, allTransactions);
-        mExpandableListData.put(mExpandableListTitle.get(3).title, network);
-        mExpandableListData.put(mExpandableListTitle.get(4).title, incomereport);
-        mExpandableListData.put(mExpandableListTitle.get(5).title, Managefund);
-        mExpandableListData.put(mExpandableListTitle.get(6).title, Topup);
-        mExpandableListData.put(mExpandableListTitle.get(7).title, withdraw);
-        mExpandableListData.put(mExpandableListTitle.get(8).title, allTransactions);
+        mExpandableListData.put(mExpandableListTitle.get(2).title, network);
+        mExpandableListData.put(mExpandableListTitle.get(3).title, incomereport);
+        mExpandableListData.put(mExpandableListTitle.get(4).title, Managefund);
+        mExpandableListData.put(mExpandableListTitle.get(5).title, Topup);
+        mExpandableListData.put(mExpandableListTitle.get(6).title, withdraw);
+        mExpandableListData.put(mExpandableListTitle.get(7).title, allTransactions);
+        mExpandableListData.put(mExpandableListTitle.get(8).title, allTransactions );
         mExpandableListData.put(mExpandableListTitle.get(9).title, allTransactions);
-        mExpandableListData.put(mExpandableListTitle.get(10).title, allTransactions);
+//        mExpandableListData.put(mExpandableListTitle.get(10).title, );
 
 
         mExpandableListAdapter = new CustomExpandableListAdapter(DashboardActivity.this, mExpandableListTitle, mExpandableListData);
