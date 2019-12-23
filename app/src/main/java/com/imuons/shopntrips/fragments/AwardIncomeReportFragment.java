@@ -24,7 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.imuons.shopntrips.R;
+import com.imuons.shopntrips.adapters.AwardReportAdapter;
 import com.imuons.shopntrips.adapters.DirectRoiIncomeReportAdapter;
+import com.imuons.shopntrips.model.AwardReportDataModel;
+import com.imuons.shopntrips.model.AwardReportRecordModel;
+import com.imuons.shopntrips.model.AwardReportResponseModel;
 import com.imuons.shopntrips.model.DirectRoiReportRecordModel;
 import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
 import com.imuons.shopntrips.retrofit.ApiHandler;
@@ -58,8 +62,8 @@ public class AwardIncomeReportFragment extends Fragment {
     @BindView(R.id.dropdoenentry)
     View dropdoenentry;
     String mStringUserId;
-    DirectRoiIncomeReportAdapter directRoiIncomeReportAdapter;
-    private List<DirectRoiReportRecordModel> drorList = new ArrayList<>();
+    AwardReportAdapter awardReportAdapter;
+    private List<AwardReportRecordModel> drorList = new ArrayList<>();
     String countselected = "10";
     private FragmentManager fragmentManager;
     String entry[] ={"10","50","100","500","1000","5000","10000"};
@@ -167,35 +171,35 @@ public class AwardIncomeReportFragment extends Fragment {
         roiMap.put("search[value]",mStringUserId);
 
         ShopNTrips apiService = ApiHandler.getApiService();
-        final Call<DirectRoiReportResponseModel> loginCall = apiService.wsBDirectROIReport(
+        final Call<AwardReportResponseModel> loginCall = apiService.wsBAwardReport(
                 "Bearer " + SharedPreferenceUtils.getAccesstoken(AwardIncomeReportFragment.this.getContext()),roiMap);
-        loginCall.enqueue(new Callback<DirectRoiReportResponseModel>() {
+        loginCall.enqueue(new Callback<AwardReportResponseModel>() {
             @SuppressLint("WrongConstant")
             @Override
-            public void onResponse(Call<DirectRoiReportResponseModel> call,
-                                   Response<DirectRoiReportResponseModel> response) {
+            public void onResponse(Call<AwardReportResponseModel> call,
+                                   Response<AwardReportResponseModel> response) {
 //                pd.hide();
                 gif.setVisibility(View.GONE);
                 getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 if (response.isSuccessful()) {
-                    DirectRoiReportResponseModel directRoiReportResponseModel = response.body();
-                    if (directRoiReportResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
-                            directRoiReportResponseModel.getStatus().equals("OK")) {
-                        drorList.addAll(directRoiReportResponseModel.getData().getRecords());
+                    AwardReportResponseModel awardReportResponseModel = response.body();
+                    if (awardReportResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
+                            awardReportResponseModel.getStatus().equals("OK")) {
+                        drorList.addAll(awardReportResponseModel.getData().getRecords());
                         if(drorList.size() > 0) {
-                            directRoiIncomeReportAdapter = new DirectRoiIncomeReportAdapter(AwardIncomeReportFragment.this.getContext(), drorList);
-                            recycler_award_income_report.setAdapter(directRoiIncomeReportAdapter);
+//                            awardReportAdapter = new AwardReportAdapter(AwardReportDataModel.this.getContext(), drorList);
+//                            recycler_award_income_report.setAdapter(awardReportAdapter);
                         }else{
                             Toast.makeText(AwardIncomeReportFragment.this.getContext(), "No data available in table", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(AwardIncomeReportFragment.this.getContext(), directRoiReportResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AwardIncomeReportFragment.this.getContext(), awardReportResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<DirectRoiReportResponseModel> call,
+            public void onFailure(Call<AwardReportResponseModel> call,
                                   Throwable t) {
 //                pd.hide();
                 gif.setVisibility(View.GONE);

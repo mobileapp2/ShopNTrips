@@ -1,6 +1,8 @@
 package com.imuons.shopntrips.retrofit;
 
 import com.imuons.shopntrips.model.ActiveTeamViewResponseModel;
+import com.imuons.shopntrips.model.AwardReportDataModel;
+import com.imuons.shopntrips.model.AwardReportResponseModel;
 import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
 import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
 import com.imuons.shopntrips.model.ChangePasswordResponseModel;
@@ -106,6 +108,11 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("direct_roi_income")
     Call<DirectRoiReportResponseModel> wsBDirectROIReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+
+    @FormUrlEncoded
+    @POST("awardwinners")
+    Call<AwardReportResponseModel> wsBAwardReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
     @FormUrlEncoded
     @POST("withdraw-amount-report")
