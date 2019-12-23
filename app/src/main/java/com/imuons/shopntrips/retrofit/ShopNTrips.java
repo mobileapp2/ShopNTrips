@@ -26,6 +26,7 @@ import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 import com.imuons.shopntrips.model.ResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
 import com.imuons.shopntrips.model.SubmitTopUpReponseModel;
+import com.imuons.shopntrips.model.TeamViewResponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
 import com.imuons.shopntrips.model.TopUpReportResponseModel;
 import com.imuons.shopntrips.model.UpdateProfileResponseModel;
@@ -194,6 +195,11 @@ public interface ShopNTrips {
 
     @GET("downline-summary")
     Call<DownlineSummaryResponseModel> wsDownlineSummary(@Header("Authorization") String authHeader);
+
+    @FormUrlEncoded
+    @POST("get-team-view")
+    Call<TeamViewResponseModel> wsGetTeamView(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
   /*
 
 
