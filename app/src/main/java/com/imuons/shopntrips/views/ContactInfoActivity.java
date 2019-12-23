@@ -33,16 +33,12 @@ public class ContactInfoActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_Update)
     Button mbtnSubmit;
-
-
     @BindView(R.id.txt_postalAddress)
     EditText mTextpostalAddress;
-
     @BindView(R.id.txt_pincode)
     EditText mTextPincode;
     @BindView(R.id.txt_state)
     EditText mSpinnerState;
-
     String strstate;
 
     @Override
