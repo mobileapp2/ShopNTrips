@@ -105,7 +105,7 @@ public class TeamViewFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_team_view, container, false);
         ButterKnife.bind(this, view);
 
-        ButterKnife.bind(this, view);
+
         fragmentManager = getFragmentManager();
         entrypopupwindow = new ListPopupWindow(
                 TeamViewFragment.this.getContext());
@@ -191,38 +191,39 @@ public class TeamViewFragment extends Fragment {
             }
         });
 
-//        edit_user_id.addTextChangedListener(new TextWatcher() {
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count)
-//            {
-//                TextView text = (TextView)getActivity().getCurrentFocus();
-//
-//                if (text != null && text.length() > 0)
-//                {
-//                    View next = text.focusSearch(View.FOCUS_RIGHT); // or FOCUS_FORWARD
-//                    if (next != null)
-//                        next.requestFocus();
-//
-//                    checkuserexits(); // Or whatever
-//                }
-//            }
-//
-//            // afterTextChanged
-//            @Override
-//            public void afterTextChanged(Editable s) {}
-//
-//            // beforeTextChanged
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start,
-//                                          int count, int after) {}
-//
-//        });
+        searchbyid.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+                TextView text = (TextView)getActivity().getCurrentFocus();
+
+                if (text != null && text.length() > 0)
+                {
+                    View next = text.focusSearch(View.FOCUS_RIGHT); // or FOCUS_FORWARD
+                    if (next != null)
+                        next.requestFocus();
+                    teamViewList.clear();
+mStringUserId = searchbyid.getText().toString().trim();
+                  getdata(mStringUserId);
+                }
+            }
+
+            // afterTextChanged
+            @Override
+            public void afterTextChanged(Editable s) {}
+
+            // beforeTextChanged
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {}
+
+        });
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 teamViewList.clear();
-                mStringUserId = searchbyid.getText().toString().trim();
+                mStringUserId = edit_user_id.getText().toString().trim();
                 getdata(mStringUserId);
 
 
@@ -235,6 +236,9 @@ public class TeamViewFragment extends Fragment {
                 todate.setText("");
                 fromdate.setText("");
                 edit_user_id.setText("");
+                teamViewList.clear();
+                mStringUserId = " ";
+                getdata(mStringUserId);
             }
         });
 
@@ -307,19 +311,19 @@ public class TeamViewFragment extends Fragment {
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-        Map<String, String> lbrMap = new HashMap<>();
+        Map<String, String> tvMap = new HashMap<>();
 
-        lbrMap.put("start", String.valueOf(1));
-        lbrMap.put("lenght", countselected);
-        lbrMap.put("frm_date",strfromdate);
-        lbrMap.put("position",strselectteam);
-        lbrMap.put("to_date",strtodate);
-        lbrMap.put("user_id",getUserid);
-        lbrMap.put("search[value]", mStringUserId);
+        tvMap.put("start", String.valueOf(0));
+        tvMap.put("length", countselected);
+        tvMap.put("frm_date",strfromdate);
+        tvMap.put("position",strselectteam);
+        tvMap.put("to_date",strtodate);
+        tvMap.put("user_id",getUserid);
+        tvMap.put("search[value]", mStringUserId);
 
         ShopNTrips apiService = ApiHandler.getApiService();
         final Call<TeamViewResponseModel> loginCall = apiService.wsGetTeamView(
-                "Bearer " + SharedPreferenceUtils.getAccesstoken(TeamViewFragment.this.getContext()),lbrMap);
+                "Bearer " + SharedPreferenceUtils.getAccesstoken(TeamViewFragment.this.getContext()),tvMap);
         loginCall.enqueue(new Callback<TeamViewResponseModel>() {
             @SuppressLint("WrongConstant")
             @Override

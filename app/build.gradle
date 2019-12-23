@@ -65,7 +65,7 @@ android {
         implementation "com.airbnb.android:lottie:2.7.0"
         implementation 'com.bignerdranch.android:expandablerecyclerview:1.0.3'
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-//    implementation project(':treeview')
+    implementation project(':treeview')
         implementation "com.airbnb.android:lottie:2.7.0"
         implementation "com.airbnb.android:lottie:2.7.0"
         compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
