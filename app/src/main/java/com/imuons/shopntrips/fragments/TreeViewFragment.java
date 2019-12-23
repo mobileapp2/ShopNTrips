@@ -1,22 +1,56 @@
 package com.imuons.shopntrips.fragments;
 
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.imuons.shopntrips.R;
+import com.imuons.shopntrips.model.TreeViewDataModel;
+import com.imuons.shopntrips.model.TreeViewResponseModel;
+import com.imuons.shopntrips.retrofit.ApiHandler;
+import com.imuons.shopntrips.retrofit.ShopNTrips;
+import com.imuons.shopntrips.utils.Constants;
+import com.imuons.shopntrips.utils.SharedPreferenceUtils;
+import com.imuons.shopntrips.utils.Utils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
+import de.blox.treeview.BaseTreeAdapter;
+import de.blox.treeview.PositionDataModel;
+import de.blox.treeview.TreeNode;
+import de.blox.treeview.TreeView;
+import pl.droidsonroids.gif.GifImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TreeViewFragment extends Fragment {
 
+    private TreeView mTreeView;
+    private BaseTreeAdapter adapter;
+    private EditText mEditUserId;
+    private ImageView mImageBack, mImageSearch;
+    GifImageView gifImageView;
+    String strId = "";
 
     public TreeViewFragment() {
         // Required empty public constructor
@@ -33,7 +67,369 @@ public class TreeViewFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tree_view, container, false);
         ButterKnife.bind(this, view);
+        initializeViews(view);
+        registerListeners();
+        if (Utils.checkInternetConnection(TreeViewFragment.this.getContext())) {
+            String currentUuerId = SharedPreferenceUtils.getUserName(TreeViewFragment.this.getContext());
+            getTreeView("");
+            // treeSearch(SharedPreferenceUtils.getUserName(TreeViewFragment.this.getContext()));
+        } else {
+            Toast.makeText(TreeViewFragment.this.getContext(),
+                    getString(R.string.no_internet_connection_message), Toast.LENGTH_SHORT).show();
+        }
+
+        adapter = new BaseTreeAdapter<ViewHolder>(TreeViewFragment.this.getContext()
+                , R.layout.layout_tree_node) {
+            @NonNull
+            @Override
+            public ViewHolder onCreateViewHolder(View view) {
+                return new ViewHolder(view);
+            }
+
+            @Override
+            public void onBindViewHolder(ViewHolder viewHolder, PositionDataModel data, int position) {
+                viewHolder.mTextView.setText(data.getUser_id());
+                try {
+
+                    if (data.getImage().contains("absent")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_absent);
+                    } else if (data.getImage().contains("block")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_block);
+                    } else if (data.getImage().contains("no_topup")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_not_paid);
+                    } else if (data.getImage().contains("present")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_active);
+                    }
+
+                    if (data.getImage().equalsIgnoreCase("active")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_active);
+                    } else if (data.getImage().equalsIgnoreCase("inactive")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_absent);
+                    } else if (data.getImage().equalsIgnoreCase("blocked")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_not_paid);
+                    }
+                } catch (Exception e) {
+                    viewHolder.mImageStatus.setImageResource(R.drawable.ic_block);
+                }
+            }
+        };
+        mTreeView.setAdapter(adapter);
+
         return view;
     }
 
+    private void registerListeners() {
+        mImageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Utils.checkInternetConnection(TreeViewFragment.this.getContext())) {
+
+//                    String currentUuerId = SharedPreferenceUtils.getUserName(TreeViewFragment1.this.getContext());
+//                    getTreeView(currentUuerId);
+                    //treeSearch(SharedPreferenceUtils.getUserName(TreeViewFragment.this.getContext()));
+                    getTreeView("");
+                } else {
+                    Toast.makeText(TreeViewFragment.this.getContext(),
+                            getString(R.string.no_internet_connection_message), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        mImageSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Utils.checkInternetConnection(TreeViewFragment.this.getContext())) {
+                    if (validateUserId()) {
+                        try {
+                            strId = mEditUserId.getText().toString();
+                            getTreeView(strId);
+                        } catch (NumberFormatException e) {
+                            //showErrorMessage(TAG + ":" + e.toString());
+                            return;
+                        }
+
+                        // treeSearch(mEditUserId.getText().toString().trim());
+                    }
+                } else {
+                    Toast.makeText(TreeViewFragment.this.getContext(),
+                            getString(R.string.no_internet_connection_message), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        mTreeView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PositionDataModel model = adapter.getNode(position).getData();
+                showDialog(model);
+            }
+        });
+    }
+
+    private void showDialog(PositionDataModel details) {
+        // custom dialog
+        final Dialog dialog = new Dialog(TreeViewFragment.this.getContext());
+        dialog.setContentView(R.layout.layout_custom_alert_treeview);
+
+        TextView userId = (TextView) dialog.findViewById(R.id.text_user_id);
+        TextView name = (TextView) dialog.findViewById(R.id.text_name);
+        TextView sopnsorId = (TextView) dialog.findViewById(R.id.text_sponsor_id);
+        TextView DOJ = (TextView) dialog.findViewById(R.id.text_date_of_joining);
+        TextView leftId = (TextView) dialog.findViewById(R.id.text_left_id);
+        TextView rightId = (TextView) dialog.findViewById(R.id.text_right_id);
+        TextView leftBV = (TextView) dialog.findViewById(R.id.text_left_bv);
+        TextView rightBV = (TextView) dialog.findViewById(R.id.text_right_bv);
+        TextView repurchaseLeftBV = (TextView) dialog.findViewById(R.id.text_repurchase_left_bv);
+        TextView repurchaseRightBV = (TextView) dialog.findViewById(R.id.text_repurchase_right_bv);
+        TextView productCost = (TextView) dialog.findViewById(R.id.text_product_cost);
+        ImageView imageClose = dialog.findViewById(R.id.image_close);
+
+        try {
+            userId.setText(details.getUser_id());
+            name.setText(details.getFullname());
+            sopnsorId.setText(details.getSponser_id());
+            DOJ.setText(details.getDateOfjoining());
+            leftId.setText(details.getLeft_id());
+            rightId.setText(details.getRight_id());
+            leftBV.setText(details.getLeft_bv());
+            rightBV.setText(details.getRight_bv());
+            repurchaseLeftBV.setText(details.getL_bv_rep());
+            repurchaseRightBV.setText(details.getR_bv_rep());
+            productCost.setText(details.getStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        dialog.show();
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private boolean validateUserId() {
+        String userId = mEditUserId.getText().toString().trim();
+        if (userId.isEmpty()) {
+            Toast.makeText(TreeViewFragment.this.getContext(), getString(R.string.empty_user_id), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    private void initializeViews(View view) {
+        mTreeView = view.findViewById(R.id.treeview);
+        mImageBack = view.findViewById(R.id.image_back);
+        mImageSearch = view.findViewById(R.id.image_search);
+        mEditUserId = view.findViewById(R.id.edit_user_id);
+        gifImageView = view.findViewById(R.id.gif);
+    }
+
+    private void getTreeView(String id) {
+        //final ProgressDialog pd = ViewUtils.getProgressBar(UserProfileFragment.this.getContext(), "Loading...", "Please wait..!");
+        gifImageView.setVisibility(View.VISIBLE);
+        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+        Map<String, String> loginMap = new HashMap<>();
+        try {
+
+            loginMap.put("id", id);
+        } catch (NumberFormatException e) {
+            //showErrorMessage(TAG + ":" + e.toString());
+            return;
+        }
+
+
+        ShopNTrips apiService = ApiHandler.getApiService();
+        final Call<TreeViewResponseModel> loginCall = apiService.wsGetTreeView("Bearer " + SharedPreferenceUtils.getAccesstoken(TreeViewFragment.this.getContext()), loginMap);
+        loginCall.enqueue(new Callback<TreeViewResponseModel>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<TreeViewResponseModel> call,
+                                   Response<TreeViewResponseModel> response) {
+                //                pd.hide();
+                gifImageView.setVisibility(View.GONE);
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                if (response.isSuccessful()) {
+                    TreeViewResponseModel loginModel = response.body();
+                    if (loginModel.getCode() == Constants.RESPONSE_CODE_OK &&
+                            loginModel.getStatus().equals("OK")) {
+//                        treeSearch("");
+                        displayTreeView(loginModel.getData());
+                    } else {
+                        Toast.makeText(TreeViewFragment.this.getContext(), loginModel.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TreeViewResponseModel> call, Throwable t) {
+                //                pd.hide();
+                gifImageView.setVisibility(View.GONE);
+                getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                Toast.makeText(TreeViewFragment.this.getContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void displayTreeView(TreeViewDataModel data) {
+        PositionDataModel model = new PositionDataModel();
+        model.setUser_id(data.getUser().getUserId());
+        model.setImage(data.getUser().getImage());
+        model.setSponser_id(data.getUser().getSponsorId());
+        model.setFullname(data.getUser().getFullname());
+//        model.setStatus(data.getUser().getCost());
+        try {
+            model.setDateOfjoining(data.getUser().getEntryTime().split(" ")[0]);
+        } catch (Exception e) {
+            model.setDateOfjoining("");
+        }
+        model.setLeft_id(String.valueOf(data.getUser().getLCCount().toString()));
+        model.setRight_id(String.valueOf(data.getUser().getRCCount().toString()));
+        model.setLeft_bv(String.valueOf(data.getUser().getLBv().toString()));
+        model.setRight_bv(String.valueOf(data.getUser().getRBv().toString()));
+        model.setL_bv_rep(String.valueOf(data.getUser().getLeftBvRep().toString()));
+        model.setR_bv_rep(String.valueOf(data.getUser().getRightBvRep().toString()));
+        TreeNode rootNode = new TreeNode(model);
+
+        model = new PositionDataModel();
+        model.setUser_id(data.getTreeData().get(0).getLevel().get(0).getUserId());
+        model.setImage(data.getTreeData().get(0).getLevel().get(0).getImage());
+        model.setSponser_id(data.getTreeData().get(0).getLevel().get(0).getSponsorId());
+//        model.setFullname(data.getTreeData().get(0).getLevel().get(0).getSponsorId());
+        model.setFullname(data.getUser().getFullname());
+//        model.setStatus(data.getUser().getCost());
+        try {
+            model.setDateOfjoining(data.getTreeData().get(0).getLevel().get(0).getEntryTime().split(" ")[0]);
+        } catch (Exception e) {
+            model.setDateOfjoining("");
+        }
+        model.setLeft_id(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLCCount().toString()));
+        model.setRight_id(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRCCount().toString()));
+        model.setLeft_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLBv().toString()));
+        model.setRight_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRBv().toString()));
+        model.setL_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLeftBvRep().toString()));
+        model.setR_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRightBvRep().toString()));
+        TreeNode nodeLevelOneLeft = new TreeNode(model);
+
+        model = new PositionDataModel();
+        model.setUser_id(data.getTreeData().get(0).getLevel().get(1).getUserId());
+        model.setImage(data.getTreeData().get(0).getLevel().get(1).getImage());
+        model.setSponser_id(data.getTreeData().get(0).getLevel().get(1).getSponsorId());
+        model.setFullname(data.getUser().getFullname());
+//        model.setStatus(data.getUser().getCost());
+        try {
+            model.setDateOfjoining(data.getTreeData().get(0).getLevel().get(1).getEntryTime().split(" ")[0]);
+        } catch (Exception e) {
+            model.setDateOfjoining("");
+        }
+        model.setLeft_id(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLCCount().toString()));
+        model.setRight_id(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRCCount().toString()));
+        model.setLeft_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLBv().toString()));
+        model.setRight_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRBv().toString()));
+        model.setL_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLeftBvRep().toString()));
+        model.setR_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRightBvRep().toString()));
+        TreeNode nodeLevelOneRight = new TreeNode(model);
+
+        rootNode.addChild(nodeLevelOneLeft);
+        rootNode.addChild(nodeLevelOneRight);
+
+        model = new PositionDataModel();
+        model.setUser_id(data.getTreeData().get(1).getLevel().get(0).getUserId());
+        model.setImage(data.getTreeData().get(1).getLevel().get(0).getImage());
+        model.setSponser_id(data.getTreeData().get(1).getLevel().get(0).getSponsorId());
+        model.setFullname(data.getUser().getFullname());
+//        model.setStatus(data.getUser().getCost());
+        try {
+            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(0).getEntryTime().split(" ")[0]);
+        } catch (Exception e) {
+            model.setDateOfjoining("");
+        }
+        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLCCount().toString()));
+        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRCCount().toString()));
+        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLBv().toString()));
+        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRBv().toString()));
+        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLeftBvRep().toString()));
+        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRightBvRep().toString()));
+        TreeNode nodeLevelTwoLeftChildOne = new TreeNode(model);
+
+        model = new PositionDataModel();
+        model.setUser_id(data.getTreeData().get(1).getLevel().get(1).getUserId());
+        model.setImage(data.getTreeData().get(1).getLevel().get(1).getImage());
+        model.setSponser_id(data.getTreeData().get(1).getLevel().get(1).getSponsorId());
+        model.setFullname(data.getUser().getFullname());
+//        model.setStatus(data.getUser().getCost());
+        try {
+            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(1).getEntryTime().split(" ")[0]);
+        } catch (Exception e) {
+            model.setDateOfjoining("");
+        }
+        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLCCount().toString()));
+        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRCCount().toString()));
+        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLBv().toString()));
+        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRBv().toString()));
+        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLeftBvRep().toString()));
+        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRightBvRep().toString()));
+        TreeNode nodeLevelOneLeftChildTwo = new TreeNode(model);
+
+        nodeLevelOneLeft.addChild(nodeLevelTwoLeftChildOne);
+        nodeLevelOneLeft.addChild(nodeLevelOneLeftChildTwo);
+
+        model = new PositionDataModel();
+        model.setUser_id(data.getTreeData().get(1).getLevel().get(2).getUserId());
+        model.setImage(data.getTreeData().get(1).getLevel().get(2).getImage());
+        model.setSponser_id(data.getTreeData().get(1).getLevel().get(2).getSponsorId());
+        model.setFullname(data.getUser().getFullname());
+//        model.setStatus(data.getUser().getCost());
+        try {
+            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(2).getEntryTime().split(" ")[0]);
+        } catch (Exception e) {
+            model.setDateOfjoining("");
+        }
+        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLCCount().toString()));
+        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRCCount().toString()));
+        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLBv().toString()));
+        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRBv().toString()));
+        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLeftBvRep().toString()));
+        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRightBvRep().toString()));
+        TreeNode nodeLevelTwoRightChildOne = new TreeNode(model);
+
+        model = new PositionDataModel();
+        model.setUser_id(data.getTreeData().get(1).getLevel().get(3).getUserId());
+        model.setImage(data.getTreeData().get(1).getLevel().get(3).getImage());
+        model.setSponser_id(data.getTreeData().get(1).getLevel().get(3).getSponsorId());
+        model.setFullname(data.getUser().getFullname());
+//        model.setStatus(data.getUser().getCost());
+        try {
+            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(3).getEntryTime().split(" ")[0]);
+        } catch (Exception e) {
+            model.setDateOfjoining("");
+        }
+        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLCCount().toString()));
+        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRCCount().toString()));
+        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLBv().toString()));
+        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRBv().toString()));
+        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLeftBvRep().toString()));
+        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRightBvRep().toString()));
+        TreeNode nodeLevelOneRightChildTwo = new TreeNode(model);
+
+        nodeLevelOneRight.addChild(nodeLevelTwoRightChildOne);
+        nodeLevelOneRight.addChild(nodeLevelOneRightChildTwo);
+
+        adapter.setRootNode(rootNode);
+    }
+
+    private class ViewHolder {
+        TextView mTextView;
+        ImageView mImageStatus;
+
+        ViewHolder(View view) {
+            mTextView = view.findViewById(R.id.textView);
+            mImageStatus = view.findViewById(R.id.image_status);
+        }
+    }
 }

@@ -31,6 +31,7 @@ import com.imuons.shopntrips.model.SubmitTopUpReponseModel;
 import com.imuons.shopntrips.model.TeamViewResponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
 import com.imuons.shopntrips.model.TopUpReportResponseModel;
+import com.imuons.shopntrips.model.TreeViewResponseModel;
 import com.imuons.shopntrips.model.UpdateProfileResponseModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
@@ -211,6 +212,14 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("active-team-view")
     Call<ActiveTeamViewResponseModel> wsGetActiveTeamView(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+
+    @FormUrlEncoded
+    @POST("getlevelviewtree/productbase")
+    Call<TreeViewResponseModel> wsGetTreeView(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+
+
   /*
 
 
