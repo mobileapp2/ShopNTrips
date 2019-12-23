@@ -1,5 +1,6 @@
 package com.imuons.shopntrips.retrofit;
 
+import com.imuons.shopntrips.model.ActiveTeamViewResponseModel;
 import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
 import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
 import com.imuons.shopntrips.model.ChangePasswordResponseModel;
@@ -200,6 +201,9 @@ public interface ShopNTrips {
     @POST("get-team-view")
     Call<TeamViewResponseModel> wsGetTeamView(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
+    @FormUrlEncoded
+    @POST("active-team-view")
+    Call<ActiveTeamViewResponseModel> wsGetActiveTeamView(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
   /*
 
 
