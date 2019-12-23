@@ -1,9 +1,11 @@
 package de.blox.treeview;
 
 import android.graphics.Point;
-import android.support.annotation.NonNull;
+
 import android.view.View;
 import android.widget.Adapter;
+
+import androidx.annotation.NonNull;
 
 /**
  *

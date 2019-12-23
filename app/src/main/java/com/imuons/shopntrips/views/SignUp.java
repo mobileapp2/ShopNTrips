@@ -266,15 +266,7 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private boolean validateMobileNo() {
-        mobile = edit_mobile.getText().toString().trim();
-        if (mobile.isEmpty() || mobile.length() < 10) {
-            Toast.makeText(SignUp.this,
-                    getString(R.string.invalid_mobile_number_message), Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-    }
+
 
     private boolean validateFullName() {
         fullName =  edit_name.getText().toString().trim();
@@ -329,10 +321,18 @@ public class SignUp extends AppCompatActivity {
             listStateName.add(data.get(i).getName());
         }
     }
-
+    private boolean validateMobileNo() {
+        mobile = edit_mobile.getText().toString().trim();
+        if (mobile.isEmpty() || mobile.length() < 10) {
+            Toast.makeText(SignUp.this,
+                    getString(R.string.invalid_mobile_number_message), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
     private boolean validatePincode() {
         strpincode = edit_pincode.getText().toString().trim();
-        if (strpincode.isEmpty()) {
+        if (strpincode.isEmpty() || strpincode.length() < 6) {
             Toast.makeText(SignUp.this,
                     "Enter Pincode", Toast.LENGTH_SHORT).show();
             return false;

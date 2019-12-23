@@ -11,14 +11,16 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Px;
-import android.support.annotation.RequiresApi;
+
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.Px;
+import androidx.annotation.RequiresApi;
 
 public class TreeView extends AdapterView<TreeAdapter> implements GestureDetector.OnGestureListener {
 
