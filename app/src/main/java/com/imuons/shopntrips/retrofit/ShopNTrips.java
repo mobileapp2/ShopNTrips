@@ -8,6 +8,7 @@ import com.imuons.shopntrips.model.CheckUserExistResponseModel;
 import com.imuons.shopntrips.model.DashboardResponseModel;
 import com.imuons.shopntrips.model.DepartmentResponseModel;
 import com.imuons.shopntrips.model.DirectRoiReportResponseModel;
+import com.imuons.shopntrips.model.DownlineSummaryResponseModel;
 import com.imuons.shopntrips.model.DownlineTopUpReportResponseModel;
 import com.imuons.shopntrips.model.FundRequestReportResponseModel;
 import com.imuons.shopntrips.model.FundRequestResponseModel;
@@ -184,6 +185,9 @@ public interface ShopNTrips {
   @FormUrlEncoded
    @POST("get-user-first-topup")
     Call<UserTopUpResponse> wsTopUP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @GET("downline-summary")
+    Call<DownlineSummaryResponseModel> wsDownlineSummary(@Header("Authorization") String authHeader);
   /*
 
 
