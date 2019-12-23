@@ -112,7 +112,7 @@ public interface ShopNTrips {
 
 
     @FormUrlEncoded
-    @POST("awardwinners")
+    @POST("user/report/awardwinners")
     Call<AwardReportResponseModel> wsBAwardReport(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
     @FormUrlEncoded
