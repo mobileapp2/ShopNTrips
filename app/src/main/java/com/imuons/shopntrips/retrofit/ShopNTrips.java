@@ -22,7 +22,6 @@ import com.imuons.shopntrips.model.LoginResponseModel;
 import com.imuons.shopntrips.model.OTPResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
-import com.imuons.shopntrips.model.ResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
 import com.imuons.shopntrips.model.SubmitTopUpReponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
@@ -140,6 +139,7 @@ public interface ShopNTrips {
     @POST("insert_ticket")
     Call<TicketResponseModel> wsSendQuery(@Header("Authorization") String authHeader, @PartMap() Map<String, RequestBody> partMap,
                                           @Part MultipartBody.Part file);
+
     @GET("user-profile")
     Call<UserProfileResponseModel> wsUserProfileInfo(@Header("Authorization") String authHeader);
 
@@ -154,12 +154,12 @@ public interface ShopNTrips {
     @POST("checkdownlineuser")
     Call<CheckDownlineUserResponseModel> wsCheckDownlineUser(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
-        @GET("getproducts")
+    @GET("getproducts")
     Call<GetProductResponseModel> wsGetProducts(@Header("Authorization") String authHeader);
 
     @FormUrlEncoded
     @POST("getbalance")
-    Call<GetBalanceReponseModel> wsTopUpBalance(@Header("Authorization") String authHeader,  @FieldMap Map<String, String> loginMap);
+    Call<GetBalanceReponseModel> wsTopUpBalance(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
     @Multipart
     @POST("fund-request")
@@ -182,9 +182,9 @@ public interface ShopNTrips {
     @POST("update-user-profile")
     Call<UpdateProfileResponseModel> wsUpdateProfile(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
-  @FormUrlEncoded
-   @POST("get-user-first-topup")
-    Call<UserTopUpResponse> wsTopUP(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @GET("get-user-first-topup")
+    Call<UserTopUpResponse> wsTopUP(@Header("Authorization") String authHeader);
 
     @GET("downline-summary")
     Call<DownlineSummaryResponseModel> wsDownlineSummary(@Header("Authorization") String authHeader);

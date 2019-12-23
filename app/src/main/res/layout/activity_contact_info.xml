@@ -79,15 +79,24 @@
                     android:textStyle="bold"
                     tools:ignore="RtlSymmetry" />
 
-                <Spinner
-                    android:id="@+id/txt_state"
+                <EditText
+                    android:id="@+id/edit_state"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:singleLine="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/textviewbg"/>
+                    android:layout_gravity="center"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:editable="false"
+                    android:background="@drawable/textviewbg"
+                    android:drawableEnd="@drawable/downarrow"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -103,15 +112,24 @@
                     tools:ignore="RtlSymmetry" />
 
 
-                <Spinner
-                    android:id="@+id/txt_city"
+                <EditText
+                    android:id="@+id/edit_city"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:padding="10dp"
                     android:singleLine="true"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/textviewbg"/>
+                    android:layout_gravity="center"
+                    android:focusable="false"
+                    android:imeOptions="actionNext"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:editable="false"
+                    android:background="@drawable/textviewbg"
+                    android:drawableEnd="@drawable/downarrow"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -136,7 +154,10 @@
                     android:background="@drawable/textviewbg"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+
+                    android:imeOptions="actionNext"/>
 
                 <EditText
                     android:layout_width="match_parent"
@@ -161,6 +182,9 @@
                     android:background="@drawable/textviewbg"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+                    android:maxLength="6"
                     android:textColor="@color/white" />
 
 
@@ -176,7 +200,8 @@
                 android:paddingBottom="5dp"
                 android:text="Update"
                 android:textColor="@color/white"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:visibility="visible"/>
 
 
 

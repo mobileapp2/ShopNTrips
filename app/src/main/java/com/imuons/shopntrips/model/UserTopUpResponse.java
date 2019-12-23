@@ -15,7 +15,7 @@ public class UserTopUpResponse {
     private String message;
     @SerializedName("data")
     @Expose
-    private UserTopUpDataModel data;
+    private UserTopUpBlankDataModel data;
 
     public Integer getCode() {
         return code;
@@ -41,11 +41,11 @@ public class UserTopUpResponse {
         this.message = message;
     }
 
-    public UserTopUpDataModel getData() {
+    public UserTopUpBlankDataModel getData() {
         return data;
     }
 
-    public void setData(UserTopUpDataModel data) {
+    public void setData(UserTopUpBlankDataModel data) {
         this.data = data;
     }
 }

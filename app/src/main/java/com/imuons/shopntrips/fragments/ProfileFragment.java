@@ -21,6 +21,7 @@ import com.imuons.shopntrips.model.UserPhotosDataModel;
 import com.imuons.shopntrips.model.UserPhotosResponseModel;
 import com.imuons.shopntrips.model.UserProfileDataModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
+import com.imuons.shopntrips.model.UserTopUpResponse;
 import com.imuons.shopntrips.retrofit.ApiHandler;
 import com.imuons.shopntrips.retrofit.ShopNTrips;
 import com.imuons.shopntrips.utils.Constants;
@@ -43,6 +44,7 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private UserProfileResponseModel profileModel;
+    private UserTopUpResponse profileModel2;
     @BindView(R.id.text_user_name)
     TextView mTextUserName;
     @BindView(R.id.text_email_id)

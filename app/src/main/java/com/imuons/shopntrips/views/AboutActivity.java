@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.imuons.shopntrips.R;
 import com.imuons.shopntrips.model.UpdateProfileResponseModel;
 import com.imuons.shopntrips.model.UserProfileResponseModel;
+import com.imuons.shopntrips.model.UserTopUpResponse;
 import com.imuons.shopntrips.retrofit.ApiHandler;
 import com.imuons.shopntrips.retrofit.ShopNTrips;
 import com.imuons.shopntrips.utils.Constants;
@@ -52,6 +53,8 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
+
+        getTopUp();
         Gson gS = new Gson();
         String target = getIntent().getStringExtra("object");
         model = gS.fromJson(target, UserProfileResponseModel.class);
@@ -68,16 +71,47 @@ public class AboutActivity extends AppCompatActivity {
         });
     }
 
+    private void getTopUp() {
+        final ProgressDialog pd = ViewUtils.getProgressBar(AboutActivity.this, "Loading...", "Please wait..!");
+
+        ShopNTrips apiService = ApiHandler.getApiService();
+
+        final Call<UserTopUpResponse> loginCall = apiService.wsTopUP("Bearer "
+                + SharedPreferenceUtils.getLoginObject(
+                AboutActivity.this).getData().getAccess_token());
+
+        loginCall.enqueue(new Callback<UserTopUpResponse>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<UserTopUpResponse> call,
+                                   Response<UserTopUpResponse> response) {
+                pd.hide();
+                if (response.isSuccessful()) {
+                    UserTopUpResponse userTopUpResponse = response.body();
+                    if (userTopUpResponse.getCode() == 404 &&
+                            userTopUpResponse.getStatus().equals("Not Found")) {
+                        mbtnUpdate.setVisibility(View.VISIBLE);
+                    }else {
+                        Toast.makeText(AboutActivity.this, "You Cannot Update", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserTopUpResponse> call,
+                                  Throwable t) {
+                pd.hide();
+                Toast.makeText(AboutActivity.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     private void UpdateAbout() {
         final ProgressDialog pd = ViewUtils.getProgressBar(AboutActivity.this, "Loading...", "Please wait..!");
         String name = mEdtAbout.getText().toString();
-
-
         Map<String, String> roiMap = new HashMap<>();
         roiMap.put("about_us", name);
-
-
-
         ShopNTrips apiService = ApiHandler.getApiService();
 
         final Call<UpdateProfileResponseModel> loginCall = apiService.wsUpdateProfile("Bearer "
@@ -116,5 +150,6 @@ public class AboutActivity extends AppCompatActivity {
         mTextUserName.setText(data.getData().getFullname());
         mTextEmailIds.setText(data.getData().getEmail());
         mTextMobileNumber.setText(data.getData().getMobile());
+        mEdtAbout.setText((CharSequence) data.getData().getAboutUs());
     }
 }
