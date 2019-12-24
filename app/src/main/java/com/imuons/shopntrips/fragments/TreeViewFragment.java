@@ -32,7 +32,6 @@ import com.imuons.shopntrips.utils.ViewUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.ButterKnife;
 import de.blox.treeview.BaseTreeAdapter;
 import de.blox.treeview.PositionDataModel;
 import de.blox.treeview.TreeNode;
@@ -54,6 +53,7 @@ public class TreeViewFragment extends Fragment {
     GifImageView gifImageView;
     String strId = "";
     String mStringUserId;
+
     public TreeViewFragment() {
         // Required empty public constructor
     }
@@ -90,6 +90,9 @@ public class TreeViewFragment extends Fragment {
             @Override
             public void onBindViewHolder(ViewHolder viewHolder, PositionDataModel data, int position) {
                 viewHolder.mTextView.setText(data.getUser_id());
+                if (data.getUser_id().equals("Not Available")) {
+                    Toast.makeText(TreeViewFragment.this.getContext(), "Not Available", Toast.LENGTH_SHORT).show();
+                }
                 try {
 
                     if (data.getImage().contains("absent")) {
@@ -100,6 +103,8 @@ public class TreeViewFragment extends Fragment {
                         viewHolder.mImageStatus.setImageResource(R.drawable.ic_not_paid);
                     } else if (data.getImage().contains("present")) {
                         viewHolder.mImageStatus.setImageResource(R.drawable.ic_active);
+                    } else if (data.getUser_id().contains("Not Available")) {
+                        viewHolder.mImageStatus.setImageResource(R.drawable.ic_absent);
                     }
 
                     if (data.getImage().equalsIgnoreCase("active")) {
@@ -156,6 +161,43 @@ public class TreeViewFragment extends Fragment {
                 showDialog(model);
             }
         });
+    }
+
+    private void getTreeView(String mStringUserId) {
+        final ProgressDialog pd = ViewUtils.getProgressBar(TreeViewFragment.this.getContext(), "Loading...", "Please wait..!");
+
+        Map<String, String> roiMap = new HashMap<>();
+        roiMap.put("id", mStringUserId);
+        ShopNTrips apiService = ApiHandler.getApiService();
+
+        final Call<TreeViewResponseModel> loginCall = apiService.wsGetTree("Bearer "
+                + SharedPreferenceUtils.getLoginObject(
+                TreeViewFragment.this.getContext()).getData().getAccess_token(), roiMap);
+
+        loginCall.enqueue(new Callback<TreeViewResponseModel>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<TreeViewResponseModel> call,
+                                   Response<TreeViewResponseModel> response) {
+                pd.hide();
+                if (response.isSuccessful()) {
+                    TreeViewResponseModel awardReportGetResponse = response.body();
+                    if (awardReportGetResponse.getCode() == Constants.RESPONSE_CODE_OK &&
+                            awardReportGetResponse.getStatus().equals("OK")) {
+                        displayTreeView(awardReportGetResponse.getData());
+                    } else {
+                        Toast.makeText(TreeViewFragment.this.getContext(), awardReportGetResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TreeViewResponseModel> call,
+                                  Throwable t) {
+                pd.hide();
+                Toast.makeText(TreeViewFragment.this.getContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();            }
+        });
+
     }
 
     private void showDialog(PositionDataModel details) {
@@ -221,81 +263,41 @@ public class TreeViewFragment extends Fragment {
         gifImageView = view.findViewById(R.id.gif);
     }
 
-    private void treeSearch(String id) {
-        final ProgressDialog pd = ViewUtils.getProgressBar(TreeViewFragment.this.getContext(), "Loading...", "Please wait..!");
 
-        Map<String, String> loginMap = new HashMap<>();
+    /*  private void getTreeView(String id) {
+          gifImageView.setVisibility(View.VISIBLE);
+          Map<String, String> loginMap = new HashMap<>();
 
-        loginMap.put("id", "18713400");
+          loginMap.put("id", id);
 
-        ShopNTrips apiService = ApiHandler.getApiService();
-        final Call<TreeViewResponseModel> loginCall = apiService.wsGetTreeView("Bearer " + SharedPreferenceUtils.getLoginObject(
-                TreeViewFragment.this.getContext()).getData().getAccess_token(), loginMap);
-        loginCall.enqueue(new Callback<TreeViewResponseModel>() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onResponse(Call<TreeViewResponseModel> call,
-                                   Response<TreeViewResponseModel> response) {
-                pd.hide();
-                if (response.isSuccessful()) {
-                    TreeViewResponseModel loginModel = response.body();
-                    if (loginModel.getCode() == Constants.RESPONSE_CODE_OK &&
-                            loginModel.getStatus().equals("OK")) {
-                        Toast.makeText(TreeViewFragment.this.getContext(), loginModel.getMessage(), Toast.LENGTH_SHORT).show();
+          ShopNTrips apiService = ApiHandler.getApiService();
+          final Call<TreeViewResponseModel> loginCall = apiService.wsGetTreeView("Bearer " + SharedPreferenceUtils.getLoginObject(
+                  TreeViewFragment.this.getContext()).getData().getAccess_token(), loginMap);
+          loginCall.enqueue(new Callback<TreeViewResponseModel>() {
+              @SuppressLint("WrongConstant")
+              @Override
+              public void onResponse(Call<TreeViewResponseModel> call,
+                                     Response<TreeViewResponseModel> response) {
+                  gifImageView.setVisibility(View.GONE);
+                  if (response.isSuccessful()) {
+                      TreeViewResponseModel loginModel = response.body();
+                      if (loginModel.getCode() == Constants.RESPONSE_CODE_OK &&
+                              loginModel.getStatus().equals("OK")) {
+                          displayTreeView(loginModel.getData());
+                      } else {
+                          Toast.makeText(TreeViewFragment.this.getContext(), loginModel.getMessage(), Toast.LENGTH_SHORT).show();
+                      }
+                  }
+              }
 
-                            getTreeView(id);
-
-
-                    } else {
-                        Toast.makeText(TreeViewFragment.this.getContext(), loginModel.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TreeViewResponseModel> call,
-                                  Throwable t) {
-                pd.hide();
-                Toast.makeText(TreeViewFragment.this.getContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-    private void getTreeView(String id) {
-        gifImageView.setVisibility(View.VISIBLE);
-        Map<String, String> loginMap = new HashMap<>();
-
-        loginMap.put("id", id);
-
-        ShopNTrips apiService = ApiHandler.getApiService();
-        final Call<TreeViewResponseModel> loginCall = apiService.wsGetTreeView("Bearer " + SharedPreferenceUtils.getLoginObject(
-                TreeViewFragment.this.getContext()).getData().getAccess_token(), loginMap);
-        loginCall.enqueue(new Callback<TreeViewResponseModel>() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onResponse(Call<TreeViewResponseModel> call,
-                                   Response<TreeViewResponseModel> response) {
-                gifImageView.setVisibility(View.GONE);
-                if (response.isSuccessful()) {
-                    TreeViewResponseModel loginModel = response.body();
-                    if (loginModel.getCode() == Constants.RESPONSE_CODE_OK &&
-                            loginModel.getStatus().equals("OK")) {
-                        displayTreeView(loginModel.getData());
-                    } else {
-                        Toast.makeText(TreeViewFragment.this.getContext(), loginModel.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TreeViewResponseModel> call, Throwable t) {
-                gifImageView.setVisibility(View.GONE);
-                Toast.makeText(TreeViewFragment.this.getContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
+              @Override
+              public void onFailure(Call<TreeViewResponseModel> call, Throwable t) {
+                  gifImageView.setVisibility(View.GONE);
+                  Toast.makeText(TreeViewFragment.this.getContext(), getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+              }
+          });
+      }
+  */
     private void displayTreeView(TreeViewDataModel data) {
         PositionDataModel model = new PositionDataModel();
         model.setUser_id(data.getUser().getUserId());
