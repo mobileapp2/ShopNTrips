@@ -219,10 +219,13 @@ public interface ShopNTrips {
     @POST("getlevelviewtree/productbase")
     Call<TreeViewResponseModel> wsGetTreeView(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
-  @FormUrlEncoded
+    @FormUrlEncoded
     @POST("get-award")
     Call<AwardReportGetResponse> wsGetAward(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
+    @FormUrlEncoded
+    @POST("getlevelviewtree/productbase")
+    Call<TreeViewResponseModel> wsGetTree(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
 
   /*

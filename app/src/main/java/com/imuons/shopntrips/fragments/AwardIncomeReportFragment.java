@@ -199,7 +199,7 @@ public class AwardIncomeReportFragment extends Fragment {
                 }
             }
 
-            
+
             @Override
             public void onFailure(Call<AwardReportResponseModel> call,
                                   Throwable t) {

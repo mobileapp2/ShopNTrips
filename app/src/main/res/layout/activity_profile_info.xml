@@ -117,7 +117,8 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry"
+                   />
 
                 <EditText
                     android:id="@+id/txt_userId"
@@ -142,7 +143,8 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry"
+                    android:focusable="true"/>
 
                 <EditText
                     android:id="@+id/txt_sponsorId"
@@ -179,6 +181,7 @@
                     android:background="@drawable/textviewbg"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:textSize="12sp"
                     android:textColor="@color/white" />
 
                 <EditText
@@ -204,6 +207,8 @@
                     android:background="@drawable/textviewbg"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:maxLength="10"
+                    android:inputType="number"
                     android:textColor="@color/white" />
 
                 <EditText
@@ -229,6 +234,9 @@
                     android:background="@drawable/textviewbg"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:maxLines="2"
+                    android:textSize="12sp"
+                    android:paddingRight="20dp"
                     android:textColor="@color/white" />
 
                 <EditText

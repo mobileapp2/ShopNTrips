@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:background="@drawable/bgdash"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gif"
@@ -18,14 +16,16 @@
         android:src="@drawable/loader" />
 
 
-
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none"
+    android:id="@+id/linear">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:orientation="vertical"
@@ -73,6 +73,7 @@
                         android:background="@color/blu"
                         android:clickable="true"
                         android:gravity="center"
+                        android:editable="false"
                         android:hint="From Date"
                         android:inputType="none"
                         android:textColor="@color/colorBlack" />
@@ -104,7 +105,9 @@
                         android:background="@color/blu"
                         android:clickable="true"
                         android:hint="To Date"
+                        android:focusable="false"
                         android:inputType="none"
+                        android:editable="false"
                         android:layout_width="0dp"
                         android:textColor="@color/colorBlack"
                         android:layout_weight="1.2"
@@ -135,6 +138,7 @@
                         android:gravity="center"
                         android:background="@color/blu"
                         android:hint="@string/user_id"
+                        android:focusable="false"
                         android:textColor="@color/colorBlack"
                         android:layout_width="0dp"
                         android:layout_weight="1.2"
@@ -203,10 +207,12 @@
                         android:layout_height="30dp" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
                 <androidx.cardview.widget.CardView
 
                     android:layout_width="match_parent"
@@ -221,7 +227,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:weightSum="3">
@@ -286,6 +291,7 @@
                             android:layout_height="40dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1.8"
+                            android:focusable="true"
                             android:drawableRight="@drawable/searchicon"
                             />
                     </LinearLayout>
@@ -361,17 +367,9 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_view_team_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:scrollbars="vertical" />
+
 
                 </LinearLayout>
-
-                </LinearLayout>
-
 
             </LinearLayout>
 
@@ -379,4 +377,17 @@
         </LinearLayout>
 
 
+    </LinearLayout>
+</ScrollView>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_team_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/linear"
+        android:layout_marginTop="5dp"/>
 </RelativeLayout>
