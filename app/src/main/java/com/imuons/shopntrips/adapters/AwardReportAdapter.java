@@ -2,16 +2,20 @@ package com.imuons.shopntrips.adapters;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,26 +23,43 @@ import com.imuons.shopntrips.R;
 import com.imuons.shopntrips.fragments.AwardIncomeReportFragment;
 import com.imuons.shopntrips.fragments.FundTransferFragment;
 import com.imuons.shopntrips.fragments.ROIIncomeFragment;
+import com.imuons.shopntrips.fragments.TeamViewFragment;
+import com.imuons.shopntrips.model.AwardReportGetResponse;
 import com.imuons.shopntrips.model.AwardReportRecordModel;
 import com.imuons.shopntrips.model.RoiIncomeReportRecordModel;
+import com.imuons.shopntrips.model.TeamViewResponseModel;
+import com.imuons.shopntrips.model.UpdateProfileResponseModel;
+import com.imuons.shopntrips.retrofit.ApiHandler;
+import com.imuons.shopntrips.retrofit.ShopNTrips;
+import com.imuons.shopntrips.utils.Constants;
+import com.imuons.shopntrips.utils.SharedPreferenceUtils;
+import com.imuons.shopntrips.utils.ViewUtils;
+import com.imuons.shopntrips.views.AboutActivity;
+import com.imuons.shopntrips.views.DashboardActivity;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.AwardReportAdapterHolder> {
     private List<AwardReportRecordModel> airList = new ArrayList<>();
     private Context context;
     private AwardIncomeReportFragment awardIncomeReportFragment;
-    private String wdatefromurl,cdatefromurl;
-    private Date datec,datew;
+    private String wdatefromurl, cdatefromurl;
+    private Date datec, datew;
     private static int currentPosition = 0;
+    AwardReportRecordModel awardReportRecordModel;
 
     public AwardReportAdapter(Context context, List<AwardReportRecordModel> airList) {
         this.airList = airList;
@@ -58,7 +79,7 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
     @Override
     public void onBindViewHolder(final AwardReportAdapter.AwardReportAdapterHolder holder, final int position) {
 
-        final AwardReportRecordModel awardReportRecordModel = airList.get(position);
+        awardReportRecordModel = airList.get(position);
 
         holder.hiddenlayout.setVisibility(View.GONE);
 //        wdatefromurl = awardReportRecordModel.getWonOnDate();
@@ -71,7 +92,7 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
 //            }
 //            DateFormat dateFormatw = new SimpleDateFormat("yyyy/MM/dd");
 //            String wcdate = dateFormatw.format(datew);
-            holder.date.setText(awardReportRecordModel.getWonOnDate());
+        holder.date.setText(awardReportRecordModel.getWonOnDate());
 //        }else{
 //            holder.date.setText("-");
 //        }
@@ -110,29 +131,29 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
         holder.award.setText(awardReportRecordModel.getAward());
         int amt = awardReportRecordModel.getAmount();
         holder.amount.setText(String.valueOf(amt));
-int rightbv = awardReportRecordModel.getRightBvForAward();
-holder.rightbv.setText(String.valueOf(rightbv));
-int statint = awardReportRecordModel.getStatus();
+        int rightbv = awardReportRecordModel.getRightBvForAward();
+        holder.rightbv.setText(String.valueOf(rightbv));
+        int statint = awardReportRecordModel.getStatus();
 
-if(statint == 0){
-    holder.status.setClickable(true);
-    holder.status.setBackgroundColor(R.color.green);
-    holder.status.setText("GET");
+        if (statint == 0) {
+            holder.status.setClickable(true);
+            holder.status.setBackgroundColor(R.color.green);
+            holder.status.setText("GET");
 
-    holder.status.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            showDialouge();
+            holder.status.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    awardReportRecordModel = airList.get(position);
+                    int intwinid = awardReportRecordModel.getWinId();
+                    String strwinid = String.valueOf(intwinid);
+                    showDialouge(strwinid);
+                }
+            });
+
+        } else {
+            holder.status.setClickable(false);
+            holder.status.setText("RECEIVED");
         }
-    });
-
-}else{
-    holder.status.setClickable(false);
-    holder.status.setText("RECEIVED");
-}
-
-
-
 
 
         //if the position is equals to the item position which is to be expanded
@@ -162,7 +183,7 @@ if(statint == 0){
         });
     }
 
-    private void showDialouge() {
+    private void showDialouge(String strwinid) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
         builder1.setTitle("Exit");
         builder1.setMessage("Are you sure You want to receive this award ?");
@@ -174,7 +195,7 @@ if(statint == 0){
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
 
-                        callsubmit();
+                        callsubmit(strwinid);
                     }
                 });
 
@@ -190,9 +211,46 @@ if(statint == 0){
         alert11.show();
     }
 
-    private void callsubmit() {
+    private void callsubmit(String strwinid) {
+
+        final ProgressDialog pd = ViewUtils.getProgressBar(context, "Loading...", "Please wait..!");
+
+        Map<String, String> roiMap = new HashMap<>();
+        roiMap.put("id", strwinid);
+        ShopNTrips apiService = ApiHandler.getApiService();
+
+        final Call<AwardReportGetResponse> loginCall = apiService.wsGetAward("Bearer "
+                + SharedPreferenceUtils.getLoginObject(
+                context).getData().getAccess_token(), roiMap);
+
+        loginCall.enqueue(new Callback<AwardReportGetResponse>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<AwardReportGetResponse> call,
+                                   Response<AwardReportGetResponse> response) {
+                pd.hide();
+                if (response.isSuccessful()) {
+                    AwardReportGetResponse awardReportGetResponse = response.body();
+                    if (awardReportGetResponse.getCode() == Constants.RESPONSE_CODE_OK &&
+                            awardReportGetResponse.getStatus().equals("OK")) {
+                        Toast.makeText(context, "Congratulations you have successfully received reward !", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(context, awardReportGetResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AwardReportGetResponse> call,
+                                  Throwable t) {
+                pd.hide();
+                //Toast.makeText(context, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -217,7 +275,6 @@ if(statint == 0){
         TextView status;
         @BindView(R.id.date)
         TextView date;
-
 
 
         @BindView(R.id.llmain)

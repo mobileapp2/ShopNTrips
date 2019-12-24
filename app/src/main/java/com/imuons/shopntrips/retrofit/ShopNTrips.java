@@ -2,6 +2,7 @@ package com.imuons.shopntrips.retrofit;
 
 import com.imuons.shopntrips.model.ActiveTeamViewResponseModel;
 import com.imuons.shopntrips.model.AwardReportDataModel;
+import com.imuons.shopntrips.model.AwardReportGetResponse;
 import com.imuons.shopntrips.model.AwardReportResponseModel;
 import com.imuons.shopntrips.model.BinaryIncomeReportResponseModel;
 import com.imuons.shopntrips.model.BinaryRoiReportResponseModel;
@@ -217,6 +218,10 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("getlevelviewtree/productbase")
     Call<TreeViewResponseModel> wsGetTreeView(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+  @FormUrlEncoded
+    @POST("get-award")
+    Call<AwardReportGetResponse> wsGetAward(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
 
 

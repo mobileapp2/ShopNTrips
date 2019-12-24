@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        app:cardCornerRadius="5dp"
-        app:cardBackgroundColor ="@android:color/transparent"
+        android:layout_height="35dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_height="35dp">
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="5dp">
+
         <LinearLayout
             android:id="@+id/llmain"
             android:layout_width="match_parent"
@@ -90,6 +90,7 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <LinearLayout
 
         android:id="@+id/hiddenlayout"
@@ -103,9 +104,9 @@
 
         <LinearLayout
 
-            android:background="@drawable/bluedt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="@drawable/bluedt"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -134,16 +135,10 @@
         </LinearLayout>
 
 
-
-
-
-
-
-
         <LinearLayout
-            android:background="@drawable/bluedt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="@drawable/bluedt"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -172,9 +167,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="@drawable/bluedt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="@drawable/bluedt"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -201,10 +196,11 @@
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>
+
         <LinearLayout
-            android:background="@drawable/bluedt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="@drawable/bluedt"
             android:orientation="horizontal"
             android:weightSum="2">
 
@@ -220,8 +216,6 @@
                 android:textSize="16sp" />
 
             <TextView
-
-android:gravity="center_vertical"
                 android:id="@+id/status"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
@@ -229,14 +223,16 @@ android:gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/open_sans_bold"
+                android:gravity="center_vertical"
                 android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </LinearLayout>
+
         <LinearLayout
-            android:background="@drawable/bluedt"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:background="@drawable/bluedt"
             android:orientation="horizontal"
             android:weightSum="2">
 
