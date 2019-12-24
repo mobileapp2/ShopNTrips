@@ -140,13 +140,10 @@ public class TreeViewFragment extends Fragment {
             public void onClick(View v) {
                 if (Utils.checkInternetConnection(TreeViewFragment.this.getContext())) {
                     if (validateUserId()) {
-                        try {
+
                             strId = mEditUserId.getText().toString();
                             getTreeView(strId);
-                        } catch (NumberFormatException e) {
-                            //showErrorMessage(TAG + ":" + e.toString());
-                            return;
-                        }
+
 
                         // treeSearch(mEditUserId.getText().toString().trim());
                     }
@@ -235,13 +232,9 @@ public class TreeViewFragment extends Fragment {
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
         Map<String, String> loginMap = new HashMap<>();
-        try {
 
             loginMap.put("id", id);
-        } catch (NumberFormatException e) {
-            //showErrorMessage(TAG + ":" + e.toString());
-            return;
-        }
+
 
 
         ShopNTrips apiService = ApiHandler.getApiService();

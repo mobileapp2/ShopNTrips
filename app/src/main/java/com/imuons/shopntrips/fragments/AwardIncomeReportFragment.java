@@ -187,7 +187,7 @@ public class AwardIncomeReportFragment extends Fragment {
                             awardReportResponseModel.getStatus().equals("OK")) {
                         airList.addAll(awardReportResponseModel.getData().getRecords());
                         if(airList.size() > 0) {
-                            
+
                             awardReportAdapter = new AwardReportAdapter(AwardIncomeReportFragment.this.getContext(), airList);
                             recycler_award_income_report.setAdapter(awardReportAdapter);
                         }else{
@@ -199,6 +199,7 @@ public class AwardIncomeReportFragment extends Fragment {
                 }
             }
 
+            
             @Override
             public void onFailure(Call<AwardReportResponseModel> call,
                                   Throwable t) {
