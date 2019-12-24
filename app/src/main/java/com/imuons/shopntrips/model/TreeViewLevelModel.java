@@ -63,7 +63,7 @@ public class TreeViewLevelModel {
     private String entryTime;
     @SerializedName("act_time")
     @Expose
-    private String actTime;
+    private Object actTime;
     @SerializedName("cost")
     @Expose
     private String cost;
@@ -73,6 +73,9 @@ public class TreeViewLevelModel {
     @SerializedName("right_amount")
     @Expose
     private Integer rightAmount;
+    @SerializedName("virtual_parent_id")
+    @Expose
+    private String virtualParentId;
 
     public Integer getId() {
         return id;
@@ -226,11 +229,11 @@ public class TreeViewLevelModel {
         this.entryTime = entryTime;
     }
 
-    public String getActTime() {
+    public Object getActTime() {
         return actTime;
     }
 
-    public void setActTime(String actTime) {
+    public void setActTime(Object actTime) {
         this.actTime = actTime;
     }
 
@@ -256,6 +259,14 @@ public class TreeViewLevelModel {
 
     public void setRightAmount(Integer rightAmount) {
         this.rightAmount = rightAmount;
+    }
+
+    public String getVirtualParentId() {
+        return virtualParentId;
+    }
+
+    public void setVirtualParentId(String virtualParentId) {
+        this.virtualParentId = virtualParentId;
     }
 
 }

@@ -84,6 +84,8 @@ public class UpdateSecurityActivity extends AppCompatActivity {
                         mEditOldPassword.setText("");
                         mEditNewPassword.setText("");
                         mEditConfirmPassword.setText("");
+                        Toast.makeText(UpdateSecurityActivity.this, "Password Successfully Updated ", Toast.LENGTH_SHORT).show();
+
                     } else {
                         Toast.makeText(UpdateSecurityActivity.this, changePasswordResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
                     }

@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,8 @@ import com.imuons.shopntrips.utils.ViewUtils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,8 +56,8 @@ public class BankDetailsActivity extends AppCompatActivity {
     EditText mEditBankName;
     @BindView(R.id.txt_bankIFSCCode)
     EditText mEditIFSCCode;
-
-
+    String  pancard,sponsorname,sponsorid,userid,password,cpassword;
+    Pattern pattern = Pattern.compile("[A-Z]{5}[0-9]{4}[A-Z]{1}");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,12 +84,27 @@ public class BankDetailsActivity extends AppCompatActivity {
         mbtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UpdateData();
+                if ( validationpancard()){
+                    UpdateData();
+                }
+
             }
         });
 
     }
 
+    private boolean validationpancard() {
+        pancard= mEditPanNo.getText().toString().trim();
+        Matcher matcher = pattern.matcher(pancard);
+        if (matcher.matches()) {
+
+            return true;
+        }else {
+            Toast.makeText(BankDetailsActivity.this, getString(R.string.invalid_pan_card_number), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+    }
     private void UpdateData() {
         final ProgressDialog pd = ViewUtils.getProgressBar(BankDetailsActivity.this, "Loading...", "Please wait..!");
         String accountNo = mEditBankAccountNo.getText().toString();

@@ -29,7 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/open_sans_bold"
                 android:gravity="center"
-                android:text="ContactInformation"
+                android:text="Contact Information"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />

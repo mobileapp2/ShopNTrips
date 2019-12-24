@@ -72,6 +72,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     private void getTopUp() {
+        mbtnUpdate.setVisibility(View.GONE);
         final ProgressDialog pd = ViewUtils.getProgressBar(AboutActivity.this, "Loading...", "Please wait..!");
 
         ShopNTrips apiService = ApiHandler.getApiService();
@@ -92,6 +93,7 @@ public class AboutActivity extends AppCompatActivity {
                             userTopUpResponse.getStatus().equals("Not Found")) {
                         mbtnUpdate.setVisibility(View.VISIBLE);
                     }else {
+                        mbtnUpdate.setVisibility(View.GONE);
                         Toast.makeText(AboutActivity.this, "You Cannot Update", Toast.LENGTH_SHORT).show();
                     }
                 }

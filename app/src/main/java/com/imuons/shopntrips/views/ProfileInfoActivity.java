@@ -92,9 +92,21 @@ public class ProfileInfoActivity extends AppCompatActivity {
         mbtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UpdateProfile();
+                if (validateMobileNo()){
+                    UpdateProfile();
+                }
+
             }
         });
+    }
+    private boolean validateMobileNo() {
+        String mobile = mTextMobileNumbers.getText().toString().trim();
+        if (mobile.isEmpty() || mobile.length() < 10) {
+            Toast.makeText(ProfileInfoActivity.this,
+                    getString(R.string.invalid_mobile_number_message), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     private void UpdateProfile() {

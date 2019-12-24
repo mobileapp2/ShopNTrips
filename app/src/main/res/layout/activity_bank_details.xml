@@ -129,6 +129,7 @@
                     android:background="@drawable/textviewbg"
                     android:gravity="center"
                     android:singleLine="true"
+                    android:maxLength="10"
                     android:textColor="@color/white" />
 
                 <EditText
