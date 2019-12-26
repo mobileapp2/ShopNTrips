@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -160,6 +162,28 @@ public class TreeViewFragment extends Fragment {
             }
         });
 
+
+    /*  mEditUserId.addTextChangedListener(new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+          }
+
+          @Override
+          public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+              if (mEditUserId.getText().toString().length()>1){
+                  searchByWord();
+              }
+
+          }
+
+          @Override
+          public void afterTextChanged(Editable editable) {
+
+          }
+      });
+*/
+
         mTreeView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -185,6 +209,45 @@ public class TreeViewFragment extends Fragment {
             }
         });
 
+    }
+
+    private void searchByWord() {
+
+        String s = mEditUserId.getText().toString().trim();
+        Map<String, String> roiMap = new HashMap<>();
+        roiMap.put("id", s);
+        roiMap.put("Content-Length:", "23");
+        ShopNTrips apiService = ApiHandler.getApiService();
+
+        final Call<SearchTreeResponse> loginCall = apiService.wsGetTreeByWord("Bearer "
+                + SharedPreferenceUtils.getLoginObject(
+                TreeViewFragment.this.getContext()).getData().getAccess_token(), roiMap);
+
+        loginCall.enqueue(new Callback<SearchTreeResponse>() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onResponse(Call<SearchTreeResponse> call,
+                                   Response<SearchTreeResponse> response) {
+
+                if (response.isSuccessful()) {
+                    SearchTreeResponse treeViewResponseModel = response.body();
+                    if (treeViewResponseModel.getCode() == 404) {
+                        Toast.makeText(TreeViewFragment.this.getContext(), "User not available", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(TreeViewFragment.this.getContext(), "User available", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchTreeResponse> call,
+                                  Throwable t) {
+
+                //     Toast.makeText(TreeViewFragment.this.getContext(), treeViewResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TreeViewFragment.this.getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -447,43 +510,6 @@ public class TreeViewFragment extends Fragment {
             mTextView = view.findViewById(R.id.textView);
             mImageStatus = view.findViewById(R.id.image_status);
         }
-    }
-
-    private void findTree(String id) {
-        final ProgressDialog pd = ViewUtils.getProgressBar(TreeViewFragment.this.getContext(), "Loading...", "Please wait..!");
-
-        Map<String, String> roiMap = new HashMap<>();
-        roiMap.put("id", id);
-        ShopNTrips apiService = ApiHandler.getApiService();
-
-        final Call<SearchTreeResponse> loginCall = apiService.wsGetTree1("Bearer "
-                + SharedPreferenceUtils.getLoginObject(
-                TreeViewFragment.this.getContext()).getData().getAccess_token(), roiMap);
-
-        loginCall.enqueue(new Callback<SearchTreeResponse>() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onResponse(Call<SearchTreeResponse> call,
-                                   Response<SearchTreeResponse> response) {
-                pd.hide();
-                if (response.isSuccessful()) {
-                    SearchTreeResponse treeViewResponseModel = response.body();
-                    if (treeViewResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
-                            treeViewResponseModel.getStatus().equals("OK")) {
-                        //  displayTreeView1(treeViewResponseModel.getData());
-                    } else {
-                        Toast.makeText(TreeViewFragment.this.getContext(), treeViewResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SearchTreeResponse> call,
-                                  Throwable t) {
-                pd.hide();
-//                Toast.makeText(TreeViewFragment.this.getContext(), treeViewResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }

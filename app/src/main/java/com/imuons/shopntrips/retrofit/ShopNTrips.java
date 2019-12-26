@@ -232,6 +232,10 @@ public interface ShopNTrips {
     @POST("getlevelviewtree/productbase")
     Call<SearchTreeResponse> wsGetTree1(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
+    @FormUrlEncoded
+    @POST("getlevelviewtree/crossleg")
+    Call<SearchTreeResponse> wsGetTreeByWord(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
 
   /*
 
