@@ -28,6 +28,7 @@ import com.imuons.shopntrips.model.OTPResponseModel;
 import com.imuons.shopntrips.model.RegisterResponseModel;
 import com.imuons.shopntrips.model.ResetPasswordResponseModel;
 import com.imuons.shopntrips.model.RoiIncomeReportResponseModel;
+import com.imuons.shopntrips.model.SearchTreeResponse;
 import com.imuons.shopntrips.model.SubmitTopUpReponseModel;
 import com.imuons.shopntrips.model.TeamViewResponseModel;
 import com.imuons.shopntrips.model.TicketResponseModel;
@@ -226,6 +227,10 @@ public interface ShopNTrips {
     @FormUrlEncoded
     @POST("getlevelviewtree/productbase")
     Call<TreeViewResponseModel> wsGetTree(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
+
+    @FormUrlEncoded
+    @POST("getlevelviewtree/productbase")
+    Call<SearchTreeResponse> wsGetTree1(@Header("Authorization") String authHeader, @FieldMap Map<String, String> loginMap);
 
 
   /*
