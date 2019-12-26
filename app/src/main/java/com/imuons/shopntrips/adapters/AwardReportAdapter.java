@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.imuons.shopntrips.R;
@@ -55,6 +57,7 @@ import retrofit2.Response;
 public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.AwardReportAdapterHolder> {
     private List<AwardReportRecordModel> airList = new ArrayList<>();
     private Context context;
+    private FragmentManager fragmentManager;
     private AwardIncomeReportFragment awardIncomeReportFragment;
     private String wdatefromurl, cdatefromurl;
     private Date datec, datew;
@@ -146,7 +149,7 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
                     awardReportRecordModel = airList.get(position);
                     int intwinid = awardReportRecordModel.getWinId();
                     String strwinid = String.valueOf(intwinid);
-                    showDialouge(strwinid);
+                    showDialouge(strwinid,v);
                 }
             });
 
@@ -183,7 +186,7 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
         });
     }
 
-    private void showDialouge(String strwinid) {
+    private void showDialouge(String strwinid, View v) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
         builder1.setTitle("Exit");
         builder1.setMessage("Are you sure You want to receive this award ?");
@@ -195,7 +198,7 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
 
-                        callsubmit(strwinid);
+                        callsubmit(strwinid,v);
                     }
                 });
 
@@ -211,7 +214,7 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
         alert11.show();
     }
 
-    private void callsubmit(String strwinid) {
+    private void callsubmit(String strwinid, View v) {
 
         final ProgressDialog pd = ViewUtils.getProgressBar(context, "Loading...", "Please wait..!");
 
@@ -233,8 +236,10 @@ public class AwardReportAdapter extends RecyclerView.Adapter<AwardReportAdapter.
                     AwardReportGetResponse awardReportGetResponse = response.body();
                     if (awardReportGetResponse.getCode() == Constants.RESPONSE_CODE_OK &&
                             awardReportGetResponse.getStatus().equals("OK")) {
-                        Toast.makeText(context, "Congratulations you have successfully received reward !", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(context, awardReportGetResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        fragmentManager = ((AppCompatActivity)context).getSupportFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.content_frame, AwardIncomeReportFragment.newInstance()).commit();
+                        ((AppCompatActivity)v.getContext()).getSupportActionBar().setTitle("Award Income Report");
                     } else {
                         Toast.makeText(context, awardReportGetResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
