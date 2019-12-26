@@ -151,7 +151,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_About:
                 object = gS.toJson(profileModel);
                 intent = new Intent(ProfileFragment.this.getContext(),
-                        AboutActivity.class);
+                        ProfileFragment.class);
                 intent.putExtra("object", object);
                 startActivity(intent);
                 break;
