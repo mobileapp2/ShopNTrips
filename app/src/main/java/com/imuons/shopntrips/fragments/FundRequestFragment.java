@@ -179,6 +179,7 @@ public class FundRequestFragment extends Fragment {
                             t.toString(), LENGTH_SHORT).show();
                 }
             });
+            gif.setVisibility(View.GONE);
         } else {
             Toast.makeText(FundRequestFragment.this.getContext(), "Image Size Should Not Greater Than 1MB", LENGTH_SHORT).show();
         }
