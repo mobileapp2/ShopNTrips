@@ -105,7 +105,7 @@ final BinaryIncomeReportRecordModel binaryIncomeReportRecordModel = birList.get(
     int carryleftbvint = binaryIncomeReportRecordModel.getLeftBvCarry();
     holder.carryleftbv.setText(String.valueOf(carryleftbvint));
 
-      int lapsint = binaryIncomeReportRecordModel.getLapsBv();
+      double lapsint = binaryIncomeReportRecordModel.getLapsBv();
       holder.lapsamt.setText(String.valueOf(lapsint));
 
 

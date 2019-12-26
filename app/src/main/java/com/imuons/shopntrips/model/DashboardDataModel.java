@@ -19,7 +19,7 @@ public class DashboardDataModel {
     private Integer directIncome;
     @SerializedName("BinaryIncome")
     @Expose
-    private Integer binaryIncome;
+    private Double binaryIncome;
     @SerializedName("AwardIncome")
     @Expose
     private Integer awardIncome;
@@ -80,11 +80,11 @@ public class DashboardDataModel {
         this.directIncome = directIncome;
     }
 
-    public Integer getBinaryIncome() {
+    public Double getBinaryIncome() {
         return binaryIncome;
     }
 
-    public void setBinaryIncome(Integer binaryIncome) {
+    public void setBinaryIncome(Double binaryIncome) {
         this.binaryIncome = binaryIncome;
     }
 
