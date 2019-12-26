@@ -400,5 +400,4 @@ public class TreeViewSettings {
     public void setWithToDate(String withToDate) {
         this.withToDate = withToDate;
     }
-
 }
