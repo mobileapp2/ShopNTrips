@@ -204,7 +204,6 @@ public class TreeViewFragment extends Fragment {
         // custom dialog
         final Dialog dialog = new Dialog(TreeViewFragment.this.getContext());
         dialog.setContentView(R.layout.layout_custom_alert_treeview);
-
         TextView userId = (TextView) dialog.findViewById(R.id.text_user_id);
         TextView name = (TextView) dialog.findViewById(R.id.text_name);
         TextView sopnsorId = (TextView) dialog.findViewById(R.id.text_sponsor_id);

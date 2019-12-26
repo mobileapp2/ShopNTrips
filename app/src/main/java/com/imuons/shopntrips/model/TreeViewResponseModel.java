@@ -48,4 +48,5 @@ public class TreeViewResponseModel {
     public void setData(TreeViewDataModel data) {
         this.data = data;
     }
+
 }

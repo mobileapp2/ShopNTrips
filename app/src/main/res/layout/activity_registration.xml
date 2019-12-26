@@ -127,11 +127,11 @@
 
                         <LinearLayout
                             android:layout_gravity="center"
-
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/register_editbox_height">
+
                             <RadioGroup
                                 android:layout_gravity="center"
                                 android:layout_weight="1"

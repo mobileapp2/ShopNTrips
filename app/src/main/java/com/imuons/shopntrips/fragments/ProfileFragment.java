@@ -31,6 +31,7 @@ import com.imuons.shopntrips.utils.ViewUtils;
 import com.imuons.shopntrips.views.AboutActivity;
 import com.imuons.shopntrips.views.BankDetailsActivity;
 import com.imuons.shopntrips.views.ContactInfoActivity;
+import com.imuons.shopntrips.views.NotPresentActivity;
 import com.imuons.shopntrips.views.ProfileInfoActivity;
 import com.imuons.shopntrips.views.UpdateSecurityActivity;
 import com.squareup.picasso.Picasso;
@@ -151,7 +152,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_About:
                 object = gS.toJson(profileModel);
                 intent = new Intent(ProfileFragment.this.getContext(),
-                        ProfileFragment.class);
+                        AboutActivity.class);
                 intent.putExtra("object", object);
                 startActivity(intent);
                 break;

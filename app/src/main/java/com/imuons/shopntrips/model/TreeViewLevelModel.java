@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class TreeViewLevelModel {
     @SerializedName("id")
     @Expose
-    private Integer id;
+    private String id;
     @SerializedName("user_id")
     @Expose
     private String userId;
@@ -77,11 +77,11 @@ public class TreeViewLevelModel {
     @Expose
     private String virtualParentId;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -268,5 +268,4 @@ public class TreeViewLevelModel {
     public void setVirtualParentId(String virtualParentId) {
         this.virtualParentId = virtualParentId;
     }
-
 }
