@@ -34,7 +34,7 @@ public class BinaryIncomeReportRecordModel {
     private Integer matchBv;
     @SerializedName("laps_bv")
     @Expose
-    private Integer lapsBv;
+    private Double lapsBv;
     @SerializedName("entry_time")
     @Expose
     private String entryTime;
@@ -165,11 +165,11 @@ public class BinaryIncomeReportRecordModel {
         this.matchBv = matchBv;
     }
 
-    public Integer getLapsBv() {
+    public Double getLapsBv() {
         return lapsBv;
     }
 
-    public void setLapsBv(Integer lapsBv) {
+    public void setLapsBv(Double lapsBv) {
         this.lapsBv = lapsBv;
     }
 
