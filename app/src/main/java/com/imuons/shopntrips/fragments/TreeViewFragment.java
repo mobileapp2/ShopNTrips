@@ -96,8 +96,8 @@ public class TreeViewFragment extends Fragment {
 
             @Override
             public void onBindViewHolder(ViewHolder viewHolder, PositionDataModel data, int position) {
-                viewHolder.mTextView.setText(data.getUser_id());
-                if (data.getUser_id().equals("Not Available")) {
+                viewHolder.mTextView.setText(data.getUserId());
+                if (data.getUserId().equals("Not Available")) {
                     viewHolder.mImageStatus.setImageResource(R.drawable.ic_absent);
                 }
                 try {
@@ -110,7 +110,7 @@ public class TreeViewFragment extends Fragment {
                         viewHolder.mImageStatus.setImageResource(R.drawable.ic_not_paid);
                     } else if (data.getImage().contains("present")) {
                         viewHolder.mImageStatus.setImageResource(R.drawable.ic_active);
-                    } else if (data.getUser_id().contains("Not Available")) {
+                    } else if (data.getUserId().contains("Not Available")) {
                         viewHolder.mImageStatus.setImageResource(R.drawable.ic_absent);
                     }
 
@@ -189,7 +189,7 @@ public class TreeViewFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 PositionDataModel model = adapter.getNode(position).getData();
-                if (model.getUser_id().contains("Not Available") || model.getImage().contains("absent")) {
+                if (model.getUserId().contains("Not Available") || model.getImage().contains("absent")) {
                     Intent intent = new Intent(TreeViewFragment.this.getActivity(), NotPresentActivity.class);
                     startActivity(intent);
                 } else if (model.getImage().contains("block")) {
@@ -309,17 +309,17 @@ public class TreeViewFragment extends Fragment {
         ImageView imageClose = dialog.findViewById(R.id.image_close);
 
         try {
-            userId.setText(details.getUser_id());
+            userId.setText(details.getUserId());
             name.setText(details.getFullname());
-            sopnsorId.setText(details.getSponser_id());
-            DOJ.setText(details.getDateOfjoining());
-            leftId.setText(details.getLeft_id());
-            rightId.setText(details.getRight_id());
-            leftBV.setText(details.getLeft_bv());
-            rightBV.setText(details.getRight_bv());
-            repurchaseLeftBV.setText(details.getL_bv_rep());
-            repurchaseRightBV.setText(details.getR_bv_rep());
-            productCost.setText(details.getStatus());
+            sopnsorId.setText(details.getSponsorId());
+            DOJ.setText(details.getEntryTime());
+            leftId.setText(details.getLCCount());
+            rightId.setText(details.getRCCount());
+            leftBV.setText(details.getLeftBv());
+            rightBV.setText(details.getRBv());
+            repurchaseLeftBV.setText(details.getLeftBvRep());
+            repurchaseRightBV.setText(details.getRightBvRep());
+            productCost.setText(details.getCost());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -357,143 +357,143 @@ public class TreeViewFragment extends Fragment {
 
     private void displayTreeView(TreeViewDataModel data) {
         PositionDataModel model = new PositionDataModel();
-        model.setUser_id(data.getUser().getUserId());
+        model.setUserId(data.getUser().getUserId());
         model.setImage(data.getUser().getImage());
-        model.setSponser_id(data.getUser().getSponsorId());
+        model.setSponsorId(data.getUser().getSponsorId());
         model.setFullname(data.getUser().getFullname());
 //        model.setStatus(data.getUser().getCost());
         try {
-            model.setDateOfjoining(data.getUser().getEntryTime().split(" ")[0]);
+            model.setEntryTime(data.getUser().getEntryTime().split(" ")[0]);
         } catch (Exception e) {
-            model.setDateOfjoining("");
+            model.setEntryTime("");
         }
-        model.setLeft_id(String.valueOf(data.getUser().getLCCount().toString()));
-        model.setRight_id(String.valueOf(data.getUser().getRCCount().toString()));
-        model.setLeft_bv(String.valueOf(data.getUser().getLBv().toString()));
-        model.setRight_bv(String.valueOf(data.getUser().getRBv().toString()));
-        model.setL_bv_rep(String.valueOf(data.getUser().getLeftBvRep().toString()));
-        model.setR_bv_rep(String.valueOf(data.getUser().getRightBvRep().toString()));
+        model.setLCCount(String.valueOf(String.valueOf((data.getUser().getLCCount().toString()))));
+        model.setRCCount(String.valueOf((data.getUser().getRCCount().toString())));
+        model.setLeftBv(String.valueOf((data.getUser().getLBv().toString())));
+        model.setRightBv(String.valueOf((data.getUser().getRBv().toString())));
+        model.setLeftBvRep(String.valueOf((data.getUser().getLeftBvRep().toString())));
+        model.setRightBvRep(String.valueOf((data.getUser().getRightBvRep().toString())));
         TreeNode rootNode = new TreeNode(model);
 
         model = new PositionDataModel();
-        model.setUser_id(data.getTreeData().get(0).getLevel().get(0).getUserId());
+        model.setUserId(data.getTreeData().get(0).getLevel().get(0).getUserId());
         model.setImage(data.getTreeData().get(0).getLevel().get(0).getImage());
-        model.setSponser_id(data.getTreeData().get(0).getLevel().get(0).getSponsorId());
+        model.setSponsorId(data.getTreeData().get(0).getLevel().get(0).getSponsorId());
 //        model.setFullname(data.getTreeData().get(0).getLevel().get(0).getSponsorId());
         model.setFullname(data.getUser().getFullname());
 //        model.setStatus(data.getUser().getCost());
         try {
-            model.setDateOfjoining(data.getTreeData().get(0).getLevel().get(0).getEntryTime().split(" ")[0]);
+            model.setEntryTime(data.getTreeData().get(0).getLevel().get(0).getEntryTime().split(" ")[0]);
         } catch (Exception e) {
-            model.setDateOfjoining("");
+            model.setEntryTime("");
         }
-        model.setLeft_id(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLCCount().toString()));
-        model.setRight_id(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRCCount().toString()));
-        model.setLeft_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLBv().toString()));
-        model.setRight_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRBv().toString()));
-        model.setL_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLeftBvRep().toString()));
-        model.setR_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRightBvRep().toString()));
+        model.setLCCount(String.valueOf((data.getTreeData().get(0).getLevel().get(0).getLCCount().toString())));
+        model.setRCCount(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRCCount().toString()));
+        model.setLeftBv(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLBv().toString()));
+        model.setRightBv(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRBv().toString()));
+        model.setLeftBvRep(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getLeftBvRep().toString()));
+        model.setRightBvRep(String.valueOf(data.getTreeData().get(0).getLevel().get(0).getRightBvRep().toString()));
         TreeNode nodeLevelOneLeft = new TreeNode(model);
 
         model = new PositionDataModel();
-        model.setUser_id(data.getTreeData().get(0).getLevel().get(1).getUserId());
+        model.setUserId(data.getTreeData().get(0).getLevel().get(1).getUserId());
         model.setImage(data.getTreeData().get(0).getLevel().get(1).getImage());
-        model.setSponser_id(data.getTreeData().get(0).getLevel().get(1).getSponsorId());
+        model.setSponsorId(data.getTreeData().get(0).getLevel().get(1).getSponsorId());
         model.setFullname(data.getUser().getFullname());
 //        model.setStatus(data.getUser().getCost());
         try {
-            model.setDateOfjoining(data.getTreeData().get(0).getLevel().get(1).getEntryTime().split(" ")[0]);
+            model.setEntryTime(data.getTreeData().get(0).getLevel().get(1).getEntryTime().split(" ")[0]);
         } catch (Exception e) {
-            model.setDateOfjoining("");
+            model.setEntryTime("");
         }
-        model.setLeft_id(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLCCount().toString()));
-        model.setRight_id(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRCCount().toString()));
-        model.setLeft_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLBv().toString()));
-        model.setRight_bv(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRBv().toString()));
-        model.setL_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLeftBvRep().toString()));
-        model.setR_bv_rep(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRightBvRep().toString()));
+        model.setLCCount(String.valueOf((data.getTreeData().get(0).getLevel().get(1).getLCCount().toString())));
+        model.setRCCount(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRCCount().toString()));
+        model.setLeftBv(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLBv().toString()));
+        model.setRightBv(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRBv().toString()));
+        model.setLeftBvRep(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getLeftBvRep().toString()));
+        model.setRightBvRep(String.valueOf(data.getTreeData().get(0).getLevel().get(1).getRightBvRep().toString()));
         TreeNode nodeLevelOneRight = new TreeNode(model);
 
         rootNode.addChild(nodeLevelOneLeft);
         rootNode.addChild(nodeLevelOneRight);
 
         model = new PositionDataModel();
-        model.setUser_id(data.getTreeData().get(1).getLevel().get(0).getUserId());
+        model.setUserId(data.getTreeData().get(1).getLevel().get(0).getUserId());
         model.setImage(data.getTreeData().get(1).getLevel().get(0).getImage());
-        model.setSponser_id(data.getTreeData().get(1).getLevel().get(0).getSponsorId());
+        model.setSponsorId(data.getTreeData().get(1).getLevel().get(0).getSponsorId());
         model.setFullname(data.getUser().getFullname());
 //        model.setStatus(data.getUser().getCost());
         try {
-            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(0).getEntryTime().split(" ")[0]);
+            model.setEntryTime(data.getTreeData().get(1).getLevel().get(0).getEntryTime().split(" ")[0]);
         } catch (Exception e) {
-            model.setDateOfjoining("");
+            model.setEntryTime("");
         }
-        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLCCount().toString()));
-        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRCCount().toString()));
-        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLBv().toString()));
-        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRBv().toString()));
-        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLeftBvRep().toString()));
-        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRightBvRep().toString()));
+        model.setLCCount(String.valueOf((data.getTreeData().get(1).getLevel().get(0).getLCCount().toString())));
+        model.setRCCount(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRCCount().toString()));
+        model.setLeftBv(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLBv().toString()));
+        model.setRightBv(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRBv().toString()));
+        model.setLeftBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getLeftBvRep().toString()));
+        model.setRightBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(0).getRightBvRep().toString()));
         TreeNode nodeLevelTwoLeftChildOne = new TreeNode(model);
 
         model = new PositionDataModel();
-        model.setUser_id(data.getTreeData().get(1).getLevel().get(1).getUserId());
+        model.setUserId(data.getTreeData().get(1).getLevel().get(1).getUserId());
         model.setImage(data.getTreeData().get(1).getLevel().get(1).getImage());
-        model.setSponser_id(data.getTreeData().get(1).getLevel().get(1).getSponsorId());
+        model.setSponsorId(data.getTreeData().get(1).getLevel().get(1).getSponsorId());
         model.setFullname(data.getUser().getFullname());
 //        model.setStatus(data.getUser().getCost());
         try {
-            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(1).getEntryTime().split(" ")[0]);
+            model.setEntryTime(data.getTreeData().get(1).getLevel().get(1).getEntryTime().split(" ")[0]);
         } catch (Exception e) {
-            model.setDateOfjoining("");
+            model.setEntryTime("");
         }
-        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLCCount().toString()));
-        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRCCount().toString()));
-        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLBv().toString()));
-        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRBv().toString()));
-        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLeftBvRep().toString()));
-        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRightBvRep().toString()));
+        model.setLCCount(String.valueOf((data.getTreeData().get(1).getLevel().get(1).getLCCount().toString())));
+        model.setRCCount(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRCCount().toString()));
+        model.setLeftBv(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLBv().toString()));
+        model.setRightBv(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRBv().toString()));
+        model.setLeftBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getLeftBvRep().toString()));
+        model.setRightBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(1).getRightBvRep().toString()));
         TreeNode nodeLevelOneLeftChildTwo = new TreeNode(model);
 
         nodeLevelOneLeft.addChild(nodeLevelTwoLeftChildOne);
         nodeLevelOneLeft.addChild(nodeLevelOneLeftChildTwo);
 
         model = new PositionDataModel();
-        model.setUser_id(data.getTreeData().get(1).getLevel().get(2).getUserId());
+        model.setUserId(data.getTreeData().get(1).getLevel().get(2).getUserId());
         model.setImage(data.getTreeData().get(1).getLevel().get(2).getImage());
-        model.setSponser_id(data.getTreeData().get(1).getLevel().get(2).getSponsorId());
+        model.setSponsorId(data.getTreeData().get(1).getLevel().get(2).getSponsorId());
         model.setFullname(data.getUser().getFullname());
 //        model.setStatus(data.getUser().getCost());
         try {
-            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(2).getEntryTime().split(" ")[0]);
+            model.setEntryTime(data.getTreeData().get(1).getLevel().get(2).getEntryTime().split(" ")[0]);
         } catch (Exception e) {
-            model.setDateOfjoining("");
+            model.setEntryTime("");
         }
-        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLCCount().toString()));
-        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRCCount().toString()));
-        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLBv().toString()));
-        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRBv().toString()));
-        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLeftBvRep().toString()));
-        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRightBvRep().toString()));
+        model.setLCCount(String.valueOf((data.getTreeData().get(1).getLevel().get(2).getLCCount().toString())));
+        model.setRCCount(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRCCount().toString()));
+        model.setLeftBv(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLBv().toString()));
+        model.setRightBv(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRBv().toString()));
+        model.setLeftBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getLeftBvRep().toString()));
+        model.setRightBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(2).getRightBvRep().toString()));
         TreeNode nodeLevelTwoRightChildOne = new TreeNode(model);
 
         model = new PositionDataModel();
-        model.setUser_id(data.getTreeData().get(1).getLevel().get(3).getUserId());
+        model.setUserId(data.getTreeData().get(1).getLevel().get(3).getUserId());
         model.setImage(data.getTreeData().get(1).getLevel().get(3).getImage());
-        model.setSponser_id(data.getTreeData().get(1).getLevel().get(3).getSponsorId());
+        model.setSponsorId(data.getTreeData().get(1).getLevel().get(3).getSponsorId());
         model.setFullname(data.getUser().getFullname());
 //        model.setStatus(data.getUser().getCost());
         try {
-            model.setDateOfjoining(data.getTreeData().get(1).getLevel().get(3).getEntryTime().split(" ")[0]);
+            model.setEntryTime(data.getTreeData().get(1).getLevel().get(3).getEntryTime().split(" ")[0]);
         } catch (Exception e) {
-            model.setDateOfjoining("");
+            model.setEntryTime("");
         }
-        model.setLeft_id(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLCCount().toString()));
-        model.setRight_id(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRCCount().toString()));
-        model.setLeft_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLBv().toString()));
-        model.setRight_bv(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRBv().toString()));
-        model.setL_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLeftBvRep().toString()));
-        model.setR_bv_rep(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRightBvRep().toString()));
+        model.setLCCount(String.valueOf((data.getTreeData().get(1).getLevel().get(3).getLCCount().toString())));
+        model.setRCCount(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRCCount().toString()));
+        model.setLeftBv(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLBv().toString()));
+        model.setRightBv(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRBv().toString()));
+        model.setLeftBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getLeftBvRep().toString()));
+        model.setRightBvRep(String.valueOf(data.getTreeData().get(1).getLevel().get(3).getRightBvRep().toString()));
         TreeNode nodeLevelOneRightChildTwo = new TreeNode(model);
 
         nodeLevelOneRight.addChild(nodeLevelTwoRightChildOne);

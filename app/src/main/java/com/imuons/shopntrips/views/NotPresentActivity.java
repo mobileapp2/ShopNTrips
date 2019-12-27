@@ -292,7 +292,7 @@ public class NotPresentActivity extends AppCompatActivity {
         registerMap.put("email", email);
         registerMap.put("user_id", String.valueOf(randomNo));
         registerMap.put("password", password);
-        //   registerMap.put("placement_user_id", "");
+        registerMap.put("placement_user_id", sponsorid);
         registerMap.put("ref_user_id", refUserID);
         registerMap.put("position", selectedradio);
         registerMap.put("sponsor_name", sponsorname);
@@ -352,10 +352,11 @@ public class NotPresentActivity extends AppCompatActivity {
     }
 
     private void setUserData(UserProfileDataModel data) {
-        mTextSponsorId.setText(data.getUserId());
+       mTextSponsorId.setText(data.getUserId());
         mTextSponsorName.setText(data.getFullname());
         sponsorname = data.getFullname();
         refUserID = data.getUserId();
+        sponsorid = mTextSponsorId.getText().toString().trim();
         setRandomNo();
         //mTextMobileNumbers.setText(data.getMobile());
     }

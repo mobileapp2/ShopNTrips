@@ -8,79 +8,76 @@ import java.io.Serializable;
 public class PositionDataModel implements Serializable {
     @SerializedName("id")
     @Expose
-    public String id;
+    private String id;
     @SerializedName("user_id")
     @Expose
-    public String user_id;
+    private String userId;
     @SerializedName("fullname")
     @Expose
-    public String fullname;
-    @SerializedName("virtual_parent_id")
+    private String fullname;
+    @SerializedName("sponsor_id")
     @Expose
-    public String virtual_parent_id;
-    @SerializedName("sponser_id")
+    private String sponsorId;
+    @SerializedName("sponsor_fullname")
     @Expose
-    public String sponser_id;
-    @SerializedName("sponser_name")
+    private String sponsorFullname;
+    @SerializedName("virtual_id")
     @Expose
-    public String sponser_name;
-    @SerializedName("sponser_user_id")
+    private String virtualId;
+    @SerializedName("virtual_fullname")
     @Expose
-    public String sponser_user_id;
-    @SerializedName("left_id")
+    private String virtualFullname;
+    @SerializedName("l_c_count")
     @Expose
-    public String left_id;
-    @SerializedName("right_id")
+    private String lCCount;
+    @SerializedName("r_c_count")
     @Expose
-    public String right_id;
+    private String rCCount;
+    @SerializedName("l_bv")
+    @Expose
+    private String lBv;
+    @SerializedName("r_bv")
+    @Expose
+    private String rBv;
     @SerializedName("left_bv")
     @Expose
-    public String left_bv;
+    private String leftBv;
     @SerializedName("right_bv")
     @Expose
-    public String right_bv;
-    @SerializedName("binary_left_bv")
+    private String rightBv;
+    @SerializedName("left_bv_rep")
     @Expose
-    public String binary_left_bv;
-    @SerializedName("binary_right_bv")
+    private String leftBvRep;
+    @SerializedName("right_bv_rep")
     @Expose
-    public String binary_right_bv;
+    private String rightBvRep;
     @SerializedName("position")
     @Expose
-    public String position;
-    @SerializedName("binary_left_bv1")
+    private String position;
+    @SerializedName("level")
     @Expose
-    public String binary_left_bv1;
-    @SerializedName("total_investment")
-    @Expose
-    public String total_investment;
-    @SerializedName("lending_binary_right_bv")
-    @Expose
-    public String lending_binary_right_bv;
-    @SerializedName("lending_binary_left_bv")
-    @Expose
-    public String lending_binary_left_bv;
-    @SerializedName("carry_left_bv")
-    @Expose
-    public String carry_left_bv;
-    @SerializedName("carry_right_bv")
-    @Expose
-    public String carry_right_bv;
-    @SerializedName("status")
-    @Expose
-    public String status;
-    @SerializedName("l_bv_rep")
-    @Expose
-    public String l_bv_rep;
-    @SerializedName("r_bv_rep")
-    @Expose
-    public String r_bv_rep;
-    @SerializedName("dateOfjoining")
-    @Expose
-    public String dateOfjoining;
+    private Integer level;
     @SerializedName("image")
     @Expose
-    public String image;
+    private String image;
+    @SerializedName("entry_time")
+    @Expose
+    private String entryTime;
+    @SerializedName("act_time")
+    @Expose
+    private Object actTime;
+    @SerializedName("cost")
+    @Expose
+    private String cost;
+    @SerializedName("left_amount")
+    @Expose
+    private String leftAmount;
+    @SerializedName("right_amount")
+    @Expose
+    private String rightAmount;
+    @SerializedName("virtual_parent_id")
+    @Expose
+    private String virtualParentId;
 
     public String getId() {
         return id;
@@ -90,12 +87,12 @@ public class PositionDataModel implements Serializable {
         this.id = id;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFullname() {
@@ -106,84 +103,100 @@ public class PositionDataModel implements Serializable {
         this.fullname = fullname;
     }
 
-    public String getVirtual_parent_id() {
-        return virtual_parent_id;
+    public String getSponsorId() {
+        return sponsorId;
     }
 
-    public void setVirtual_parent_id(String virtual_parent_id) {
-        this.virtual_parent_id = virtual_parent_id;
+    public void setSponsorId(String sponsorId) {
+        this.sponsorId = sponsorId;
     }
 
-    public String getSponser_id() {
-        return sponser_id;
+    public String getSponsorFullname() {
+        return sponsorFullname;
     }
 
-    public void setSponser_id(String sponser_id) {
-        this.sponser_id = sponser_id;
+    public void setSponsorFullname(String sponsorFullname) {
+        this.sponsorFullname = sponsorFullname;
     }
 
-    public String getSponser_name() {
-        return sponser_name;
+    public String getVirtualId() {
+        return virtualId;
     }
 
-    public void setSponser_name(String sponser_name) {
-        this.sponser_name = sponser_name;
+    public void setVirtualId(String virtualId) {
+        this.virtualId = virtualId;
     }
 
-    public String getSponser_user_id() {
-        return sponser_user_id;
+    public String getVirtualFullname() {
+        return virtualFullname;
     }
 
-    public void setSponser_user_id(String sponser_user_id) {
-        this.sponser_user_id = sponser_user_id;
+    public void setVirtualFullname(String virtualFullname) {
+        this.virtualFullname = virtualFullname;
     }
 
-    public String getLeft_id() {
-        return left_id;
+    public String getLCCount() {
+        return lCCount;
     }
 
-    public void setLeft_id(String left_id) {
-        this.left_id = left_id;
+    public void setLCCount(String lCCount) {
+        this.lCCount = lCCount;
     }
 
-    public String getRight_id() {
-        return right_id;
+    public String getRCCount() {
+        return rCCount;
     }
 
-    public void setRight_id(String right_id) {
-        this.right_id = right_id;
+    public void setRCCount(String rCCount) {
+        this.rCCount = rCCount;
     }
 
-    public String getLeft_bv() {
-        return left_bv;
+    public String getLBv() {
+        return lBv;
     }
 
-    public void setLeft_bv(String left_bv) {
-        this.left_bv = left_bv;
+    public void setLBv(String lBv) {
+        this.lBv = lBv;
     }
 
-    public String getRight_bv() {
-        return right_bv;
+    public String getRBv() {
+        return rBv;
     }
 
-    public void setRight_bv(String right_bv) {
-        this.right_bv = right_bv;
+    public void setRBv(String rBv) {
+        this.rBv = rBv;
     }
 
-    public String getBinary_left_bv() {
-        return binary_left_bv;
+    public String getLeftBv() {
+        return leftBv;
     }
 
-    public void setBinary_left_bv(String binary_left_bv) {
-        this.binary_left_bv = binary_left_bv;
+    public void setLeftBv(String leftBv) {
+        this.leftBv = leftBv;
     }
 
-    public String getBinary_right_bv() {
-        return binary_right_bv;
+    public String getRightBv() {
+        return rightBv;
     }
 
-    public void setBinary_right_bv(String binary_right_bv) {
-        this.binary_right_bv = binary_right_bv;
+    public void setRightBv(String rightBv) {
+        this.rightBv = rightBv;
+    }
+
+    public String getLeftBvRep() {
+        return leftBvRep;
+    }
+
+    public void setLeftBvRep(String leftBvRep) {
+        this.leftBvRep = leftBvRep;
+    }
+
+    public String getRightBvRep() {
+        return rightBvRep;
+    }
+
+    public void setRightBvRep(String rightBvRep) {
+        this.rightBvRep = rightBvRep;
     }
 
     public String getPosition() {
@@ -194,84 +207,12 @@ public class PositionDataModel implements Serializable {
         this.position = position;
     }
 
-    public String getBinary_left_bv1() {
-        return binary_left_bv1;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void setBinary_left_bv1(String binary_left_bv1) {
-        this.binary_left_bv1 = binary_left_bv1;
-    }
-
-    public String getTotal_investment() {
-        return total_investment;
-    }
-
-    public void setTotal_investment(String total_investment) {
-        this.total_investment = total_investment;
-    }
-
-    public String getLending_binary_right_bv() {
-        return lending_binary_right_bv;
-    }
-
-    public void setLending_binary_right_bv(String lending_binary_right_bv) {
-        this.lending_binary_right_bv = lending_binary_right_bv;
-    }
-
-    public String getLending_binary_left_bv() {
-        return lending_binary_left_bv;
-    }
-
-    public void setLending_binary_left_bv(String lending_binary_left_bv) {
-        this.lending_binary_left_bv = lending_binary_left_bv;
-    }
-
-    public String getCarry_left_bv() {
-        return carry_left_bv;
-    }
-
-    public void setCarry_left_bv(String carry_left_bv) {
-        this.carry_left_bv = carry_left_bv;
-    }
-
-    public String getCarry_right_bv() {
-        return carry_right_bv;
-    }
-
-    public void setCarry_right_bv(String carry_right_bv) {
-        this.carry_right_bv = carry_right_bv;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getL_bv_rep() {
-        return l_bv_rep;
-    }
-
-    public void setL_bv_rep(String l_bv_rep) {
-        this.l_bv_rep = l_bv_rep;
-    }
-
-    public String getR_bv_rep() {
-        return r_bv_rep;
-    }
-
-    public void setR_bv_rep(String r_bv_rep) {
-        this.r_bv_rep = r_bv_rep;
-    }
-
-    public String getDateOfjoining() {
-        return dateOfjoining;
-    }
-
-    public void setDateOfjoining(String dateOfjoining) {
-        this.dateOfjoining = dateOfjoining;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public String getImage() {
@@ -280,5 +221,53 @@ public class PositionDataModel implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getEntryTime() {
+        return entryTime;
+    }
+
+    public void setEntryTime(String entryTime) {
+        this.entryTime = entryTime;
+    }
+
+    public Object getActTime() {
+        return actTime;
+    }
+
+    public void setActTime(Object actTime) {
+        this.actTime = actTime;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public void setCost(String cost) {
+        this.cost = cost;
+    }
+
+    public String getLeftAmount() {
+        return leftAmount;
+    }
+
+    public void setLeftAmount(String leftAmount) {
+        this.leftAmount = leftAmount;
+    }
+
+    public String getRightAmount() {
+        return rightAmount;
+    }
+
+    public void setRightAmount(String rightAmount) {
+        this.rightAmount = rightAmount;
+    }
+
+    public String getVirtualParentId() {
+        return virtualParentId;
+    }
+
+    public void setVirtualParentId(String virtualParentId) {
+        this.virtualParentId = virtualParentId;
     }
 }

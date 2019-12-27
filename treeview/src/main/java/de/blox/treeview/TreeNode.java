@@ -177,7 +177,7 @@ public class TreeNode {
             indent += indent;
         }
         return "\n" + indent + "TreeNode{" +
-                " data=" + mData.getUser_id() +
+                " data=" + mData.getUserId() +
                 ", mX=" + mX +
                 ", mY=" + mY +
                 ", mChildren=" + mChildren +
