@@ -27,28 +27,28 @@ public class TreeViewLevelModel {
     private String virtualFullname;
     @SerializedName("l_c_count")
     @Expose
-    private Integer lCCount;
+    private String lCCount;
     @SerializedName("r_c_count")
     @Expose
-    private Integer rCCount;
+    private String rCCount;
     @SerializedName("l_bv")
     @Expose
-    private Integer lBv;
+    private String lBv;
     @SerializedName("r_bv")
     @Expose
-    private Integer rBv;
+    private String rBv;
     @SerializedName("left_bv")
     @Expose
-    private Integer leftBv;
+    private String leftBv;
     @SerializedName("right_bv")
     @Expose
-    private Integer rightBv;
+    private String rightBv;
     @SerializedName("left_bv_rep")
     @Expose
-    private Integer leftBvRep;
+    private String leftBvRep;
     @SerializedName("right_bv_rep")
     @Expose
-    private Integer rightBvRep;
+    private String rightBvRep;
     @SerializedName("position")
     @Expose
     private String position;
@@ -69,10 +69,10 @@ public class TreeViewLevelModel {
     private String cost;
     @SerializedName("left_amount")
     @Expose
-    private Integer leftAmount;
+    private String leftAmount;
     @SerializedName("right_amount")
     @Expose
-    private Integer rightAmount;
+    private String rightAmount;
     @SerializedName("virtual_parent_id")
     @Expose
     private String virtualParentId;
@@ -133,67 +133,67 @@ public class TreeViewLevelModel {
         this.virtualFullname = virtualFullname;
     }
 
-    public Integer getLCCount() {
+    public String getLCCount() {
         return lCCount;
     }
 
-    public void setLCCount(Integer lCCount) {
+    public void setLCCount(String lCCount) {
         this.lCCount = lCCount;
     }
 
-    public Integer getRCCount() {
+    public String getRCCount() {
         return rCCount;
     }
 
-    public void setRCCount(Integer rCCount) {
+    public void setRCCount(String rCCount) {
         this.rCCount = rCCount;
     }
 
-    public Integer getLBv() {
+    public String getLBv() {
         return lBv;
     }
 
-    public void setLBv(Integer lBv) {
+    public void setLBv(String lBv) {
         this.lBv = lBv;
     }
 
-    public Integer getRBv() {
+    public String getRBv() {
         return rBv;
     }
 
-    public void setRBv(Integer rBv) {
+    public void setRBv(String rBv) {
         this.rBv = rBv;
     }
 
-    public Integer getLeftBv() {
+    public String getLeftBv() {
         return leftBv;
     }
 
-    public void setLeftBv(Integer leftBv) {
+    public void setLeftBv(String leftBv) {
         this.leftBv = leftBv;
     }
 
-    public Integer getRightBv() {
+    public String getRightBv() {
         return rightBv;
     }
 
-    public void setRightBv(Integer rightBv) {
+    public void setRightBv(String rightBv) {
         this.rightBv = rightBv;
     }
 
-    public Integer getLeftBvRep() {
+    public String getLeftBvRep() {
         return leftBvRep;
     }
 
-    public void setLeftBvRep(Integer leftBvRep) {
+    public void setLeftBvRep(String leftBvRep) {
         this.leftBvRep = leftBvRep;
     }
 
-    public Integer getRightBvRep() {
+    public String getRightBvRep() {
         return rightBvRep;
     }
 
-    public void setRightBvRep(Integer rightBvRep) {
+    public void setRightBvRep(String rightBvRep) {
         this.rightBvRep = rightBvRep;
     }
 
@@ -245,19 +245,19 @@ public class TreeViewLevelModel {
         this.cost = cost;
     }
 
-    public Integer getLeftAmount() {
+    public String getLeftAmount() {
         return leftAmount;
     }
 
-    public void setLeftAmount(Integer leftAmount) {
+    public void setLeftAmount(String leftAmount) {
         this.leftAmount = leftAmount;
     }
 
-    public Integer getRightAmount() {
+    public String getRightAmount() {
         return rightAmount;
     }
 
-    public void setRightAmount(Integer rightAmount) {
+    public void setRightAmount(String rightAmount) {
         this.rightAmount = rightAmount;
     }
 
@@ -268,4 +268,5 @@ public class TreeViewLevelModel {
     public void setVirtualParentId(String virtualParentId) {
         this.virtualParentId = virtualParentId;
     }
+
 }

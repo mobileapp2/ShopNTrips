@@ -258,5 +258,4 @@ public class TreeViewUserModel {
     public void setRightAmount(Integer rightAmount) {
         this.rightAmount = rightAmount;
     }
-
 }

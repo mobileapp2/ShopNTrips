@@ -39,4 +39,5 @@ public class TreeViewDataModel {
     public void setSettings(TreeViewSettings settings) {
         this.settings = settings;
     }
+
 }

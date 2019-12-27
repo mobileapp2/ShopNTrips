@@ -17,4 +17,5 @@ public class TreeViewTreeDatumModel {
     public void setLevel(List<TreeViewLevelModel> level) {
         this.level = level;
     }
+
 }

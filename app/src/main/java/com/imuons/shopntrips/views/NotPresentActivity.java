@@ -282,6 +282,9 @@ public class NotPresentActivity extends AppCompatActivity {
     }
 
     private void register() {
+        final ProgressDialog pd = ViewUtils.getProgressBar(NotPresentActivity.this, "Loading...", "Please wait..!");
+
+
         password = mTextPassword.getText().toString().trim();
 
         Map<String, String> registerMap = new HashMap<>();
@@ -308,7 +311,7 @@ public class NotPresentActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RegisterResponseModel> call,
                                    Response<RegisterResponseModel> response) {
-
+                pd.hide();
                 if (response.isSuccessful()) {
                     RegisterResponseModel registerResponseModel = response.body();
                     if (registerResponseModel.getCode() == Constants.RESPONSE_CODE_OK &&
@@ -322,9 +325,11 @@ public class NotPresentActivity extends AppCompatActivity {
 
 
                     } else {
+                        pd.hide();
                         Toast.makeText(NotPresentActivity.this, registerResponseModel.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    pd.hide();
                     Toast.makeText(NotPresentActivity.this, "Check username or password", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -332,7 +337,7 @@ public class NotPresentActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<RegisterResponseModel> call,
                                   Throwable t) {
-
+                pd.hide();
                 Toast.makeText(NotPresentActivity.this, getString(R.string.something_went_wrong), Toast.LENGTH_SHORT).show();
             }
         });
